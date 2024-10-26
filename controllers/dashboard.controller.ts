@@ -1,7 +1,5 @@
-import { Request, Response } from "express";
+import { Request, Response } from 'express'
 
 export const index = async (req: Request, res: Response) => {
-    res.render("pages/dashboard/index", {
-        
-    }); 
-};
+  res.render('pages/dashboard/index', {})
+}

@@ -1,14 +1,21 @@
 doctype html 
 html 
     head 
+        link(rel="icon", href="/images/favicon.svg")
+    
         title PetCommunity 
 
         link(rel="stylesheet", href="/css/styles.css")
         link(rel="stylesheet", href="/css/tailwind.css")
-        
+        link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css")
 
     body 
-        .main 
-            block main
+
+        include ../partials/header.pug
+
+        .body  
+
+            .main 
+                block main
 
         script(src="/js/script.js") 

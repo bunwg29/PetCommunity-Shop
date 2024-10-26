@@ -1,8 +1,8 @@
-import {Router} from "express";
-const router: Router = Router();
+import { Router } from 'express'
+const router: Router = Router()
 
-import * as controller from "../controllers/dashboard.controller";
+import * as controller from '../controllers/dashboard.controller'
 
-router.get("/", controller.index);
+router.get('/', controller.index)
 
-export const dashboardRoutes: Router = router;
+export const dashboardRoutes: Router = router
