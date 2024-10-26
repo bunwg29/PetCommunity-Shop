@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.ts",
-    "build:css": "npx tailwindcss build public/css/styles.css -o public/css/tailwind.css --watch",
+    "build:scss": "node-sass public/scss/index.scss public/styles/style.css",
+    "build:tailwind": "tailwindcss -i public/tailwind/tailwind.css -o public/styles/tailwind.css",
+    "build:css": "npm run build:scss && npm run build:tailwind",
+    "watch:css": "nodemon -w public/scss -e scss -x \"npm run build:css\" && nodemon -w public/tailwind -e css -x \"npm run build:css\"",
     "format": "prettier --write ."
   },
   "author": "",
@@ -17,6 +20,7 @@
     "md5": "^2.3.0",
     "mongodb": "^6.10.0",
     "mongoose": "^8.7.2",
+    "node-sass": "^9.0.0",
     "pug": "^3.0.3"
   },
   "devDependencies": {
