@@ -5,7 +5,12 @@ module.exports = {
     './public/**/*.js', // Quét các file JS trong thư mục public
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        linearFooter1: '#FCEED5',
+        linearFooter2: '#FFE7BA',
+      },
+    },
   },
   plugins: [],
 }

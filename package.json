@@ -9,6 +9,7 @@
     "build:tailwind": "tailwindcss -i public/tailwind/tailwind.css -o public/styles/tailwind.css",
     "build:css": "npm run build:scss && npm run build:tailwind",
     "watch:css": "nodemon -w public/scss -e scss -x \"npm run build:css\" && nodemon -w public/tailwind -e css -x \"npm run build:css\"",
+    "tailwind": "npx tailwindcss build public/tailwind/tailwind.css -o public/styles/tailwind.css --watch",
     "format": "prettier --write ."
   },
   "author": "",
