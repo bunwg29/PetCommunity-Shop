@@ -17,7 +17,10 @@ const petSchema = new mongoose.Schema(
         location: String,
         published_date: Date,
         additional_info: String,
-        deleted: Boolean
+        deleted: {
+            type: Boolean,
+            default: false
+        }
     },
     {
         timestamps: true
