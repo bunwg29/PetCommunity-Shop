@@ -11,8 +11,10 @@ html
 
     body(class="bg-[#FDFDFD]")  
 
-        include ../partials/header.pug
-
+        if isDashboard
+            include ../partials/header.pug
+        else 
+            include ../partials/headerCategory.pug
         .body
 
             .main 
