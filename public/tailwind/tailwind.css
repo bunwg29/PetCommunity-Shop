@@ -21,4 +21,13 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+.hero-category {
+  background-image: url('/images/hero-banner-category.png');
+  border-radius: 0 0 20px 20px;
+  max-width: 100%;
+  height: auto;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
  
