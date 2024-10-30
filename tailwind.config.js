@@ -5,6 +5,10 @@ module.exports = {
     './public/**/*.js', // Quét các file JS trong thư mục public
   ],
   theme: {
+    fontFamily: {
+      display: ['Source Serif Pro', 'Georgia', 'serif'],
+      body: ['Synonym', 'system-ui', 'sans-serif'],
+    },
     extend: {
       colors: {
         linearFooter1: '#FCEED5',

@@ -2,16 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
+/* @font-face {
   font-family: 'Montserrat';
   src: url('../fonts/Montserrat-Medium.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
-}
+} */
 
-body {
+/* body {
   font-family: 'Montserrat', sans-serif;
-}
+} */
 
 .hero-banner {
   background-image: url('/images/hero-banner.png');
@@ -29,5 +29,13 @@ body {
   height: auto;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none; 
+  background: url('/images/select-arrow.svg') no-repeat right 10px center; 
+  background-size: 1em; 
+  padding-right: 2em; 
 }
  

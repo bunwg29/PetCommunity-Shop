@@ -1,13 +1,6 @@
-section(class="py-[5%]")
-    div(class="flex justify-between")
-        div  
-            h3(class="text-[16px]") Whats new?
-            p(class="text-[24px] text-[#003459] font-bold") Take A Look At Some Of Our Pets 
-        button(class="flex justify-center py-[10px] w-[12%] h-[1%] text-[14px] text-[#003459 rounded-[57px] border-solid border-2 border-[#003459] hover:bg-[#ff7037]") View more
-            img(src="/images/arrow_button.svg", alt="arrowbutton")  
-
+section 
     div(class="grid grid-cols-4 gap-4")
-        each item in petInfo
+        each item in petProduct
             figure(class="p-[5%] rounded-[12px] bg-[#FFFFFF] flex flex-col shadow-lg items-center")
                 img(src= item.avt, alt="avatar of pet" class="rounded-[10px] w-[90%] h-[90%]")
                 div(class="pt-[10%] w-[90%]")
