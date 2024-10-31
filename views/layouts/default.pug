@@ -13,8 +13,10 @@ html
 
         if isDashboard
             include ../partials/header.pug
-        else 
+        if isCategory
             include ../partials/headerCategory.pug
+        else 
+            include ../partials/headerContent.pug
         .body
 
             .main(class="px-[10%]")
