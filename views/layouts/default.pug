@@ -13,7 +13,7 @@ html
 
         if isDashboard
             include ../partials/header.pug
-        if isCategory
+        else if isCategory
             include ../partials/headerCategory.pug
         else 
             include ../partials/headerContent.pug

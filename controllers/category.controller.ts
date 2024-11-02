@@ -29,11 +29,7 @@ export const petDetail = async (req: Request, res: Response) => {
     const petProduct = await PetModel.find(find);
 
     const petDetail = await PetModel.findOne(findPetDetail)
-    // petProduct.forEach(pet => {
-    //     pet.images.forEach(img => {
-    //         console.log(img.image);
-    //     });
-    // });
+   
     res.render("pages/category/petDetail", {
         petDetail: petDetail,
         petProduct: petProduct
