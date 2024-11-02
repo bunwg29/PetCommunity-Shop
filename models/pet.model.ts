@@ -1,4 +1,6 @@
 import mongoose from "mongoose";
+import slugUpdater from 'mongoose-slug-updater';
+mongoose.plugin(slugUpdater);
 
 const petSchema = new mongoose.Schema(
     {
@@ -17,6 +19,11 @@ const petSchema = new mongoose.Schema(
         location: String,
         published_date: Date,
         additional_info: String,
+        slug: {
+            type: String,
+            slug: "name",
+            unique: true
+        },
         deleted: {
             type: Boolean,
             default: false
