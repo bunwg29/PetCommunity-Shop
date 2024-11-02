@@ -38,4 +38,8 @@ select {
   background-size: 1em; 
   padding-right: 2em; 
 }
+
+::-webkit-scrollbar {
+  width: 0;
+}
  
