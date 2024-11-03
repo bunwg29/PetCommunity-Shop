@@ -2,6 +2,7 @@ import express, { Express, Response, Request } from 'express'
 import * as dotenv from 'dotenv'
 import * as database from './config/database'
 import Routers from './routes/index.route'
+import methodOverride from 'method-override';
 
 dotenv.config()
 database.connect()
@@ -16,6 +17,7 @@ app.set('view engine', 'pug')
 app.set('views', `${__dirname}/views`)
 
 app.use(express.static(__dirname + '/public'))
+app.use(methodOverride('_method'));
 
 Routers(app)
 
