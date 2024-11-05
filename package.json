@@ -28,6 +28,7 @@
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
+    "@types/md5": "^2.3.5",
     "@types/method-override": "^0.0.35",
     "@types/mongoose": "^5.11.96",
     "@types/node": "^22.7.7",
