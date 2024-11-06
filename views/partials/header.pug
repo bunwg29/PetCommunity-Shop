@@ -11,9 +11,13 @@ section(class="hero-banner px-[10%]")
       a(href='/blog') Blog
       a(href='/contact') Contact
       input(type='text' placeholder='Search something here!' class="h-11 w-72 p-4 rounded-[46px] outline-none")
-
-    button(class="px-[28px] text-stone-50 bg-[#003459] rounded-[57px]") Join the community
-
+      button(class="px-[28px] text-stone-50 bg-[#003459] rounded-[57px]")
+        if (user)
+          | #{user}
+        else
+          | Join the community
+ 
+        
   article(class="grid grid-cols-2")
 
     header(class="pt-[10%]")

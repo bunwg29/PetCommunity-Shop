@@ -15,12 +15,13 @@ export const index = async (req: Request, res: Response) => {
   const toyPetInfo = await ToyPetModel.find(find);
 
   const blogInfo = await BlogModel.find(find);
-
+  
   res.render('pages/dashboard/index', {
+    user: res.locals.user ? res.locals.user.name : "Sign in",
     petInfo: petInfo,
     foodPetInfo: foodPetInfo,
     toyPetInfo: toyPetInfo,
     blogInfo: blogInfo,
     isDashboard: true
-  });
+  });  
 };
