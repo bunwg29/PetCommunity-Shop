@@ -42,3 +42,35 @@ export const registerValidate = async (req: Request, res: Response, next: NextFu
     }
 
 };
+
+export const validatePassword = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+
+    const errors: { [key: string]: string } = {};
+
+    const password = req.body.password;
+    const confirm_password = req.body.confirm_password;
+
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
+
+    if (!password) errors.password = "Password is required";
+    if (!confirm_password) errors.confirm_password = "Confirm password is required";
+
+    if(password && !passwordRegex.test(password)) {
+        errors.password = "Password must contain uppercase, lowercase, number, and special character"
+    }
+
+    if (password && confirm_password && password !== confirm_password) {
+        errors.confirm_password = "Passwords do not match";
+    }
+
+    if (Object.keys(errors).length > 0) {
+        res.locals.errors = errors;
+        return res.render('pages/user/reset-password', { 
+            title: "PetCommunity | Reset password",
+            errors
+        });
+    } else {
+        next();
+    }
+
+};

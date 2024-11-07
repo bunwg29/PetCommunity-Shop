@@ -1,9 +1,13 @@
 import { Response, Request } from "express";
 import md5 from 'md5';
+
 import UserModel from "../models/user.model";
+import ForgotPassword from "../models/forgot-password.model";
 
-import * as generateHelper from "../helpers/generateCode";
+import * as generateHelper from "../helpers/generateCode.helper";
+import * as sendMailHelper from "../helpers/sendMail.helper";
 
+// [GET] /user/signup
 export const signup = async (req: Request, res: Response) => {
     
     const errors = res.locals.errors || null; 
@@ -15,6 +19,7 @@ export const signup = async (req: Request, res: Response) => {
 
 };
 
+// [POST] /user/signup
 export const signupPost = async (req: Request, res: Response) => {
     
     const userData = {
@@ -30,6 +35,7 @@ export const signupPost = async (req: Request, res: Response) => {
 
     try {
         await newUser.save();
+        res.cookie("tokenUser", newUser.tokenUser);
         res.redirect("/user/signin");
     } catch (error) {
         res.locals.errors = { general: "Register falied, try again!" };
@@ -38,6 +44,7 @@ export const signupPost = async (req: Request, res: Response) => {
 
 };
 
+// [GET] /user/sigiin
 export const signin = async (req: Request, res: Response) => {
 
     const errors = res.locals.errors || null;   
@@ -49,6 +56,7 @@ export const signin = async (req: Request, res: Response) => {
 
 };
 
+// [POST] /user/signin
 export const signinPost = async (req: Request, res: Response) => {
 
     const errors: { [key: string]: string } = {};
@@ -88,10 +96,141 @@ export const signinPost = async (req: Request, res: Response) => {
     
 };
 
+// [GET] /user/logout
 export const logout = async (req: Request, res: Response) => {
+
     res.clearCookie("tokenUser");
     res.redirect("/");
+
 };
 
+// [GET] /user/forgot-password
+export const forgotPassword = async (req: Request, res: Response) => {
 
+    const errors = res.locals.errors || null; 
 
+    res.render("pages/user/forgot-password", {
+        title: "PetComunity | Forgot Password",
+        errors
+    });
+};
+
+// [POST] /user/forgot-password
+export const forgotPasswordPost = async (req: Request, res: Response) => {
+
+    const email = req.body.email;
+    const errors: { [key: string]: string } = {};
+    const find = {
+        deleted: false,
+        email: email
+    };
+
+    const emailAccount = await UserModel.findOne(find);
+
+    if (!emailAccount) {
+        errors.email = "Not exist email";
+        res.locals.errors = errors;
+        res.render("pages/user/forgot-password", {
+            title: "PetCommunity | SignIn",
+            errors,
+        });
+        return;
+    }
+
+    const otp = generateHelper.generateRandomNumber(6);
+
+    const forgotPasswordData = {
+        email: email,
+        otp: otp,
+        expireAt: Date.now() + 3*60*60
+    };
+
+    const forgotPassword = new ForgotPassword(forgotPasswordData);
+
+    await forgotPassword.save();
+
+    const subject = "OTP code to get reset password";
+    const htmlSendMail = `Your OTP authentication code is <b style="color: green;">${otp}</b>. OTP code is valid for 3 minutes. Please do not provide OTP code to others.`;
+    sendMailHelper.sendEmail(email, subject, htmlSendMail);
+
+    res.redirect(`/user/forgot-password/otp?email=${email}`);
+
+};
+
+// [GET] /user/forgot-password/otp
+export const otpPassword = async (req: Request, res: Response) => {
+
+    const email = req.query.email;
+    const errors = res.locals.errors || null;
+
+    res.render("pages/user/otp-password", {
+        title: "PetCommunity | OTP",
+        email,
+        errors
+    });
+
+};
+
+// [POST] /user/forgot-password/otp
+export const otpPasswordPost = async (req: Request, res: Response) => {
+
+    const email = req.body.email
+    const otp = req.body.otp_code;
+    const errors: {[key: string] : string} = {};
+
+    const otpCode = await ForgotPassword.findOne({
+        
+        email: email,
+        otp: otp
+        
+    });
+
+    if(!otpCode) {
+        errors.otp = "Incorrect OTP";
+        res.locals.errors = errors;
+        res.render("pages/user/otp-password", {
+            title: "PetCommunity | OTP",
+            email,
+            errors
+        });
+        return;
+    };
+
+    const user = await UserModel.findOne({
+        email: email
+    });
+
+    res.cookie("tokenUser", user.tokenUser);
+
+    res.redirect("/user/password/reset");
+
+};
+
+// [GET] /user/password/reset
+export const resetPassword = async (req: Request, res: Response) => {
+
+    res.render("pages/user/reset-password", {
+        title: "PetCommunity | Reset Password"
+    });
+
+};
+
+// [PATCH] /user/password/reset
+export const resetPasswordPatch = async (req: Request, res: Response) => {
+
+    const password = req.body.password;
+    const tokenUser = req.cookies.tokenUser;
+
+    await UserModel.updateOne(
+        {
+            tokenUser: tokenUser,
+            deleted: false
+        }, 
+        {
+            password: md5(password)
+        }
+    );
+
+    res.redirect("/user/signin");
+
+};
