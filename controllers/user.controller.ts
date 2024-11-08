@@ -28,7 +28,8 @@ export const signupPost = async (req: Request, res: Response) => {
         phone: req.body.phonenumber,
         password: md5(req.body.password),
         tokenUser: generateHelper.generateRandomString(30),
-        linkFb: req.body.facebook_address
+        linkFb: req.body.facebook_address,
+        thumbnail: req.body.thumbnail
     };
 
     const newUser = new UserModel(userData);
