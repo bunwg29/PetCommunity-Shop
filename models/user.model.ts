@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema(
     tokenUser: String,
     avatar: String,
     linkFb: String,
+    thumbnail: String,
     status: {
         type: String,
         default: "active"
