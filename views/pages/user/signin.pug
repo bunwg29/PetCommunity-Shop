@@ -21,6 +21,8 @@ html
                     p(class="text-red-500 text-sm pl-[5px]") #{errors.email}
                 label(for="username") Password
                 input(type="password" name="password" class="pl-[20px] w-full h-10 border rounded-[10px] outline-[#367AFF]" id="password" required)
+                if errors && errors.password
+                    p(class="text-red-500 text-sm pl-[5px]") #{errors.password}
                 div(class="flex items-center gap-[10px]")
                     input(type="checkbox", name="" id="remember") 
                     div(class="w-full flex justify-between items-center") 
