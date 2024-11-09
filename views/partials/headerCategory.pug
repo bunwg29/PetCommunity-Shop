@@ -1,3 +1,4 @@
+include ../mixins/dropdownUser.pug
 section(class="px-[10%]")
 
   header(class="flex justify-between py-8 ")
@@ -14,7 +15,7 @@ section(class="px-[10%]")
 
     button(class="button-header px-[28px] text-stone-50 bg-[#003459] rounded-[57px] h-full") Sign in
     if (user)
-      img(src=user.thumbnail, alt="user-avatar", class="avatar-user relative w-[40px] h-[40px] rounded-full border-2 border-[#002A48]")
+      +dropdownUser(user)
   article(class="hero-category grid grid-cols-2")
     aside(class="relative")
       img(src='/images/thumbnail-category-dog.png' alt='Humans and Dog' class="absolute bottom-0 left-10")

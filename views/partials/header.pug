@@ -1,3 +1,5 @@
+include ../mixins/dropdownUser.pug
+
 section(class="hero-banner px-[10%]")
 
   header(class="flex justify-between py-8")
@@ -11,9 +13,14 @@ section(class="hero-banner px-[10%]")
       a(href='/blog') Blog
       a(href='/contact') Contact
       input(type='text' placeholder='Search something here!' class="h-11 w-72 p-4 rounded-[46px] outline-none")
-      button(class="button-header px-[28px] text-stone-50 bg-[#003459] rounded-[57px] h-full") Sign in
+      a(href="user/signin" class="button-header px-[28px] text-stone-50 bg-[#003459] rounded-[57px] h-full") 
+        button(class=" px-[28px] text-stone-50 bg-[#003459] rounded-[57px] h-full") Sign in
       if (user)
-        img(src=user.thumbnail, alt="user-avatar", class="avatar-user relative w-[40px] h-[40px] rounded-full border-2 border-[#002A48]")
+        +dropdownUser(user)
+      
+                
+                
+          
 
  
         
