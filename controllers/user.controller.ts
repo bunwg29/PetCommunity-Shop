@@ -235,3 +235,12 @@ export const resetPasswordPatch = async (req: Request, res: Response) => {
     res.redirect("/user/signin");
 
 };
+
+// [GET] /user/profile
+export const profile = async (req: Request, res: Response) => {
+
+    res.render("pages/user/profile", {
+        title: "PetCommunity | Profile"
+    });
+
+};

@@ -26,6 +26,7 @@ export const index = async (req: Request, res: Response) => {
     const petProduct = await PetModel.find(find);
 
     res.render("pages/category/index", {
+        title: "PetCommunity | Category",
         petProduct: petProduct,
         selectedFilters: { gender, minPrice, maxPrice, size },
         isCategory: true
@@ -49,6 +50,7 @@ export const petDetail = async (req: Request, res: Response) => {
     const petDetail = await PetModel.findOne(findPetDetail)
    
     res.render("pages/category/petDetail", {
+        title: "PetCommunity | Product",
         petDetail: petDetail,
         petProduct: petProduct
     });

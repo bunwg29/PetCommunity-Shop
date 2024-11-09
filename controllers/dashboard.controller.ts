@@ -17,6 +17,7 @@ export const index = async (req: Request, res: Response) => {
   const blogInfo = await BlogModel.find(find);
   
   res.render('pages/dashboard/index', {
+    title: "PetCommunity",
     user: res.locals.user ? res.locals.user : null,
     petInfo: petInfo,
     foodPetInfo: foodPetInfo,
