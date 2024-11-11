@@ -238,9 +238,46 @@ export const resetPasswordPatch = async (req: Request, res: Response) => {
 
 // [GET] /user/profile
 export const profile = async (req: Request, res: Response) => {
+    function formatDate(date: Date): string {
+        const year = date.getFullYear();
+        const month = (date.getMonth() + 1).toString().padStart(2, '0'); 
+        const day = date.getDate().toString().padStart(2, '0'); 
+        
+        return `${year}-${month}-${day}`;
+    }
+    
 
+    const date = res.locals.user.dateBirth;
+
+    const formattedDate = formatDate(date);
+    
     res.render("pages/user/profile", {
-        title: "PetCommunity | Profile"
+        title: "PetCommunity | Profile",
+        formattedDate
     });
+
+};
+
+// [PATCH] /user/profile/edit
+export const profileEdit = async (req: Request, res: Response) => {
+
+    function convertToMongoDate(dateString) {
+        const dateParts = dateString.split('-');
+        const year = parseInt(dateParts[0], 10);
+        const month = parseInt(dateParts[1], 10) - 1;
+        const day = parseInt(dateParts[2], 10);
+
+        return new Date(year, month, day);
+    }
+
+    req.body.dateBirth = convertToMongoDate(req.body.dateBirth);
+
+    await UserModel.updateOne(
+        {
+            tokenUser: req.cookies.tokenUser,
+            deleted: false
+        }, req.body);
+
+    res.redirect("/user/profile");
 
 };

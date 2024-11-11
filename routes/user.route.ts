@@ -36,4 +36,19 @@ router.patch(
     validate.validatePassword,
     controller.resetPasswordPatch
 );
+
+router.get(
+    "/profile", 
+    userMiddleWare.authenticateUser, 
+    controller.profile
+);
+
+router.patch(
+    "/profile/edit",
+    userMiddleWare.authenticateUser,
+    upload.single('thumbnail'),
+    uploadCloud.uploadSingle,
+    controller.profileEdit
+);
+
 export const userRoutes: Router = router;
