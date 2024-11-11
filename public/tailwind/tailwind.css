@@ -33,13 +33,12 @@
 
 select {
   appearance: none;
-  -webkit-appearance: none; 
-  background: url('/images/select-arrow.svg') no-repeat right 10px center; 
-  background-size: 1em; 
-  padding-right: 2em; 
+  -webkit-appearance: none;
+  background: url('/images/select-arrow.svg') no-repeat right 10px center;
+  background-size: 1em;
+  padding-right: 2em;
 }
 
 ::-webkit-scrollbar {
   width: 0;
 }
- 

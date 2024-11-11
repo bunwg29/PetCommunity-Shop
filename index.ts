@@ -3,9 +3,8 @@ import * as dotenv from 'dotenv'
 dotenv.config()
 import * as database from './config/database'
 import Routers from './routes/index.route'
-import methodOverride from 'method-override';
-import cookieParser from 'cookie-parser';
-
+import methodOverride from 'method-override'
+import cookieParser from 'cookie-parser'
 
 database.connect()
 
@@ -19,8 +18,8 @@ app.set('view engine', 'pug')
 app.set('views', `${__dirname}/views`)
 
 app.use(express.static(__dirname + '/public'))
-app.use(methodOverride('_method'));
-app.use(cookieParser());
+app.use(methodOverride('_method'))
+app.use(cookieParser())
 Routers(app)
 
 app.listen(port, () => {

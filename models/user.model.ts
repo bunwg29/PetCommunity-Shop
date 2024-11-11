@@ -1,7 +1,7 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose'
 
 const userSchema = new mongoose.Schema(
-    {
+  {
     name: String,
     email: String,
     gender: String,
@@ -13,19 +13,19 @@ const userSchema = new mongoose.Schema(
     linkFb: String,
     thumbnail: String,
     status: {
-        type: String,
-        default: "active"
+      type: String,
+      default: 'active',
     },
     deleted: {
-        type: Boolean,
-        default: false
+      type: Boolean,
+      default: false,
     },
-    }, 
-    {
-        timestamps: true
-    }
-);
+  },
+  {
+    timestamps: true,
+  }
+)
 
-const UserModel = mongoose.model("UserModel", userSchema, "user");
+const UserModel = mongoose.model('UserModel', userSchema, 'user')
 
-export default UserModel;
+export default UserModel

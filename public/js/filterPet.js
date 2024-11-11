@@ -1,71 +1,72 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const minPriceSelect = document.getElementById('min-price');
-    const maxPriceSelect = document.getElementById('max-price');
-    const genderCheckboxes = document.querySelectorAll("input[name='gender']");
-    const sizeCheckboxes = document.querySelectorAll("input[name='size']");
-    
-    const updateSearchParams = () => {
-        const url = new URL(window.location.href);
-        
-        if (minPriceSelect.value) {
-            url.searchParams.set("minPrice", minPriceSelect.value);
-        } else {
-            url.searchParams.delete("minPrice");
-        }
-        
-        if (maxPriceSelect.value) {
-            url.searchParams.set("maxPrice", maxPriceSelect.value);
-        } else {
-            url.searchParams.delete("maxPrice");
-        }
+  const minPriceSelect = document.getElementById('min-price')
+  const maxPriceSelect = document.getElementById('max-price')
+  const genderCheckboxes = document.querySelectorAll("input[name='gender']")
+  const sizeCheckboxes = document.querySelectorAll("input[name='size']")
 
-        let selectedGenders = Array.from(genderCheckboxes)
-            .filter(checkbox => checkbox.checked)
-            .map(checkbox => checkbox.value);
-        
-        if (selectedGenders.length) {
-            url.searchParams.set("gender", selectedGenders.join(","));
-        } else {
-            url.searchParams.delete("gender");
-        }
+  const updateSearchParams = () => {
+    const url = new URL(window.location.href)
 
-        let selectedSizes = Array.from(sizeCheckboxes)
-            .filter(checkbox => checkbox.checked)
-            .map(checkbox => checkbox.value);
+    if (minPriceSelect.value) {
+      url.searchParams.set('minPrice', minPriceSelect.value)
+    } else {
+      url.searchParams.delete('minPrice')
+    }
 
-        if (selectedSizes.length) {
-            url.searchParams.set("size", selectedSizes.join(","));
-        } else {
-            url.searchParams.delete("size");
-        }
+    if (maxPriceSelect.value) {
+      url.searchParams.set('maxPrice', maxPriceSelect.value)
+    } else {
+      url.searchParams.delete('maxPrice')
+    }
 
-        window.location.href = url.href;
-    };
+    let selectedGenders = Array.from(genderCheckboxes)
+      .filter((checkbox) => checkbox.checked)
+      .map((checkbox) => checkbox.value)
 
-    
-    genderCheckboxes.forEach(checkbox => checkbox.addEventListener("change", updateSearchParams));
-    sizeCheckboxes.forEach(checkbox => checkbox.addEventListener("change", updateSearchParams));
+    if (selectedGenders.length) {
+      url.searchParams.set('gender', selectedGenders.join(','))
+    } else {
+      url.searchParams.delete('gender')
+    }
 
-    let minPriceSelected = false;
-    let maxPriceSelected = false;
+    let selectedSizes = Array.from(sizeCheckboxes)
+      .filter((checkbox) => checkbox.checked)
+      .map((checkbox) => checkbox.value)
 
-    const checkAndUpdate = () => {
-        if (minPriceSelected && maxPriceSelected === true) {
-            updateSearchParams();
-            minPriceSelected = false;
-            maxPriceSelected = false;
-        }
-    };
+    if (selectedSizes.length) {
+      url.searchParams.set('size', selectedSizes.join(','))
+    } else {
+      url.searchParams.delete('size')
+    }
 
+    window.location.href = url.href
+  }
 
-    minPriceSelect.addEventListener("change", () => {
-        minPriceSelected = true;
-        checkAndUpdate();
-    });
+  genderCheckboxes.forEach((checkbox) =>
+    checkbox.addEventListener('change', updateSearchParams)
+  )
+  sizeCheckboxes.forEach((checkbox) =>
+    checkbox.addEventListener('change', updateSearchParams)
+  )
 
-    maxPriceSelect.addEventListener("change", () => {
-        maxPriceSelected = true;
-        checkAndUpdate();
-    });
+  let minPriceSelected = false
+  let maxPriceSelected = false
 
-});
+  const checkAndUpdate = () => {
+    if (minPriceSelected && maxPriceSelected === true) {
+      updateSearchParams()
+      minPriceSelected = false
+      maxPriceSelected = false
+    }
+  }
+
+  minPriceSelect.addEventListener('change', () => {
+    minPriceSelected = true
+    checkAndUpdate()
+  })
+
+  maxPriceSelect.addEventListener('change', () => {
+    maxPriceSelected = true
+    checkAndUpdate()
+  })
+})

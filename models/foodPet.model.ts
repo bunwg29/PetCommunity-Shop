@@ -1,24 +1,24 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose'
 
 const foodPetSchema = new mongoose.Schema(
-    {
-        name: String,
-        type: String,
-        size: String,
-        price: Number,
-        special_offer: String,
-        avt: String,
-        images: Array,
-        deleted: {
-            type: Boolean,
-            default: false
-        }
+  {
+    name: String,
+    type: String,
+    size: String,
+    price: Number,
+    special_offer: String,
+    avt: String,
+    images: Array,
+    deleted: {
+      type: Boolean,
+      default: false,
     },
-    {
-        timestamps: true
-    } 
-);
+  },
+  {
+    timestamps: true,
+  }
+)
 
-const FoodPetModel = mongoose.model("FoodModel", foodPetSchema, "food_pet");
+const FoodPetModel = mongoose.model('FoodModel', foodPetSchema, 'food_pet')
 
-export default FoodPetModel;
+export default FoodPetModel
