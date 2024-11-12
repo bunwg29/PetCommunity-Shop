@@ -19,5 +19,7 @@ router.post(
     controller.createBlogPost
 );
 router.get("/:slug/:id", controller.blogDetail);
+router.get("/edit/:id", authenticateUser, controller.edit);
+router.patch("/edit/:id",authenticateUser, controller.editPatch);
 
 export const blogRoutes: Router = router;

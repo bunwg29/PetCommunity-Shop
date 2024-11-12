@@ -65,3 +65,46 @@ export const blogDetail = async (req: Request, res: Response) => {
     });
     
 };
+
+export const edit = async (req: Request, res: Response) => {
+
+    const id = req.params.id;
+
+    const blogData = await BlogModel.findOne({
+        _id: id
+    });
+
+    res.render("/pages/blog/edit", {
+        title: "PetCommunity | Blog Edit",
+        blogData
+    });
+    
+};
+
+export const editPatch = async (req: Request, res: Response) => {
+    
+    const id_blogger = req.params.id;
+
+    const newBlogData = {
+        thumbnail_photo: req.body.thumbnail_photo,
+        title: req.body.title,
+        description: req.body.description,
+        content: req.body.content,
+        uploadBy: req.body.uploadBy,
+        id_blogger: id_blogger,
+    }
+
+
+    try {
+
+        await BlogModel.updateOne( {_id: id_blogger}, newBlogData );
+
+        res.redirect("/blog");
+
+    } catch (error) {
+        
+        res.send("update failed");
+
+    }
+    
+};
