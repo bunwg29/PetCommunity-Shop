@@ -13,7 +13,8 @@ section(class="px-[10%]")
       a(href='/contact') Contact
       input(type='text' placeholder='Search something here!' class="h-11 w-[25%] p-4 rounded-[46px] outline-none")
 
-    button(class="button-header px-[28px] text-stone-50 bg-[#003459] rounded-[57px] h-full") Sign in
+    a(href="user/signin" class="button-header px-[28px] text-stone-50 bg-[#003459] rounded-[57px] h-full") 
+        button(class="text-stone-50 bg-[#003459] rounded-[57px] h-full") Sign in
     if (user)
       +dropdownUser(user)
     

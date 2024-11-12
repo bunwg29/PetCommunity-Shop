@@ -2,7 +2,7 @@ import mongoose from 'mongoose'
 
 const blogSchema = new mongoose.Schema(
   {
-    avt: String,
+    thumbnail_photo: String,
     title: String,
     description: String,
     content: String,
