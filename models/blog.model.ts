@@ -1,4 +1,6 @@
 import mongoose from 'mongoose'
+import slugUpdater from 'mongoose-slug-updater'
+mongoose.plugin(slugUpdater);
 
 const blogSchema = new mongoose.Schema(
   {
@@ -7,6 +9,12 @@ const blogSchema = new mongoose.Schema(
     description: String,
     content: String,
     uploadBy: String,
+    id_blogger: String,
+    slug: {
+      type: String,
+      slug: 'title',
+      unique: true,
+    },
     deleted: {
       type: Boolean,
       default: false,

@@ -9,7 +9,7 @@ const router: Router = Router();
 
 const upload = multer();
 
-router.get('/', authenticateUser, controller.index);
+router.get('/', controller.index);
 router.get('/create', authenticateUser, controller.createBlog);
 router.post(
     '/create/:id',
@@ -18,4 +18,6 @@ router.post(
     uploadCloud.uploadSingle,
     controller.createBlogPost
 );
+router.get("/:slug/:id", controller.blogDetail);
+
 export const blogRoutes: Router = router;
