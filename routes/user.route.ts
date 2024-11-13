@@ -27,21 +27,21 @@ router.get('/forgot-password/otp', controller.otpPassword)
 router.post('/forgot-password/otp', controller.otpPasswordPost)
 router.get(
   '/password/reset',
-  userMiddleWare.authenticateUser,
+  userMiddleWare.setUserInfo,
   controller.resetPassword
 )
 router.patch(
   '/password/reset',
-  userMiddleWare.authenticateUser,
+  userMiddleWare.setUserInfo,
   validate.validatePassword,
   controller.resetPasswordPatch
 )
 
-router.get('/profile', userMiddleWare.authenticateUser, controller.profile)
+router.get('/profile', userMiddleWare.setUserInfo, controller.profile)
 
 router.patch(
   '/profile/edit',
-  userMiddleWare.authenticateUser,
+  userMiddleWare.setUserInfo,
   upload.single('thumbnail'),
   uploadCloud.uploadSingle,
   controller.profileEdit
