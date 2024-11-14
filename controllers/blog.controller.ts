@@ -37,7 +37,7 @@ export const createBlogPost = async (req: Request, res: Response) => {
         uploadBy: req.body.uploadBy,
         id_blogger: id_blogger,
     }
-
+    
     const newBlog = new BlogModel(newBlogData);
 
     try {
@@ -66,6 +66,21 @@ export const blogDetail = async (req: Request, res: Response) => {
     
 };
 
+export const myBlog = async (req: Request, res: Response) => {
+
+    const id_blogger = req.params.id;
+    
+    const myBlog = await BlogModel.find({
+        id_blogger: id_blogger,
+    });
+
+    res.render("pages/blog/myblog", {
+        title: "PetC | MyBlog",
+        myBlog
+    });
+
+};
+
 export const edit = async (req: Request, res: Response) => {
 
     const id = req.params.id;
@@ -74,7 +89,7 @@ export const edit = async (req: Request, res: Response) => {
         _id: id
     });
 
-    res.render("/pages/blog/edit", {
+    res.render("pages/blog/edit", {
         title: "PetCommunity | Blog Edit",
         blogData
     });
@@ -83,7 +98,7 @@ export const edit = async (req: Request, res: Response) => {
 
 export const editPatch = async (req: Request, res: Response) => {
     
-    const id_blogger = req.params.id;
+    const id_blog = req.params.id;
 
     const newBlogData = {
         thumbnail_photo: req.body.thumbnail_photo,
@@ -91,13 +106,12 @@ export const editPatch = async (req: Request, res: Response) => {
         description: req.body.description,
         content: req.body.content,
         uploadBy: req.body.uploadBy,
-        id_blogger: id_blogger,
     }
-
-
+    
+    
     try {
 
-        await BlogModel.updateOne( {_id: id_blogger}, newBlogData );
+        await BlogModel.updateOne( { _id: id_blog }, newBlogData );
 
         res.redirect("/blog");
 

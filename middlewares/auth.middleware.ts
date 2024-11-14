@@ -17,4 +17,31 @@ export const setUserInfo = async (req: Request, res: Response, next: NextFunctio
 
 };
 
+export const requireAuth = async (req: Request, res: Response, next: NextFunction) => {
+  
+  if (!req.cookies.tokenUser) {
+
+    res.redirect("/user/signin")
+    return;
+
+  }
+
+  const account = await UserModel.findOne({
+
+    tokenUser: req.cookies.tokenUser, 
+    deleted: false
+
+  });
+
+  if (!account) {
+
+    res.redirect("/user/signin")
+    return;
+
+  }
+
+  next();
+
+};
+
 

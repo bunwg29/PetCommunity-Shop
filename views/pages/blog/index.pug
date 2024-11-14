@@ -3,7 +3,7 @@ block main
     section(class="pb-[50px]")
         div(class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10")
             each item in blogInfo
-                a(href=`/blog/${item.slug}/${item.id}`) 
+                a(href=`/blog/petBlog/${item.slug}/${item.id}`) 
                     figure(class="w-full h-full group transition-all duration-300 ease-in-out transform hover:scale-105 hover:bg-gray-100 rounded-lg shadow-lg overflow-hidden")
                         img(src= item.thumbnail_photo, alt="avt of blog" class="w-full h-64 object-cover transition-transform duration-300 ease-in-out group-hover:scale-110")
                         figcaption(class="p-4 flex flex-col gap-2")
