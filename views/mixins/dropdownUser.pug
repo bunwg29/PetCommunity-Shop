@@ -18,8 +18,8 @@ mixin dropdownUser(user)
                     i(class="fa-solid fa-blog")
                 hr
                 li(class="p-[5%] flex justify-between items-center hover:bg-gray-200")
-                    a(href="", class="text-[#003459] text-sm w-full") Chat
-                    i(class="fa-brands fa-rocketchat")
+                    a(href=`/mypet/product/${user.id}`, class="text-[#003459] text-sm w-full") My Pet
+                    i(class="fa-solid fa-dog")
                 hr
                 li(class="p-[5%] flex justify-between items-center hover:bg-gray-200") 
                     a(href="/user/logout", class="text-[#ff301d] text-sm w-full") Logout
