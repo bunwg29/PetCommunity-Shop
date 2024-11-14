@@ -10,7 +10,7 @@ block main
             div(class="mt-[3%] mb-[1%] h-[15%] mw-[100%] gap-[10px] flex overflow-x-auto")
                 img(src=petDetail.avt, alt="image of pet" class="additional-image rounded-[6px]" image_position = "main_avt")
                 each imgObj, index in petDetail.images
-                    img(src=imgObj.image class="additional-image rounded-[6px]" image_position = index + 1)
+                    img(src=imgObj class="additional-image rounded-[6px]" image_position = index + 1)
             figcaption(class="w-full")
                 div(class="p-[1%] inline-flex items-center justify-center gap-[5px] mt-2 bg-gradient-to-br from-linearFooter1 to-linearFooter2 rounded-[10px] text-[14px] text-[#002A48] font-medium w-full")
                     img(src="/images/guaranteePet.svg", alt="guaranteePet icon", class="w-auto")

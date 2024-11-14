@@ -3,15 +3,15 @@
 document
   .getElementById('thumbnail')
   .addEventListener('change', function (event) {
-    console.log('File input changed')
+
     const file = event.target.files[0]
 
     if (file) {
-      console.log('File selected: ', file)
-      const reader = new FileReader()
+     
+      const reader = new FileReader();
 
       reader.onload = function (e) {
-        console.log('File read successfully')
+        
         const uploadContainer = document.querySelector('.avt_image')
 
         uploadContainer.src = e.target.result

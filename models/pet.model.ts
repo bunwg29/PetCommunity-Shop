@@ -10,7 +10,7 @@ const petSchema = new mongoose.Schema(
     age: Number,
     price: Number,
     avt: String,
-    images: Array,
+    images: [ {type: String} ],
     size: String,
     color: String,
     vacinated: String,
@@ -24,6 +24,7 @@ const petSchema = new mongoose.Schema(
       slug: 'name',
       unique: true,
     },
+    uploadBy: String,
     deleted: {
       type: Boolean,
       default: false,
