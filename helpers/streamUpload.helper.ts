@@ -5,9 +5,14 @@ cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
   api_key: process.env.API_KEY,
   api_secret: process.env.API_SECRET,
-})
+});
 
-export const streamUpload = (buffer: any) => {
+type CloudinaryUploadResult = {
+  url: string;
+  public_id: string; 
+};
+
+export const streamUpload = (buffer: any): Promise<CloudinaryUploadResult> => {
   return new Promise((resolve, reject) => {
     let stream = cloudinary.uploader.upload_stream(
       {
