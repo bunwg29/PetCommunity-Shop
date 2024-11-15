@@ -47,6 +47,13 @@ router.delete(
     auth.setUserInfo,
     auth.requireAuth,
     controller.deleteImages
-)
+);
+
+router.delete(
+    "/delete/:id",
+    auth.setUserInfo,
+    auth.requireAuth,
+    controller.deletePet
+);
 
 export const petProductRoutes: Router = router;

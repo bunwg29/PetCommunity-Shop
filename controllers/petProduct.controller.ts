@@ -87,3 +87,18 @@ export const deleteImages = async (req: Request, res: Response) => {
     }
 
 };
+
+export const deletePet = async (req: Request, res: Response) => {
+
+    try {
+        const petId = req.params.id;
+
+        await PetModel.findByIdAndDelete(petId);
+
+        res.redirect("/");
+
+    } catch (error) {
+        res.send("DELETE Pet failed");
+    }
+
+};

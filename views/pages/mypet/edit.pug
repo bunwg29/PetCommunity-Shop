@@ -13,7 +13,7 @@ block main
               h6.text-xl.font-bold(class="text-[#00171F]")
                 | #{petDetail.name}
               div(class="flex")
-                button.text-white.font-bold.uppercase.text-xs.px-4.py-2.rounded.shadow.outline-none.mr-1.ease-linear.transition-all.duration-150(class='active:bg-pink-600 hover:shadow-md focus:outline-none bg-red-600' type='submit')
+                button.text-white.font-bold.uppercase.text-xs.px-4.py-2.rounded.shadow.outline-none.mr-1.ease-linear.transition-all.duration-150.delete-pet(class='active:bg-pink-600 hover:shadow-md focus:outline-none bg-red-600' petId = petDetail._id)
                   | Delete
                 button.text-white.font-bold.uppercase.text-xs.px-4.py-2.rounded.shadow.outline-none.mr-1.ease-linear.transition-all.duration-150(class='active:bg-pink-600 hover:shadow-md focus:outline-none bg-[#003459]' type='submit')
                   | Save

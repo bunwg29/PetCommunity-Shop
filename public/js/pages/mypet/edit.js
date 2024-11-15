@@ -127,4 +127,43 @@ deleteButtons.forEach((button) => {
 });
 
 // End delete image of pet product in database
- 
+
+
+// Start delete pet product in database
+
+const deletePetButton = document.querySelector(".delete-pet");
+
+if (deletePetButton) {
+    deletePetButton.addEventListener("click", async (e) => {
+
+        e.preventDefault(); 
+
+        const petId = deletePetButton.getAttribute("petId");    
+        
+        if (confirm("Are you sure you want to delete this pet?")) {
+            try {
+                
+                const response = await fetch(`/mypet/delete/${petId}`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    alert("Pet deleted successfully.");
+                } else {
+                    alert("Failed to delete the pet.");
+                }
+            } catch (error) {
+                console.error("Error deleting pet:", error);
+                alert("An error occurred while deleting the pet.");
+            }
+        };
+
+    });
+};
+
+// End delete pet product in database
