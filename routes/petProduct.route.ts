@@ -1,10 +1,10 @@
 import { Router } from "express";
 import multer from "multer";
 
-const storage = multer.memoryStorage(); // Lưu file trong bộ nhớ trước khi upload
+const storage = multer.memoryStorage();
 const upload = multer({
   storage,
-  limits: { fileSize: 10 * 1024 * 1024 }, // Giới hạn kích thước file: 10MB
+  limits: { fileSize: 10 * 1024 * 1024 }, 
 });
 
 import * as uploadCloud from '../middlewares/uploadCloud.middleware'
@@ -21,6 +21,25 @@ router.get(
     auth.setUserInfo,
     auth.requireAuth,
     controller.index
+);
+
+router.get(
+    "/create/:id",
+    auth.setUserInfo,
+    auth.requireAuth,
+    controller.create
+);
+
+router.post(
+    "/create/:id",
+    auth.setUserInfo,
+    auth.requireAuth,
+    upload.fields([
+        { name: "avt", maxCount: 1 }, 
+        { name: "images" }, 
+    ]),
+    uploadCloud.uploadMultipeTypeForm,
+    controller.createPost
 );
 
 router.get(

@@ -4,7 +4,6 @@ mongoose.plugin(slugUpdater)
 
 const petSchema = new mongoose.Schema(
   {
-    id_code: String,
     name: String,
     gene: String,
     age: Number,
@@ -17,7 +16,6 @@ const petSchema = new mongoose.Schema(
     dewormed: String,
     cert: String,
     location: String,
-    published_date: Date,
     additional_info: String,
     slug: {
       type: String,

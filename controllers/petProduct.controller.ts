@@ -34,6 +34,61 @@ export const detail = async (req: Request, res: Response) => {
     
 };
 
+export const create = async (req: Request, res: Response) => {
+
+    res.render("pages/mypet/create", {
+        title: "MyPet | Create"
+    })
+
+};
+
+export const createPost = async (req: Request, res: Response) => {
+
+    try {
+        const {
+          name,
+          gene,
+          age,
+          price,
+          size,
+          color,
+          vacinated,
+          dewormed,
+          cert,
+          location,
+          additional_info,
+          uploadedData,
+        } = req.body;
+    
+        
+        const newPet = new PetModel({
+          name,
+          gene,
+          age: parseInt(age, 10),
+          price: parseFloat(price), 
+          avt: uploadedData.avt, 
+          size,
+          color,
+          vacinated,
+          dewormed,
+          cert,
+          location,
+          additional_info,
+          images: uploadedData.images, 
+          uploadBy: req.params.id
+        });
+    
+       
+        await newPet.save();
+
+        res.redirect("/category")
+    }
+    catch(error){
+        res.send("sập sàn");
+    }
+
+};
+
 export const editPatch = async (req: Request, res: Response) => {
     
     req.body.price = parseInt(req.body.price);

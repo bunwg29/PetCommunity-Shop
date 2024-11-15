@@ -72,14 +72,21 @@ if (inputPetAvatar) {
             readerAvt.onload = function(e) {    
                 const avtDiv = document.querySelector(".avtDiv");
                 petAvatar.src = e.target.result; 
+
                 const deleteButton = document.createElement('button');
                 deleteButton.classList.add('absolute', 'top-0', 'right-0', 'bg-red-400', 'text-white', 'rounded-full', 'p-1', 'text-xs');
-                deleteButton.textContent = 'Delete';    
+                deleteButton.textContent = 'Delete'; 
                 avtDiv.appendChild(deleteButton);
+
+                deleteButton.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    deleteButton.remove();
+                    petAvatar.src = rootPath;
+                });
+ 
             };
       
             readerAvt.readAsDataURL(fileAvatar); 
-
         };
 
     });
