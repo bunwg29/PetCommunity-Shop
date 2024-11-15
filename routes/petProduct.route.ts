@@ -1,8 +1,11 @@
 import { Router } from "express";
 import multer from "multer";
 
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage});
+const storage = multer.memoryStorage(); // Lưu file trong bộ nhớ trước khi upload
+const upload = multer({
+  storage,
+  limits: { fileSize: 10 * 1024 * 1024 }, // Giới hạn kích thước file: 10MB
+});
 
 import * as uploadCloud from '../middlewares/uploadCloud.middleware'
 import * as controller from "../controllers/petProduct.controller";
@@ -31,9 +34,19 @@ router.patch(
     "/edit/detail/:id",
     auth.setUserInfo,
     auth.requireAuth,
-    upload.array("images"),
-    uploadCloud.uploadMultiple,
+    upload.fields([
+        { name: "avt", maxCount: 1 }, 
+        { name: "images" }, 
+    ]),
+    uploadCloud.uploadMultipeTypeForm,
     controller.editPatch
 );
+
+router.delete(
+    "/image/:petId",
+    auth.setUserInfo,
+    auth.requireAuth,
+    controller.deleteImages
+)
 
 export const petProductRoutes: Router = router;
