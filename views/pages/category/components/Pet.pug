@@ -1,3 +1,4 @@
+include ../../../mixins/pagination.pug
 section 
     div(class="grid grid-cols-4 gap-4")
         each item in petProduct 
@@ -11,3 +12,5 @@ section
                         p(class="text-[#667479]") Age: 
                             span(class="text-[#667479] font-bold") #{item.age} months 
                     h5(class="text-[#00171F] font-bold") #{item.price} $
+    div(class="flex justify-center py-5")
+        +pagination()
