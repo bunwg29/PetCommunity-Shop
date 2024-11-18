@@ -4,7 +4,8 @@ const router: Router = Router()
 import multer from 'multer'
 
 import * as controller from '../controllers/user.controller'
-import * as validate from '../validates/register.validates'
+import * as validate from '../validates/register.validate'
+import { validateEditProfile } from '../validates/editProfile.validate'
 import * as userMiddleWare from '../middlewares/auth.middleware'
 import * as uploadCloud from '../middlewares/uploadCloud.middleware'
 
@@ -43,6 +44,7 @@ router.patch(
   '/profile/edit',
   userMiddleWare.setUserInfo,
   upload.single('thumbnail'),
+  validateEditProfile,
   uploadCloud.uploadSingle,
   controller.profileEdit
 )
