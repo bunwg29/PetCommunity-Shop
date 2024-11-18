@@ -16,21 +16,21 @@ block main
             .mt-2
               .flex.rounded-md.shadow-sm.ring-1.ring-inset.ring-gray-300(class='focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md')
                 span.flex.select-none.items-center.pl-3.text-gray-500(class='sm:text-sm') Blogger
-                input#uploadBy.pl-3.block.flex-1.border-0.bg-transparent.pl-1.text-gray-900.italic(type="text" name='uploadBy' class='py-1.5 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6' value=user.name)
+                input#uploadBy.pl-3.block.flex-1.border-0.bg-transparent.pl-1.text-gray-900.italic(type="text" name='uploadBy' class='py-1.5 placeholder:text-gray-400 focus:ring-0 sm:text-sm/6' value=user.name required)
           .col-span-full
             label.block.font-medium.text-gray-900(for='title' class='text-sm/6') 
             .mt-2
-              input#title.pl-3.block.w-full.rounded-md.border-0.text-gray-900.shadow-sm.ring-1.ring-inset.ring-gray-300(type="text" name='title' rows='2' class='py-1.5 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6' value=blogData.title) 
+              input#title.pl-3.block.w-full.rounded-md.border-0.text-gray-900.shadow-sm.ring-1.ring-inset.ring-gray-300(type="text" name='title' rows='2' class='py-1.5 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6' value=blogData.title required) 
             p.mt-3.text-gray-600(class='text-sm/6') Write your title so interesting to everyone
           .col-span-full
             label.block.font-medium.text-gray-900(for='description' class='text-sm/6') 
             .mt-2
-              input#description.pl-3.block.w-full.h-32.rounded-md.border-0.text-gray-900.shadow-sm.ring-1.ring-inset.ring-gray-300.text-wrap(type="textarea" name='description' class='py-0.5 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6' value=blogData.description)
+              input#description.pl-3.block.w-full.h-32.rounded-md.border-0.text-gray-900.shadow-sm.ring-1.ring-inset.ring-gray-300.text-wrap(type="textarea" name='description' class='py-0.5 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6' value=blogData.description required)
             p.mt-3.text-gray-600(class='text-sm/6') Short description about your blog
           .col-span-full
             label.block.font-medium.text-gray-900(for='content' class='text-sm/6') Main content
             .mt-2
-              textarea#content.pl-3.block.w-full.rounded-md.border-0.text-gray-900.shadow-sm.ring-1.ring-inset.ring-gray-300(type="textarea" name='content' rows='2' class='py-1.5 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6') #{blogData.content}
+              textarea#content.pl-3.block.w-full.rounded-md.border-0.text-gray-900.shadow-sm.ring-1.ring-inset.ring-gray-300(type="textarea" name='content' rows='2' class='py-1.5 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm/6' required) #{blogData.content}
             p.mt-3.text-gray-600(class='text-sm/6') Write, edit and format your content right here.
           .col-span-full
             label.block.font-medium.text-gray-900(for='cover-photo' class='text-sm/6') Thumbnail photo
