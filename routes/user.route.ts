@@ -4,8 +4,9 @@ const router: Router = Router()
 import multer from 'multer'
 
 import * as controller from '../controllers/user.controller'
-import * as validate from '../validates/register.validates'
-import * as userMiddleWare from '../middlewares/auth.middleware'
+import * as validate from '../validates/register.validate'
+import { validateEditProfile } from '../validates/editProfile.validate'
+import * as auth from '../middlewares/auth.middleware'
 import * as uploadCloud from '../middlewares/uploadCloud.middleware'
 
 const upload = multer()
@@ -27,22 +28,23 @@ router.get('/forgot-password/otp', controller.otpPassword)
 router.post('/forgot-password/otp', controller.otpPasswordPost)
 router.get(
   '/password/reset',
-  userMiddleWare.setUserInfo,
+  auth.setUserInfo,
   controller.resetPassword
 )
 router.patch(
   '/password/reset',
-  userMiddleWare.setUserInfo,
+  auth.setUserInfo,
   validate.validatePassword,
   controller.resetPasswordPatch
 )
 
-router.get('/profile', userMiddleWare.setUserInfo, controller.profile)
+router.get('/profile', auth.setUserInfo, controller.profile)
 
 router.patch(
   '/profile/edit',
-  userMiddleWare.setUserInfo,
+  auth.setUserInfo,
   upload.single('thumbnail'),
+  validateEditProfile,
   uploadCloud.uploadSingle,
   controller.profileEdit
 )

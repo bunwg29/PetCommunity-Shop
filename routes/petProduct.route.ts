@@ -10,7 +10,7 @@ const upload = multer({
 import * as uploadCloud from '../middlewares/uploadCloud.middleware'
 import * as controller from "../controllers/petProduct.controller";
 import * as auth from "../middlewares/auth.middleware";
-
+import { validatePetPost } from "../validates/petPost.validate";
 
 const router: Router = Router();
 
@@ -38,6 +38,7 @@ router.post(
         { name: "avt", maxCount: 1 }, 
         { name: "images" }, 
     ]),
+    validatePetPost,
     uploadCloud.uploadMultipeTypeForm,
     controller.createPost
 );

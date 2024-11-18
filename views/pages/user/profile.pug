@@ -24,16 +24,24 @@ block main
                             .w-full.mb-4.mt-6
                                 label(for='name' class="text-[#232323] font-medium italic") Name
                                 input.mt-2.p-4.w-full.border-2.rounded-lg(type='text' name="name" value=user.name class="text-gray-500 italic")
+                                if errors && errors.name
+                                    p(class="text-red-500 text-sm pl-[5px]") #{errors.name}
                             .w-full.mb-4(class='lg:mt-6')
                                 label(for='email' class="text-[#232323] font-medium italic") Email
                                 input.mt-2.p-4.w-full.border-2.rounded-lg(type='text' name="email" value=user.email class="text-gray-500 italic")
+                                if errors && errors.email
+                                    p(class="text-red-500 text-sm pl-[5px]") #{errors.email}
                         .flex.gap-2.justify-center.w-full(class='lg:flex-row md:flex-col sm:flex-col xs:flex-col')
                             .w-full.mb-4.mt-6
                                 label(for='phone' class="text-[#232323] font-medium italic") Phone
                                 input.mt-2.p-4.w-full.border-2.rounded-lg(type='text' name="phone" value=user.phone class="text-gray-500 italic")
+                                if errors && errors.phone
+                                    p(class="text-red-500 text-sm pl-[5px]") #{errors.phone}
                             .w-full.mb-4(class='lg:mt-6')
                                 label(for='fb_address' class="text-[#232323] font-medium italic") Facebook Address
                                 input.mt-2.p-4.w-full.border-2.rounded-lg(type='text' name="fb_address" value=user.linkFb class="text-gray-500 italic")
+                                if errors && errors.fb_address
+                                    p(class="text-red-500 text-sm pl-[5px]") #{errors.fb_address}
                         .flex.gap-2.justify-center.w-full(class='lg:flex-row md:flex-col sm:flex-col xs:flex-col')
                             .w-full
                                 h3.mb-2(class="text-[#232323] font-medium italic") Sex
@@ -41,9 +49,13 @@ block main
                                     option(disabled='' value='') Select Sex
                                     option(value='male', selected=user.gender === 'male') Male
                                     option(value='female', selected=user.gender === 'female') Female
+                                if errors && errors.gender
+                                    p(class="text-red-500 text-sm pl-[5px]") #{errors.gender}
                                 .w-full
                                     h3.mb-2(class="text-[#232323] font-medium italic") Date Of Birth
                                     input.text-grey.p-4.w-full.border-2.rounded-lg(type='date' name="dateBirth" value=formattedDate)
+                                    if errors && errors.dateBirth
+                                        p(class="text-red-500 text-sm pl-[5px]") #{errors.dateBirth}
                         .w-full.rounded-lg.mt-4.text-white.text-lg.font-semibold(class="bg-[#003459]")
                             button.w-full.p-4(type='submit') Save
         script(src="/js/imagePreviewEdit.js") 

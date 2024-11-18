@@ -26,7 +26,10 @@ block main
                   .relative.w-full.mb-3
                     label.block.uppercase.text-blueGray-600.text-xs.font-bold.mb-2(for='name')
                       | Name
-                    input.border-0.px-3.py-3.placeholder-blueGray-300.text-blueGray-600.bg-white.rounded.text-sm.shadow.w-full.ease-linear.transition-all.duration-150#name(type='text' name="name" class='focus:outline-none focus:ring' value=petDetail.name)
+                    input.border-0.px-3.py-3.placeholder-blueGray-300.text-blueGray-600.bg-white.rounded.text-sm.shadow.w-full.ease-linear.transition-all.duration-150#name(type='text' name="name" class='focus:outline-none focus:ring' value=petDetail.name required)
+                    if errors && errors.name
+                      p(class="text-red-500 text-sm pl-[5px]") #{errors.name}
+
                 .w-full.px-4(class='lg:w-6/12')
                   .relative.w-full.mb-3
                     label.block.uppercase.text-blueGray-600.text-xs.font-bold.mb-2(for='gender')
@@ -38,12 +41,16 @@ block main
                   .relative.w-full.mb-3
                     label.block.uppercase.text-blueGray-600.text-xs.font-bold.mb-2(for='age')
                       | Age (month)
-                    input.border-0.px-3.py-3.placeholder-blueGray-300.text-blueGray-600.bg-white.rounded.text-sm.shadow.w-full.ease-linear.transition-all.duration-150#age(type='text' name="age" class='focus:outline-none focus:ring' value=petDetail.age)
+                    input.border-0.px-3.py-3.placeholder-blueGray-300.text-blueGray-600.bg-white.rounded.text-sm.shadow.w-full.ease-linear.transition-all.duration-150#age(type='text' name="age" class='focus:outline-none focus:ring' value=petDetail.age required)
+                    if errors && errors.age
+                      p(class="text-red-500 text-sm pl-[5px]") #{errors.age}
                 .w-full.px-4(class='lg:w-6/12')
                   .relative.w-full.mb-3
                     label.block.uppercase.text-blueGray-600.text-xs.font-bold.mb-2(for='price')
                       | Price
-                    input.border-0.px-3.py-3.placeholder-blueGray-300.text-blueGray-600.bg-white.rounded.text-sm.shadow.w-full.ease-linear.transition-all.duration-150#price(type='text' name="price" class='focus:outline-none focus:ring' value=petDetail.price)
+                    input.border-0.px-3.py-3.placeholder-blueGray-300.text-blueGray-600.bg-white.rounded.text-sm.shadow.w-full.ease-linear.transition-all.duration-150#price(type='text' name="price" class='focus:outline-none focus:ring' value=petDetail.price required)
+                    if errors && errors.price
+                      p(class="text-red-500 text-sm pl-[5px]") #{errors.price}
               hr.mt-6.border-b-1.border-blueGray-300
               h6.text-blueGray-400.text-sm.mt-3.mb-6.font-bold.uppercase
                 | Additional Information
@@ -60,7 +67,9 @@ block main
                   .relative.w-full.mb-3
                     label.block.uppercase.text-blueGray-600.text-xs.font-bold.mb-2(for='color')
                       | Color
-                    input.border-0.px-3.py-3.placeholder-blueGray-300.text-blueGray-600.bg-white.rounded.text-sm.shadow.w-full.ease-linear.transition-all.duration-150#color(type='text' name="color" class='focus:outline-none focus:ring' value=petDetail.color)
+                    input.border-0.px-3.py-3.placeholder-blueGray-300.text-blueGray-600.bg-white.rounded.text-sm.shadow.w-full.ease-linear.transition-all.duration-150#color(type='text' name="color" class='focus:outline-none focus:ring' value=petDetail.color required)
+                    if errors && errors.color
+                      p(class="text-red-500 text-sm pl-[5px]") #{errors.color}
                 .w-full.px-4(class='lg:w-4/12')
                   .relative.w-full.mb-3
                     label.block.uppercase.text-blueGray-600.text-xs.font-bold.mb-2(for='vacinated')
@@ -90,7 +99,9 @@ block main
                   .relative.w-full.mb-3
                     label.block.uppercase.text-blueGray-600.text-xs.font-bold.mb-2(for='location')
                       | LOCATION
-                    input.border-0.px-3.py-3.placeholder-blueGray-300.text-blueGray-600.bg-white.rounded.text-sm.shadow.w-full.ease-linear.transition-all.duration-150#location(type='text' name="location" class='focus:outline-none focus:ring' value=petDetail.location)
+                    input.border-0.px-3.py-3.placeholder-blueGray-300.text-blueGray-600.bg-white.rounded.text-sm.shadow.w-full.ease-linear.transition-all.duration-150#location(type='text' name="location" class='focus:outline-none focus:ring' value=petDetail.location required)
+                    if errors && errors.location
+                      p(class="text-red-500 text-sm pl-[5px]") #{errors.location}
               hr.mt-6.border-b-1.border-blueGray-300
               h6.text-blueGray-400.text-sm.mt-3.mb-6.font-bold.uppercase
                 | About pet

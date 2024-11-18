@@ -228,6 +228,7 @@ export const profile = async (req: Request, res: Response) => {
 
 // [PATCH] /user/profile/edit
 export const profileEdit = async (req: Request, res: Response) => {
+
   req.body.dateBirth = formatDate.convertToDate(req.body.dateBirth)
 
   await UserModel.updateOne(
@@ -238,5 +239,6 @@ export const profileEdit = async (req: Request, res: Response) => {
     req.body
   )
 
-  res.redirect('/user/profile')
+  res.redirect('/user/profile');
+  
 }
