@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 
 import PetModel from '../models/pet.model';
 
+// [GET] /mypet/product/:userId
 export const index = async (req: Request, res: Response) => {
     
     const find: Object = {
@@ -18,6 +19,7 @@ export const index = async (req: Request, res: Response) => {
     
 };
 
+// [GET] /mypet/edit/detail/:petId
 export const detail = async (req: Request, res: Response) => {
     
     const find: Object = {
@@ -34,6 +36,7 @@ export const detail = async (req: Request, res: Response) => {
     
 };
 
+// [GET] /mypet/create/:userId
 export const create = async (req: Request, res: Response) => {
 
     res.render("pages/mypet/create", {
@@ -42,6 +45,7 @@ export const create = async (req: Request, res: Response) => {
 
 };
 
+// [POST] /mypet/create/:userId
 export const createPost = async (req: Request, res: Response) => {
 
     try {
@@ -88,7 +92,8 @@ export const createPost = async (req: Request, res: Response) => {
     }
 
 };
-
+ 
+// [PATCH] /mypet/edit/detail/:petId
 export const editPatch = async (req: Request, res: Response) => {
     
     req.body.price = parseInt(req.body.price);
@@ -120,40 +125,32 @@ export const editPatch = async (req: Request, res: Response) => {
    
 };
 
+// [DELETE] /mypet/delete/image/:petId
 export const deleteImages = async (req: Request, res: Response) => {
 
-    try {
-        
-        const { petId } = req.params;
-        const { imageUrl } = req.body;
+    const petId = req.body.petId;
+    const imageUrl = req.body.imageUrl;
     
+    try {
         await PetModel.findByIdAndUpdate(
-            
-          petId,
-          { $pull: { images: imageUrl } }, 
-          { new: true }
-
+            petId,
+            { $pull: { images: imageUrl } },
+            { new: true }
         );
 
-    } catch (error) {
-
-        res.send("Delete image failed")
-
+        res.redirect(`/mypet/edit/detail/${petId}`);
     }
-
+    catch(error) {
+        res.send("TOANG");
+    }
+    
 };
 
+// [DELETE] /mypet/delete/pet/:petId
 export const deletePet = async (req: Request, res: Response) => {
 
-    try {
-        const petId = req.params.id;
+    await PetModel.findByIdAndDelete(req.body.petDeleteId);
 
-        await PetModel.findByIdAndDelete(petId);
-
-        res.redirect("/");
-
-    } catch (error) {
-        res.send("DELETE Pet failed");
-    }
+    res.redirect(`/mypet/product/${res.locals.user.id}`);
 
 };

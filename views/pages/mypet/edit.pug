@@ -145,11 +145,13 @@ block main
                         each image in petDetail.images
                           .relative
                             img(src=image, alt="photo about pet", class="w-full h-24 object-cover rounded")
-                            button.absolute.top-0.right-0.bg-red-500.text-white.rounded-full.p-1.text-xs.delete-image(data-image-url=image data-pet-id=petDetail._id) Delete
+                            button.absolute.top-0.right-0.bg-red-500.text-white.rounded-full.p-1.text-xs.delete-image(data-image-url = image data-pet-id = petDetail._id) Delete
                   .mt-4
                     h3.text-gray-600.font-semibold.text-sm New Photos
                     .overflow-y-auto.h-60.mt-2 
                       .grid.grid-cols-3.gap-4.mt-2#newImages
+    include ./components/popupDeleteImage.pug
+    include ./components/popupDeletePet.pug
+
     script(src="/js/pages/mypet/edit.js") 
                 
-

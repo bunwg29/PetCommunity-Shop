@@ -63,14 +63,14 @@ router.patch(
 );
 
 router.delete(
-    "/image/:petId",
+    "/delete/image/:petId",
     auth.setUserInfo,
     auth.requireAuth,
     controller.deleteImages
 );
 
 router.delete(
-    "/delete/:id",
+    "/delete/pet/:id",
     auth.setUserInfo,
     auth.requireAuth,
     controller.deletePet
