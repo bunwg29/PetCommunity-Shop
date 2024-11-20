@@ -122,9 +122,7 @@ deleteButtons.forEach((button) => {
         
 });
 
-cancelDeleteButton.addEventListener("click", () => {
-    popup.hidden = true;
-});
+
 
 submitDeleteFormButton.addEventListener("click", () => {
     const petId = petIdInput.value;

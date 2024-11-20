@@ -1,5 +1,5 @@
 doctype html 
-html 
+html.h-full
     head 
         link(rel="icon", href="/images/favicon.svg")
     
@@ -9,7 +9,7 @@ html
         link(rel="stylesheet", href="/styles/style.css")
         link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css")
 
-    body
-        .main
+    body.h-full.w-full
+        main(class="flex h-full w-full")
             include ../partials/sider.pug
             block main
