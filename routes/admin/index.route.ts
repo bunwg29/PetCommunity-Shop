@@ -5,6 +5,7 @@ import { userAdminRoutes } from "./user.route";
 import { dasboardAdminRoutes } from "./dashboard.route";
 import * as auth from "../../middlewares/admin/auth.middleware";
 import { authAdminRoutes } from "./auth.route";
+import { blogAdminRoutes } from "./blog.route";
 
 const RoutersAdmin = (app: Express): void => {
 
@@ -24,6 +25,12 @@ const RoutersAdmin = (app: Express): void => {
     app.use(
         `/${path}/user`,
         userAdminRoutes
+    );
+
+    app.use(
+        `/${path}/blog`,
+        auth.authAdmin,
+        blogAdminRoutes
     );
 
  
