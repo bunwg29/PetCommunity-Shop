@@ -2,7 +2,7 @@ import { Router } from 'express'
 import multer from 'multer'
 
 import * as controller from "../controllers/blog.controller";
-import * as auth from '../middlewares/auth.middleware';
+import * as auth from '../middlewares/authAccount.middleware';
 import * as uploadCloud from '../middlewares/uploadCloud.middleware';
 
 const router: Router = Router();

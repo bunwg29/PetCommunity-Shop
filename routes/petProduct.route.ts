@@ -9,7 +9,7 @@ const upload = multer({
 
 import * as uploadCloud from '../middlewares/uploadCloud.middleware'
 import * as controller from "../controllers/petProduct.controller";
-import * as auth from "../middlewares/auth.middleware";
+import * as auth from "../middlewares/authAccount.middleware";
 import { validatePetPost } from "../validates/petPost.validate";
 
 const router: Router = Router();

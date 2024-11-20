@@ -6,7 +6,7 @@ import multer from 'multer'
 import * as controller from '../controllers/user.controller'
 import * as validate from '../validates/register.validate'
 import { validateEditProfile } from '../validates/editProfile.validate'
-import * as auth from '../middlewares/auth.middleware'
+import * as auth from '../middlewares/authAccount.middleware'
 import * as uploadCloud from '../middlewares/uploadCloud.middleware'
 
 const upload = multer()

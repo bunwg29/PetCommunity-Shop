@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
-import UserModel from '../models/user.model'
+import AccountModel from '../models/account.model'
 
 export const setUserInfo = async (req: Request, res: Response, next: NextFunction) => {
 
@@ -7,7 +7,7 @@ export const setUserInfo = async (req: Request, res: Response, next: NextFunctio
 
   if (token) {
 
-    const user = await UserModel.findOne({ tokenUser: token })
+    const user = await AccountModel.findOne({ tokenUser: token })
 
     if (user) { res.locals.user = user; }
 
@@ -26,7 +26,7 @@ export const requireAuth = async (req: Request, res: Response, next: NextFunctio
 
   }
 
-  const account = await UserModel.findOne({
+  const account = await AccountModel.findOne({
 
     tokenUser: req.cookies.tokenUser, 
     deleted: false

@@ -1,7 +1,7 @@
 import { Response, Request } from 'express'
 import md5 from 'md5'
 
-import UserModel from '../models/user.model'
+import AccountModel from '../models/account.model'
 import ForgotPassword from '../models/forgot-password.model'
 
 import * as generateHelper from '../helpers/generateCode.helper'
@@ -30,7 +30,7 @@ export const signupPost = async (req: Request, res: Response) => {
     thumbnail: req.body.thumbnail,
   }
 
-  const newUser = new UserModel(userData)
+  const newUser = new AccountModel(userData)
 
   try {
     await newUser.save()
@@ -61,7 +61,7 @@ export const signinPost = async (req: Request, res: Response) => {
     deleted: false,
   }
 
-  const user = await UserModel.findOne(userInfo)
+  const user = await AccountModel.findOne(userInfo)
 
   if (!user) {
     errors.email = 'Not exist email'
@@ -115,7 +115,7 @@ export const forgotPasswordPost = async (req: Request, res: Response) => {
     email: email,
   }
 
-  const emailAccount = await UserModel.findOne(find)
+  const emailAccount = await AccountModel.findOne(find)
 
   if (!emailAccount) {
     errors.email = 'Not exist email'
@@ -180,7 +180,7 @@ export const otpPasswordPost = async (req: Request, res: Response) => {
     return
   }
 
-  const user = await UserModel.findOne({
+  const user = await AccountModel.findOne({
     email: email,
   })
 
@@ -201,7 +201,7 @@ export const resetPasswordPatch = async (req: Request, res: Response) => {
   const password = req.body.password
   const tokenUser = req.cookies.tokenUser
 
-  await UserModel.updateOne(
+  await AccountModel.updateOne(
     {
       tokenUser: tokenUser,
       deleted: false,
@@ -231,7 +231,7 @@ export const profileEdit = async (req: Request, res: Response) => {
 
   req.body.dateBirth = formatDate.convertToDate(req.body.dateBirth)
 
-  await UserModel.updateOne(
+  await AccountModel.updateOne(
     {
       tokenUser: req.cookies.tokenUser,
       deleted: false,
