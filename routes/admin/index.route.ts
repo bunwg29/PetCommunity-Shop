@@ -1,12 +1,14 @@
 import {  Express } from "express";
 
 import { systemConfig } from "../../config/adminPrefix";
+import * as auth from "../../middlewares/admin/auth.middleware";
+
 import { userAdminRoutes } from "./user.route";
 import { dasboardAdminRoutes } from "./dashboard.route";
-import * as auth from "../../middlewares/admin/auth.middleware";
 import { authAdminRoutes } from "./auth.route";
 import { blogAdminRoutes } from "./blog.route";
 import { petAdminRoutes } from "./pet.route";
+import { petFoodRoutes } from "./foodpet.route";
 
 const RoutersAdmin = (app: Express): void => {
 
@@ -38,6 +40,12 @@ const RoutersAdmin = (app: Express): void => {
         `/${path}/pet`,
         auth.authAdmin,
         petAdminRoutes
+    );
+
+    app.use(
+        `/${path}/foodpet`,
+        auth.authAdmin,
+        petFoodRoutes
     );
 
 };
