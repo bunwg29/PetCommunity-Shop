@@ -6,6 +6,7 @@ import { dasboardAdminRoutes } from "./dashboard.route";
 import * as auth from "../../middlewares/admin/auth.middleware";
 import { authAdminRoutes } from "./auth.route";
 import { blogAdminRoutes } from "./blog.route";
+import { petAdminRoutes } from "./pet.route";
 
 const RoutersAdmin = (app: Express): void => {
 
@@ -33,8 +34,11 @@ const RoutersAdmin = (app: Express): void => {
         blogAdminRoutes
     );
 
- 
-
+    app.use(
+        `/${path}/pet`,
+        auth.authAdmin,
+        petAdminRoutes
+    );
 
 };
 

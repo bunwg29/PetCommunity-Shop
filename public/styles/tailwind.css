@@ -958,14 +958,6 @@ video {
   height: 100%;
 }
 
-.max-h-96 {
-  max-height: 24rem;
-}
-
-.max-h-10 {
-  max-height: 2.5rem;
-}
-
 .max-h-full {
   max-height: 100%;
 }
@@ -992,6 +984,10 @@ video {
 
 .w-12 {
   width: 3rem;
+}
+
+.w-16 {
+  width: 4rem;
 }
 
 .w-2\.5 {
@@ -1117,10 +1113,6 @@ video {
 
 .w-screen {
   width: 100vw;
-}
-
-.w-16 {
-  width: 4rem;
 }
 
 .min-w-0 {
@@ -1339,10 +1331,6 @@ video {
 
 .overflow-x-hidden {
   overflow-x: hidden;
-}
-
-.scroll-auto {
-  scroll-behavior: auto;
 }
 
 .truncate {
@@ -1789,6 +1777,11 @@ video {
   padding-right: 10%;
 }
 
+.px-\[2\%\] {
+  padding-left: 2%;
+  padding-right: 2%;
+}
+
 .px-\[25px\] {
   padding-left: 25px;
   padding-right: 25px;
@@ -1897,11 +1890,6 @@ video {
 .py-\[5px\] {
   padding-top: 5px;
   padding-bottom: 5px;
-}
-
-.px-\[2\%\] {
-  padding-left: 2%;
-  padding-right: 2%;
 }
 
 .pb-12 {
