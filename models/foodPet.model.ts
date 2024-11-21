@@ -4,7 +4,8 @@ const foodPetSchema = new mongoose.Schema(
   {
     name: String,
     type: String,
-    size: String,
+    size: Number,
+    unit: String,
     price: Number,
     special_offer: String,
     avt: String,
