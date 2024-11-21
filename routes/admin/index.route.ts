@@ -9,6 +9,7 @@ import { authAdminRoutes } from "./auth.route";
 import { blogAdminRoutes } from "./blog.route";
 import { petAdminRoutes } from "./pet.route";
 import { petFoodRoutes } from "./foodpet.route";
+import { toyPetRoutes } from "./toypet.route";
 
 const RoutersAdmin = (app: Express): void => {
 
@@ -46,6 +47,12 @@ const RoutersAdmin = (app: Express): void => {
         `/${path}/foodpet`,
         auth.authAdmin,
         petFoodRoutes
+    );
+
+    app.use(
+       `/${path}/toypet`,
+        auth.authAdmin,
+        toyPetRoutes
     );
 
 };

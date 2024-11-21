@@ -7,7 +7,7 @@ const toyPetSchema = new mongoose.Schema(
     price: Number,
     special_offer: String,
     avt: String,
-    images: Array,
+    images: [ {type: String} ],
     deleted: {
       type: Boolean,
       default: false,

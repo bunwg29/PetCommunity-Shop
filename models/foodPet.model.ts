@@ -9,10 +9,7 @@ const foodPetSchema = new mongoose.Schema(
     price: Number,
     special_offer: String,
     avt: String,
-    images: {
-      type: Array,
-      default: []
-    },
+    images: [ {type: String} ],
     deleted: {
       type: Boolean,
       default: false,
