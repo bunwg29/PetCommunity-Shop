@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express'
-import { streamUpload } from '../helpers/streamUpload.helper'
+import { streamUpload } from '../../helpers/streamUpload.helper'
 
 
 export const uploadSingle = ( req: Request, res: Response, next: NextFunction) => {

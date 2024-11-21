@@ -1,18 +1,18 @@
 import { Response, Request } from 'express'
 import md5 from 'md5'
 
-import AccountModel from '../models/account.model'
-import ForgotPassword from '../models/forgot-password.model'
+import AccountModel from '../../models/account.model'
+import ForgotPassword from '../../models/forgot-password.model'
 
-import * as generateHelper from '../helpers/generateCode.helper'
-import * as sendMailHelper from '../helpers/sendMail.helper'
-import * as formatDate from '../helpers/formatDate.helper'
+import * as generateHelper from '../../helpers/generateCode.helper'
+import * as sendMailHelper from '../../helpers/sendMail.helper'
+import * as formatDate from '../../helpers/formatDate.helper'
 
 // [GET] /user/signup
 export const signup = async (req: Request, res: Response) => {
   const errors = res.locals.errors || null
 
-  res.render('pages/user/signup', {
+  res.render('client/pages/user/signup', {
     title: 'PetCommunity | SignUp',
     errors,
   })
@@ -46,7 +46,7 @@ export const signupPost = async (req: Request, res: Response) => {
 export const signin = async (req: Request, res: Response) => {
   const errors = res.locals.errors || null
 
-  res.render('pages/user/signin', {
+  res.render('client/pages/user/signin', {
     title: 'PetCommunity | SignIn',
     errors,
   })
@@ -66,7 +66,7 @@ export const signinPost = async (req: Request, res: Response) => {
   if (!user) {
     errors.email = 'Not exist email'
     res.locals.errors = errors
-    res.render('pages/user/signin', {
+    res.render('client/pages/user/signin', {
       title: 'PetCommunity | SignIn',
       errors,
       user,
@@ -77,7 +77,7 @@ export const signinPost = async (req: Request, res: Response) => {
   if (md5(req.body.password) != user.password) {
     errors.password = 'Wrong password'
     res.locals.errors = errors
-    res.render('pages/user/signin', {
+    res.render('client/pages/user/signin', {
       title: 'PetCommunity | SignIn',
       errors,
     })
@@ -100,7 +100,7 @@ export const logout = async (req: Request, res: Response) => {
 export const forgotPassword = async (req: Request, res: Response) => {
   const errors = res.locals.errors || null
 
-  res.render('pages/user/forgot-password', {
+  res.render('client/pages/user/forgot-password', {
     title: 'PetComunity | Forgot Password',
     errors,
   })
@@ -120,7 +120,7 @@ export const forgotPasswordPost = async (req: Request, res: Response) => {
   if (!emailAccount) {
     errors.email = 'Not exist email'
     res.locals.errors = errors
-    res.render('pages/user/forgot-password', {
+    res.render('client/pages/user/forgot-password', {
       title: 'PetCommunity | SignIn',
       errors,
     })
@@ -151,7 +151,7 @@ export const otpPassword = async (req: Request, res: Response) => {
   const email = req.query.email
   const errors = res.locals.errors || null
 
-  res.render('pages/user/otp-password', {
+  res.render('client/pages/user/otp-password', {
     title: 'PetCommunity | OTP',
     email,
     errors,
@@ -172,7 +172,7 @@ export const otpPasswordPost = async (req: Request, res: Response) => {
   if (!otpCode) {
     errors.otp = 'Incorrect OTP'
     res.locals.errors = errors
-    res.render('pages/user/otp-password', {
+    res.render('client/pages/user/otp-password', {
       title: 'PetCommunity | OTP',
       email,
       errors,
@@ -191,7 +191,7 @@ export const otpPasswordPost = async (req: Request, res: Response) => {
 
 // [GET] /user/password/reset
 export const resetPassword = async (req: Request, res: Response) => {
-  res.render('pages/user/reset-password', {
+  res.render('client/pages/user/reset-password', {
     title: 'PetCommunity | Reset Password',
   })
 }
@@ -220,7 +220,7 @@ export const profile = async (req: Request, res: Response) => {
 
   const formattedDate = formatDate.convertToDateForm(date)
 
-  res.render('pages/user/profile', {
+  res.render('client/pages/user/profile', {
     title: 'PetCommunity | Profile',
     formattedDate,
   })

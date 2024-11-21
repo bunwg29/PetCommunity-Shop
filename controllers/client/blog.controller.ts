@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import BlogModel from "../models/blog.model";
+import BlogModel from "../../models/blog.model";
 
 
 export const index = async (req: Request, res: Response) => {
@@ -10,7 +10,7 @@ export const index = async (req: Request, res: Response) => {
 
     const blogInfo = await BlogModel.find(find);
     
-    res.render("pages/blog/index", {
+    res.render("client/pages/blog/index", {
         title: "PetCommunity | Blog",
         blogInfo
     });
@@ -19,7 +19,7 @@ export const index = async (req: Request, res: Response) => {
 
 export const createBlog = async (req: Request, res: Response) => {
 
-    res.render("pages/blog/create", {
+    res.render("client/pages/blog/create", {
         title: "Create Blog",
     });
     
@@ -59,7 +59,7 @@ export const blogDetail = async (req: Request, res: Response) => {
 
     const blogDetailInfo = await BlogModel.findOne({_id: blogId});
     
-    res.render("pages/blog/blogDetail", {
+    res.render("client/pages/blog/blogDetail", {
         title: "PetCommunity | Blog Detail",
         blogDetailInfo
     });
@@ -74,7 +74,7 @@ export const myBlog = async (req: Request, res: Response) => {
         id_blogger: id_blogger,
     });
 
-    res.render("pages/blog/myblog", {
+    res.render("client/pages/blog/myblog", {
         title: "PetC | MyBlog",
         myBlog
     });
@@ -89,7 +89,7 @@ export const edit = async (req: Request, res: Response) => {
         _id: id
     });
 
-    res.render("pages/blog/edit", {
+    res.render("client/pages/blog/edit", {
         title: "PetCommunity | Blog Edit",
         blogData
     });

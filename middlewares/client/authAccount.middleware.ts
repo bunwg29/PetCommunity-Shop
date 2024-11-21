@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express'
-import AccountModel from '../models/account.model'
+import AccountModel from '../../models/account.model'
 
 export const setUserInfo = async (req: Request, res: Response, next: NextFunction) => {
 

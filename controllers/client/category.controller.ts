@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
-import PetModel from '../models/pet.model'
-import { Pagination } from '../helpers/pagination.helper';
+import PetModel from '../../models/pet.model'
+import { Pagination } from '../../helpers/pagination.helper';
 
 export const index = async (req: Request, res: Response) => {
 
@@ -40,7 +40,7 @@ export const index = async (req: Request, res: Response) => {
 
   const petProduct = await PetModel.find(find).limit(pagination.limitItems).skip(pagination.skip);
 
-  res.render('pages/category/index', {
+  res.render('client/pages/category/index', {
     title: 'PetCommunity | Category',
     petProduct: petProduct,
     pagination,
@@ -67,7 +67,7 @@ export const petDetail = async (req: Request, res: Response) => {
 
   const petDetail = await PetModel.findOne(findPetDetail);
 
-  res.render('pages/category/petDetail', {
+  res.render('client/pages/category/petDetail', {
     title: 'PetCommunity | Product',
     petDetail: petDetail,
     petProduct: petProduct,

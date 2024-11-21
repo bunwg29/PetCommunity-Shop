@@ -4,7 +4,7 @@ import multer from "multer";
 const router: Router = Router();
 
 import * as controller from "../../controllers/admin/blog.controller";
-import * as uploadCloud from '../../middlewares/uploadCloud.middleware'
+import * as uploadCloud from '../../middlewares/client/uploadCloud.middleware'
 
 const upload = multer();
 

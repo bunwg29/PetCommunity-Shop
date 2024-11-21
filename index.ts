@@ -5,7 +5,7 @@ dotenv.config();
 
 import * as database from './config/database';
 
-import Routers from './routes/index.route';
+import Routers from './routes/client/index.route';
 import RoutersAdmin from './routes/admin/index.route';
 import methodOverride from 'method-override';
 import cookieParser from 'cookie-parser';

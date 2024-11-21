@@ -5,7 +5,7 @@ const router: Router = Router();
 
 import * as controller from "../../controllers/admin/user.controller";
 import { validateEditProfile } from '../../validates/editProfile.validate'
-import * as uploadCloud from '../../middlewares/uploadCloud.middleware'
+import * as uploadCloud from '../../middlewares/client/uploadCloud.middleware'
 
 const upload = multer();
 

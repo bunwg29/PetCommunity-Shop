@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 
-import PetModel from '../models/pet.model';
+import PetModel from '../../models/pet.model';
 
 // [GET] /mypet/product/:userId
 export const index = async (req: Request, res: Response) => {
@@ -12,7 +12,7 @@ export const index = async (req: Request, res: Response) => {
 
     const myPet = await PetModel.find(find);
 
-    res.render("pages/mypet/index.pug", {
+    res.render("client/pages/mypet/index.pug", {
         title: "MyPet | Product",
         myPet
     });    
@@ -29,7 +29,7 @@ export const detail = async (req: Request, res: Response) => {
 
     const petDetail = await PetModel.findOne(find);
 
-    res.render("pages/mypet/edit.pug", {
+    res.render("client/pages/mypet/edit.pug", {
         title: "MyPet | Pet Detail",
         petDetail
     });    
@@ -39,7 +39,7 @@ export const detail = async (req: Request, res: Response) => {
 // [GET] /mypet/create/:userId
 export const create = async (req: Request, res: Response) => {
 
-    res.render("pages/mypet/create", {
+    res.render("client/pages/mypet/create", {
         title: "MyPet | Create"
     })
 

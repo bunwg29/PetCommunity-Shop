@@ -2,7 +2,7 @@ import { Router } from "express";
 import multer from "multer";
 
 import * as controller from "../../controllers/admin/pet.controller"
-import * as uploadCloud from '../../middlewares/uploadCloud.middleware'
+import * as uploadCloud from '../../middlewares/client/uploadCloud.middleware'
 
 const storage = multer.memoryStorage();
 const upload = multer({

@@ -1,9 +1,9 @@
 import { Router } from 'express'
 import multer from 'multer'
 
-import * as controller from "../controllers/blog.controller";
-import * as auth from '../middlewares/authAccount.middleware';
-import * as uploadCloud from '../middlewares/uploadCloud.middleware';
+import * as controller from "../../controllers/client/blog.controller"
+import * as auth from '../../middlewares/client/authAccount.middleware';
+import * as uploadCloud from '../../middlewares/client/uploadCloud.middleware';
 
 const router: Router = Router();
 

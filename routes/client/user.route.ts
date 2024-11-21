@@ -3,11 +3,11 @@ import { Router } from 'express'
 const router: Router = Router()
 import multer from 'multer'
 
-import * as controller from '../controllers/user.controller'
-import * as validate from '../validates/register.validate'
-import { validateEditProfile } from '../validates/editProfile.validate'
-import * as auth from '../middlewares/authAccount.middleware'
-import * as uploadCloud from '../middlewares/uploadCloud.middleware'
+import * as controller from '../../controllers/client/user.controller'
+import * as validate from '../../validates/register.validate'
+import { validateEditProfile } from '../../validates/editProfile.validate'
+import * as auth from '../../middlewares/client/authAccount.middleware'
+import * as uploadCloud from '../../middlewares/client/uploadCloud.middleware'
 
 const upload = multer()
 

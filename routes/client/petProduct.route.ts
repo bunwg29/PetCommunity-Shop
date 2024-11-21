@@ -7,10 +7,10 @@ const upload = multer({
   limits: { fileSize: 10 * 1024 * 1024 }, 
 });
 
-import * as uploadCloud from '../middlewares/uploadCloud.middleware'
-import * as controller from "../controllers/petProduct.controller";
-import * as auth from "../middlewares/authAccount.middleware";
-import { validatePetPost } from "../validates/petPost.validate";
+import * as uploadCloud from '../../middlewares/client/uploadCloud.middleware'
+import * as controller from "../../controllers/client/petProduct.controller";
+import * as auth from "../../middlewares/client/authAccount.middleware";
+import { validatePetPost } from "../../validates/petPost.validate";
 
 const router: Router = Router();
 
