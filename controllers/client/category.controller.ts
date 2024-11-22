@@ -31,7 +31,7 @@ export const index = async (req: Request, res: Response) => {
 
   // Start pagination of pet products
 
-  const pagination = await Pagination(req, find);
+  const pagination = await Pagination(req, PetModel, find);
 
   // End pagination of pet products
 

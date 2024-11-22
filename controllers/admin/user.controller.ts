@@ -5,11 +5,17 @@ import md5 from 'md5';
 import { systemConfig } from '../../config/adminPrefix';
 import RoleModel from '../../models/roles.model';
 
+import { Pagination } from '../../helpers/pagination.helper';
+
 // [GET] admin/user
 export const index = async (req: Request, res: Response) => {
+  const pagination = await Pagination(req, AccountModel, {});
+
   const userInfo = await AccountModel.find({
     _id: { $ne: res.locals.account._id },
-  });
+  })
+    .limit(pagination.limitItems)
+    .skip(pagination.skip);
 
   const user = userInfo.map((item) => ({
     ...item.toObject(),
@@ -20,6 +26,7 @@ export const index = async (req: Request, res: Response) => {
   res.render('admin/pages/user/index', {
     title: 'Admin | Account',
     user,
+    pagination,
   });
 };
 

@@ -3,14 +3,19 @@ import { Request, Response } from 'express';
 import { systemConfig } from '../../config/adminPrefix';
 
 import ToyPetModel from '../../models/toyPet.model';
+import { Pagination } from '../../helpers/pagination.helper';
 
 // [GET] admin/toypet
 export const index = async (req: Request, res: Response) => {
-  const toyPet = await ToyPetModel.find();
+  const pagination = await Pagination(req, ToyPetModel, {});
+  const toyPet = await ToyPetModel.find()
+    .limit(pagination.limitItems)
+    .skip(pagination.skip);
 
   res.render('admin/pages/toypet/index', {
     title: 'Admin | ToyPet',
     toyPet,
+    pagination,
   });
 };
 

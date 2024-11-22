@@ -1,4 +1,3 @@
-import PetModel from '../models/pet.model';
 import { Request } from 'express';
 
 interface Pagination {
@@ -10,26 +9,24 @@ interface Pagination {
 
 export const Pagination = async (
   req: Request,
-  find: Object
+  model: any,
+  find: Object = {}
 ): Promise<Pagination> => {
-  const Pagination: Pagination = {
+  const pagination: Pagination = {
     currentPage: 1,
     limitItems: 8,
   };
 
   const page = req.query.page;
-
   if (page && typeof page === 'string') {
-    Pagination.currentPage = parseInt(page);
+    pagination.currentPage = parseInt(page);
   }
 
-  Pagination.skip = (Pagination.currentPage - 1) * Pagination.limitItems;
+  pagination.skip = (pagination.currentPage - 1) * pagination.limitItems;
 
-  const countPet = await PetModel.countDocuments(find);
+  const count = await model.countDocuments(find);
+  const totalPage = Math.ceil(count / pagination.limitItems);
+  pagination.totalPage = totalPage;
 
-  const totalPage = Math.ceil(countPet / Pagination.limitItems);
-
-  Pagination.totalPage = totalPage;
-
-  return Pagination;
+  return pagination;
 };

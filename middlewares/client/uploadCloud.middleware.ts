@@ -70,11 +70,9 @@ export const uploadMultipeTypeForm = async (
     next();
   } catch (error) {
     console.error('Error uploading to Cloudinary:', error);
-    res
-      .status(500)
-      .json({
-        success: false,
-        message: 'Error uploading files to Cloudinary.',
-      });
+    res.status(500).json({
+      success: false,
+      message: 'Error uploading files to Cloudinary.',
+    });
   }
 };

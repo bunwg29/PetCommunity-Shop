@@ -3,11 +3,15 @@ import moment from 'moment';
 
 import PetModel from '../../models/pet.model';
 import { systemConfig } from '../../config/adminPrefix';
-import RoleModel from '../../models/roles.model';
+import { Pagination } from '../../helpers/pagination.helper';
 
 // [GET] admin/pet
 export const index = async (req: Request, res: Response) => {
-  const pet = await PetModel.find();
+  const pagination = await Pagination(req, PetModel, {});
+
+  const pet = await PetModel.find()
+    .limit(pagination.limitItems)
+    .skip(pagination.skip);
 
   const petInfo = pet.map((item) => ({
     ...item.toObject(),
@@ -17,6 +21,7 @@ export const index = async (req: Request, res: Response) => {
   res.render('admin/pages/pet/index', {
     title: 'Admin | Pet',
     petInfo,
+    pagination,
   });
 };
 

@@ -3,14 +3,20 @@ import { Request, Response } from 'express';
 import { systemConfig } from '../../config/adminPrefix';
 
 import FoodPetModel from '../../models/foodPet.model';
+import { Pagination } from '../../helpers/pagination.helper';
 
 // [GET] admin/foodpet
 export const index = async (req: Request, res: Response) => {
-  const foodPet = await FoodPetModel.find();
+  const pagination = await Pagination(req, FoodPetModel, {});
+
+  const foodPet = await FoodPetModel.find()
+    .limit(pagination.limitItems)
+    .skip(pagination.skip);
 
   res.render('admin/pages/foodpet/index', {
     title: 'Admin | FoodPet',
     foodPet,
+    pagination,
   });
 };
 

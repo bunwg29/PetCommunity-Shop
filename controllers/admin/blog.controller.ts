@@ -2,10 +2,14 @@ import { Request, Response } from 'express';
 import BlogModel from '../../models/blog.model';
 import moment from 'moment';
 import { systemConfig } from '../../config/adminPrefix';
+import { Pagination } from '../../helpers/pagination.helper';
 
 // [GET] admin/blog
 export const index = async (req: Request, res: Response) => {
-  const blog = await BlogModel.find();
+  const pagination = await Pagination(req, BlogModel, {});
+  const blog = await BlogModel.find()
+    .limit(pagination.limitItems)
+    .skip(pagination.skip);
 
   const blogInfo = blog.map((item) => ({
     ...item.toObject(),
@@ -15,6 +19,7 @@ export const index = async (req: Request, res: Response) => {
   res.render('admin/pages/blog/index', {
     title: 'Admin | Blog',
     blogInfo,
+    pagination,
   });
 };
 
