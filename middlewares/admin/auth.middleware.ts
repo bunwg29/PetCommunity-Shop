@@ -17,7 +17,7 @@ export const authAdmin = async (req: Request, res: Response, next: NextFunction)
       tokenUser: req.cookies.tokenUser, 
       deleted: false
   
-    }).select('role_id');
+    }).select('role_id name _id');
 
   
     if (!account) {
@@ -27,12 +27,15 @@ export const authAdmin = async (req: Request, res: Response, next: NextFunction)
 
     const roleAdmin = await RoleModel.findOne({
       _id: account.role_id
-    }).select("title permission");
+    }).select("title permission").lean();
 
     if(!roleAdmin) {
       res.redirect(`/signin`);
       return;
     }
+
+    res.locals.roles = roleAdmin;
+    res.locals.account = account;
   
     next();
   

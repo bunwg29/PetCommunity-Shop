@@ -37,44 +37,58 @@ export const blogDetail = async (req: Request, res: Response) => {
 // [PATCH] admin/blog/edit/:id
 export const blogPatch = async (req: Request, res: Response) => {
 
-    const id_blog = req.params.id;
+    if (res.locals.roles.permission.includes("crud-blog")) {
+        const id_blog = req.params.id;
 
-    const newBlogData = {
-        thumbnail_photo: req.body.thumbnail_photo,
-        title: req.body.title,
-        description: req.body.description,
-        content: req.body.content,
-        uploadBy: req.body.uploadBy,
-    }
-    
-    
-    try {
-
-        await BlogModel.updateOne( { _id: id_blog }, newBlogData );
-
-        res.redirect(`/${systemConfig.prefixAdmin}/blog`);
-
-    } catch (error) {
+        const newBlogData = {
+            thumbnail_photo: req.body.thumbnail_photo,
+            title: req.body.title,
+            description: req.body.description,
+            content: req.body.content,
+            uploadBy: req.body.uploadBy,
+        }
         
-        res.send("update failed");
+        
+        try {
+    
+            await BlogModel.updateOne( { _id: id_blog }, newBlogData );
+    
+            res.redirect(`/${systemConfig.prefixAdmin}/blog`);
+    
+        } catch (error) {
+            
+            res.send("update failed");
+    
+        }
+    } else {
+
+        res.redirect(`/${systemConfig.prefixAdmin}/`);
 
     }
-    
+
 
 };
 
 // [PATCH] admin/blog/edit/:id
 export const deleteBlog = async (req: Request, res: Response) => {
 
-    const idBlog = req.params.id;
+    if (res.locals.roles.permission.includes("crud-blog")) {
 
-    await BlogModel.deleteOne({
-        _id: idBlog
-    });
+        const idBlog = req.params.id;
 
-    res.json({
-        code: 200
-    });
+        await BlogModel.deleteOne({
+            _id: idBlog
+        });
+    
+        res.json({
+            code: 200
+        });
+
+    } else {
+
+        res.redirect(`/${systemConfig.prefixAdmin}/`);
+
+    }
     
 };
 

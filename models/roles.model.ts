@@ -2,10 +2,7 @@ import mongoose from "mongoose";
 
 const RoleSchema = new mongoose.Schema({
     title: String,
-    permissions: {
-        type: Array,
-        default: []
-    },
+    permission: [ {type: String} ],
     deleted: {
         type: Boolean,
         default: false

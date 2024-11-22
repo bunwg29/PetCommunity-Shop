@@ -10,6 +10,7 @@ import { blogAdminRoutes } from "./blog.route";
 import { petAdminRoutes } from "./pet.route";
 import { petFoodRoutes } from "./foodpet.route";
 import { toyPetRoutes } from "./toypet.route";
+import { settingAdminRoutes } from "./setting.route";
 
 const RoutersAdmin = (app: Express): void => {
 
@@ -54,6 +55,12 @@ const RoutersAdmin = (app: Express): void => {
         auth.authAdmin,
         toyPetRoutes
     );
+
+    app.use(
+        `/${path}/setting`, 
+        auth.authAdmin,
+        settingAdminRoutes
+     );
 
 };
 

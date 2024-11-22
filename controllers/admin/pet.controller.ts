@@ -3,6 +3,7 @@ import moment from "moment";
 
 import PetModel from "../../models/pet.model";
 import { systemConfig } from "../../config/adminPrefix";
+import RoleModel from "../../models/roles.model";
 
 // [GET] admin/pet
 export const index = async (req: Request, res: Response) => {
@@ -38,71 +39,89 @@ export const petDetail = async (req: Request, res: Response) => {
 // [PATCH] admin/pet/edit/:id
 export const petPatch = async (req: Request, res: Response) => {
 
-    req.body.price = parseInt(req.body.price);
-    req.body.age = parseInt(req.body.age);
-    
-    const {uploadedData, ...updateData} = req.body;
-    
-    
-    try {
+    if (res.locals.roles.permission.includes("crud-product")) {
 
-        await PetModel.findByIdAndUpdate(
-            req.params.id,
-            {
-                $set: {
-                    avt: uploadedData.avt,
-                    ...updateData
+        req.body.price = parseInt(req.body.price);
+        req.body.age = parseInt(req.body.age);
+        
+        const {uploadedData, ...updateData} = req.body;
+        
+        
+        try {
+
+            await PetModel.findByIdAndUpdate(
+                req.params.id,
+                {
+                    $set: {
+                        avt: uploadedData.avt,
+                        ...updateData
+                    },
+                    ...(uploadedData.images && uploadedData.images.length ? { $push: { images: { $each: uploadedData.images } } } : {})
                 },
-                ...(uploadedData.images && uploadedData.images.length ? { $push: { images: { $each: uploadedData.images } } } : {})
-            },
-            { new: true }
-        );
+                { new: true }
+            );
 
-        res.redirect(`/${systemConfig.prefixAdmin}/pet`);
+            res.redirect(`/${systemConfig.prefixAdmin}/pet`);
 
-    } catch (error) {
-        console.log(error);
+        } catch (error) {
+            console.log(error);
+        }
+
+    } else {
+        res.redirect(`/${systemConfig.prefixAdmin}/`);
     }
-
+    
 };
 
 // [DELETE] admin/pet/delete/:id
 export const deletePet = async (req: Request, res: Response) => {
 
-    await PetModel.deleteOne({
-        _id: req.params.id
-    });
+    if (res.locals.roles.permission.includes("crud-product")) {
 
-    res.json({
-        code: 200
-    });
+        await PetModel.deleteOne({
+            _id: req.params.id
+        });
+    
+        res.json({
+            code: 200
+        });
+
+    } else {
+        res.redirect(`/${systemConfig.prefixAdmin}/`);
+    }
 
 };
 
 // [DELETE] admin/pet/delete/image/:image/:id
 export const deleteImages = async (req: Request, res: Response) => {
 
-    const { image, id } = req.params;
+    if (res.locals.roles.permission.includes("crud-product")) {
 
-    const decodedImage = decodeURIComponent(image);
-    
-    
-    try {
-        const pet = await PetModel.findByIdAndUpdate(
-            id,
-            { $pull: { images: decodedImage } },
-            { new: true }
-        );
+        const { image, id } = req.params;
 
-        if (pet) {
-            res.json({ code: 200 });  
-        } else {
-            res.status(404).json({ code: 404, message: "Pet not found" });
+        const decodedImage = decodeURIComponent(image);
+        
+        
+        try {
+            const pet = await PetModel.findByIdAndUpdate(
+                id,
+                { $pull: { images: decodedImage } },
+                { new: true }
+            );
+
+            if (pet) {
+                res.json({ code: 200 });  
+            } else {
+                res.status(404).json({ code: 404, message: "Pet not found" });
+            }
+
+        
+        } catch (error) {
+            res.send("TOANG");
         }
 
-    
-    } catch (error) {
-        res.send("TOANG");
+    } else {
+        res.redirect(`/${systemConfig.prefixAdmin}/`);
     }
 
 };

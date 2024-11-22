@@ -41,93 +41,115 @@ export const create = async (req: Request, res: Response) => {
 // [POST] admin/foodpet/create
 export const createPost = async (req: Request, res: Response) => {
 
-    try {
-        const {
-            name,
-            type,
-            size,
-            unit,
-            price,
-            special_offer,
-            uploadedData
-        } = req.body;
+    if (res.locals.roles.permission.includes("crud-food-pet")) {
 
-        const newFoodPet = new FoodPetModel({
-            name,
-            type,
-            size: parseFloat(size),
-            unit,
-            price: parseFloat(price),
-            special_offer,
-            avt: uploadedData.avt,
-            images: uploadedData.images
-        });
+        try {
+            const {
+                name,
+                type,
+                size,
+                unit,
+                price,
+                special_offer,
+                uploadedData
+            } = req.body;
+    
+            const newFoodPet = new FoodPetModel({
+                name,
+                type,
+                size: parseFloat(size),
+                unit,
+                price: parseFloat(price),
+                special_offer,
+                avt: uploadedData.avt,
+                images: uploadedData.images
+            });
+    
+            await newFoodPet.save();
+    
+            res.redirect(`/${systemConfig.prefixAdmin}/foodpet`)
+    
+        } catch (error) {
+            res.send("sập sàn")
+        }   
 
-        await newFoodPet.save();
-
-        res.redirect(`/${systemConfig.prefixAdmin}/foodpet`)
-
-    } catch (error) {
-        res.send("sập sàn")
+    } else {
+        res.redirect(`/${systemConfig.prefixAdmin}/`);
     }
+
+    
 
 };
 
 // [PATCH] admin/foodpet/detail/:id
 export const foodPetDetailPatch = async (req: Request, res: Response) => {
 
-    req.body.price = parseInt(req.body.price);
-    req.body.size = parseInt(req.body.size);
-    
-    const {uploadedData, ...updateData} = req.body;
-    
-    
-    try {
+    if (res.locals.roles.permission.includes("crud-food-pet")) {
 
-        await FoodPetModel.findByIdAndUpdate(
-            req.params.id,
-            {
-                $set: {
-                    avt: uploadedData.avt,
-                    ...updateData
+        req.body.price = parseInt(req.body.price);
+        req.body.size = parseInt(req.body.size);
+        
+        const {uploadedData, ...updateData} = req.body;
+        
+        
+        try {
+    
+            await FoodPetModel.findByIdAndUpdate(
+                req.params.id,
+                {
+                    $set: {
+                        avt: uploadedData.avt,
+                        ...updateData
+                    },
+                    ...(uploadedData.images && uploadedData.images.length ? { $push: { images: { $each: uploadedData.images } } } : {})
                 },
-                ...(uploadedData.images && uploadedData.images.length ? { $push: { images: { $each: uploadedData.images } } } : {})
-            },
-            { new: true }
-        );
+                { new: true }
+            );
+    
+            res.redirect(`/${systemConfig.prefixAdmin}/foodpet`);
+    
+        } catch (error) {
+            console.log(error);
+        }
 
-        res.redirect(`/${systemConfig.prefixAdmin}/foodpet`);
-
-    } catch (error) {
-        console.log(error);
+    } else {
+        res.redirect(`/${systemConfig.prefixAdmin}/`);
     }
+
+
 
 };
 
 // [DELETE] admin/foodpet/delete/image/:image/:id
 export const deleteImages = async (req: Request, res: Response) => {
 
-    const { image, id } = req.params;
+    if (res.locals.roles.permission.includes("crud-food-pet")) {
 
-    const decodedImage = decodeURIComponent(image);
-    
-    
-    try {
-        const pet = await FoodPetModel.findByIdAndUpdate(
-            id,
-            { $pull: { images: decodedImage } },
-            { new: true }
-        );
+        const { image, id } = req.params;
 
-        if (pet) {
-            res.json({ code: 200 });  
-        } else {
-            res.status(404).json({ code: 404, message: "Pet not found" });
+        const decodedImage = decodeURIComponent(image);
+        
+        
+        try {
+            const pet = await FoodPetModel.findByIdAndUpdate(
+                id,
+                { $pull: { images: decodedImage } },
+                { new: true }
+            );
+
+            if (pet) {
+                res.json({ code: 200 });  
+            } else {
+                res.status(404).json({ code: 404, message: "Pet not found" });
+            }
+
+        
+        } catch (error) {
+            res.send("TOANG");
         }
 
-    
-    } catch (error) {
-        res.send("TOANG");
+    } else {
+        res.redirect(`/${systemConfig.prefixAdmin}/`);
     }
 
 };
@@ -135,12 +157,18 @@ export const deleteImages = async (req: Request, res: Response) => {
 // [DELETE] admin/foodpet/delete/:id
 export const deletePet = async (req: Request, res: Response) => {
 
-    await FoodPetModel.deleteOne({
-        _id: req.params.id
-    });
+    if (res.locals.roles.permission.includes("crud-food-pet")) {
 
-    res.json({
-        code: 200
-    });
+        await FoodPetModel.deleteOne({
+            _id: req.params.id
+        });
+    
+        res.json({
+            code: 200
+        });
+
+    } else {
+        res.redirect(`/${systemConfig.prefixAdmin}/`);
+    }
 
 };

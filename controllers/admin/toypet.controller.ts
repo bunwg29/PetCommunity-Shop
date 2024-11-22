@@ -41,30 +41,36 @@ export const create = async (req: Request, res: Response) => {
 // [POST] admin/toypet/create
 export const createPost = async (req: Request, res: Response) => {
 
-    try {
-        const {
-            name,
-            type,
-            price,
-            special_offer,
-            uploadedData
-        } = req.body;
+    if (res.locals.roles.permission.includes("crud-toy-pet")) {
 
-        const newToyPet = new ToyPetModel({
-            name,
-            type,
-            price: parseFloat(price),
-            special_offer,
-            avt: uploadedData.avt,
-            images: uploadedData.images
-        });
+        try {
+            const {
+                name,
+                type,
+                price,
+                special_offer,
+                uploadedData
+            } = req.body;
+    
+            const newToyPet = new ToyPetModel({
+                name,
+                type,
+                price: parseFloat(price),
+                special_offer,
+                avt: uploadedData.avt,
+                images: uploadedData.images
+            });
+    
+            await newToyPet.save();
+    
+            res.redirect(`/${systemConfig.prefixAdmin}/toypet`)
+    
+        } catch (error) {
+            res.send("sập sàn")
+        }
 
-        await newToyPet.save();
-
-        res.redirect(`/${systemConfig.prefixAdmin}/toypet`)
-
-    } catch (error) {
-        res.send("sập sàn")
+    } else {
+        res.redirect(`/${systemConfig.prefixAdmin}/`);
     }
 
 };
@@ -72,29 +78,34 @@ export const createPost = async (req: Request, res: Response) => {
 // [PATCH] admin/toypet/detail/:id
 export const toyPetDetailPatch = async (req: Request, res: Response) => {
 
-    req.body.price = parseFloat(req.body.price);
-    
-    const {uploadedData, ...updateData} = req.body;
-    
-    
-    try {
+    if (res.locals.roles.permission.includes("crud-toy-pet")) {
 
-        await ToyPetModel.findByIdAndUpdate(
-            req.params.id,
-            {
-                $set: {
-                    avt: uploadedData.avt,
-                    ...updateData
+        req.body.price = parseFloat(req.body.price);
+    
+        const {uploadedData, ...updateData} = req.body;
+        
+        try {
+    
+            await ToyPetModel.findByIdAndUpdate(
+                req.params.id,
+                {
+                    $set: {
+                        avt: uploadedData.avt,
+                        ...updateData
+                    },
+                    ...(uploadedData.images && uploadedData.images.length ? { $push: { images: { $each: uploadedData.images } } } : {})
                 },
-                ...(uploadedData.images && uploadedData.images.length ? { $push: { images: { $each: uploadedData.images } } } : {})
-            },
-            { new: true }
-        );
+                { new: true }
+            );
+    
+            res.redirect(`/${systemConfig.prefixAdmin}/toypet`);
+    
+        } catch (error) {
+            console.log(error);
+        }
 
-        res.redirect(`/${systemConfig.prefixAdmin}/toypet`);
-
-    } catch (error) {
-        console.log(error);
+    } else {
+        res.redirect(`/${systemConfig.prefixAdmin}/`);
     }
 
 };
@@ -102,27 +113,32 @@ export const toyPetDetailPatch = async (req: Request, res: Response) => {
 // [DELETE] admin/toypet/delete/image/:image/:id
 export const deleteImages = async (req: Request, res: Response) => {
 
-    const { image, id } = req.params;
+    if (res.locals.roles.permission.includes("crud-toy-pet")) { 
+        const { image, id } = req.params;
 
-    const decodedImage = decodeURIComponent(image);
-    
-    
-    try {
-        const pet = await ToyPetModel.findByIdAndUpdate(
-            id,
-            { $pull: { images: decodedImage } },
-            { new: true }
-        );
+        const decodedImage = decodeURIComponent(image);
+        
+        
+        try {
+            const pet = await ToyPetModel.findByIdAndUpdate(
+                id,
+                { $pull: { images: decodedImage } },
+                { new: true }
+            );
 
-        if (pet) {
-            res.json({ code: 200 });  
-        } else {
-            res.status(404).json({ code: 404, message: "Pet not found" });
+            if (pet) {
+                res.json({ code: 200 });  
+            } else {
+                res.status(404).json({ code: 404, message: "Pet not found" });
+            }
+
+        
+        } catch (error) {
+            res.send("TOANG");
         }
 
-    
-    } catch (error) {
-        res.send("TOANG");
+    } else {
+        res.redirect(`/${systemConfig.prefixAdmin}/`);
     }
 
 };
@@ -130,12 +146,16 @@ export const deleteImages = async (req: Request, res: Response) => {
 // [DELETE] admin/toypet/delete/:id
 export const deletePet = async (req: Request, res: Response) => {
 
-    await ToyPetModel.deleteOne({
-        _id: req.params.id
-    });
+    if (res.locals.roles.permission.includes("crud-toy-pet")) { 
+        await ToyPetModel.deleteOne({
+            _id: req.params.id
+        });
 
-    res.json({
-        code: 200
-    });
+        res.json({
+            code: 200
+        });
+    } else {
+        res.redirect(`/${systemConfig.prefixAdmin}/`);
+    }
 
 };
