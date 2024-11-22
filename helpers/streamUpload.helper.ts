@@ -1,5 +1,5 @@
-import { v2 as cloudinary } from 'cloudinary'
-import streamifier from 'streamifier'
+import { v2 as cloudinary } from 'cloudinary';
+import streamifier from 'streamifier';
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
@@ -9,7 +9,7 @@ cloudinary.config({
 
 type CloudinaryUploadResult = {
   url: string;
-  public_id: string; 
+  public_id: string;
 };
 
 export const streamUpload = (buffer: any): Promise<CloudinaryUploadResult> => {
@@ -21,12 +21,12 @@ export const streamUpload = (buffer: any): Promise<CloudinaryUploadResult> => {
       },
       (error, result) => {
         if (result) {
-          resolve(result)
+          resolve(result);
         } else {
-          reject(error)
+          reject(error);
         }
       }
-    )
-    streamifier.createReadStream(buffer).pipe(stream)
-  })
-}
+    );
+    streamifier.createReadStream(buffer).pipe(stream);
+  });
+};

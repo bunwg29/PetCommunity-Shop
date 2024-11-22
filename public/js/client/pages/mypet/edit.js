@@ -1,90 +1,82 @@
-import { previewNewAvatarImage, previewNewImage } from "/js/helpers/previewImage.js";
+import {
+  previewNewAvatarImage,
+  previewNewImage,
+} from '/js/helpers/previewImage.js';
 
 // Start preview new image and delete them
 
 document.addEventListener('DOMContentLoaded', () => {
-    previewNewAvatarImage();
-    previewNewImage();
+  previewNewAvatarImage();
+  previewNewImage();
 });
 
 // End preview new image and delete them
 
-
 // Start delete image of pet product in database
 
-const deleteButtons = document.querySelectorAll(".delete-image");
-const popup = document.querySelector(".popup-delete-image");
-const cancelDeleteButton = document.getElementById("cancelDelete");
-const submitDeleteFormButton = document.getElementById("submitDeleteForm");
-const deleteImageForm = document.getElementById("deleteImageForm");
-const petIdInput = document.getElementById("petId");
-const imageUrlInput = document.getElementById("imageUrl");
+const deleteButtons = document.querySelectorAll('.delete-image');
+const popup = document.querySelector('.popup-delete-image');
+const cancelDeleteButton = document.getElementById('cancelDelete');
+const submitDeleteFormButton = document.getElementById('submitDeleteForm');
+const deleteImageForm = document.getElementById('deleteImageForm');
+const petIdInput = document.getElementById('petId');
+const imageUrlInput = document.getElementById('imageUrl');
 
 deleteButtons.forEach((button) => {
+  button.addEventListener('click', (e) => {
+    e.preventDefault();
 
-    button.addEventListener("click", (e) => {
-        e.preventDefault();
+    const petId = button.getAttribute('data-pet-id');
+    const imageUrl = button.getAttribute('data-image-url');
 
-        const petId = button.getAttribute("data-pet-id");
-        const imageUrl = button.getAttribute("data-image-url");
-    
-        petIdInput.value = petId;
-        imageUrlInput.value = imageUrl;
-    
-        popup.hidden = false;
-    });
-        
+    petIdInput.value = petId;
+    imageUrlInput.value = imageUrl;
+
+    popup.hidden = false;
+  });
 });
 
+submitDeleteFormButton.addEventListener('click', () => {
+  const petId = petIdInput.value;
 
+  if (petId) {
+    deleteImageForm.action = `/mypet/delete/image/${petId}?_method=DELETE`;
+  }
 
-submitDeleteFormButton.addEventListener("click", () => {
-    const petId = petIdInput.value;
-
-    if (petId) {
-
-        deleteImageForm.action = `/mypet/delete/image/${petId}?_method=DELETE`;
-
-    }
-
-    deleteImageForm.submit();
+  deleteImageForm.submit();
 });
 
 // End delete image of pet product in database
 
-
 // Start delete pet product in database
 
-const popupDeletePet = document.querySelector(".popup-delete-pet");
-const deletePetButton = document.querySelector(".delete-pet");
-const deletePetForm = document.getElementById("deletePetForm");
-const petDeleteIdInput = document.getElementById("petDeleteId");
-const submitDeletePetForm = document.getElementById("submitDeletePetForm");
-const cancelDeletePet = document.getElementById("cancelDeletePet");
+const popupDeletePet = document.querySelector('.popup-delete-pet');
+const deletePetButton = document.querySelector('.delete-pet');
+const deletePetForm = document.getElementById('deletePetForm');
+const petDeleteIdInput = document.getElementById('petDeleteId');
+const submitDeletePetForm = document.getElementById('submitDeletePetForm');
+const cancelDeletePet = document.getElementById('cancelDeletePet');
 
-deletePetButton.addEventListener("click", (e) => {
-    e.preventDefault();
+deletePetButton.addEventListener('click', (e) => {
+  e.preventDefault();
 
-    petDeleteIdInput.value = deletePetButton.getAttribute("petId");
+  petDeleteIdInput.value = deletePetButton.getAttribute('petId');
 
-    popupDeletePet.hidden = false;
-
-}); 
-
-cancelDeletePet.addEventListener("click", () => {
-    popupDeletePet.hidden = true;
+  popupDeletePet.hidden = false;
 });
 
-submitDeletePetForm.addEventListener("click", () => {
-    
-    const petId = petDeleteIdInput.value;
+cancelDeletePet.addEventListener('click', () => {
+  popupDeletePet.hidden = true;
+});
 
-    if (petId) {
-        deletePetForm.action = `/mypet/delete/pet/${petId}?_method=DELETE`;
-    };
+submitDeletePetForm.addEventListener('click', () => {
+  const petId = petDeleteIdInput.value;
 
-    deletePetForm.submit();
+  if (petId) {
+    deletePetForm.action = `/mypet/delete/pet/${petId}?_method=DELETE`;
+  }
 
+  deletePetForm.submit();
 });
 
 // End delete pet product in database

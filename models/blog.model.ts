@@ -1,5 +1,5 @@
-import mongoose from 'mongoose'
-import slugUpdater from 'mongoose-slug-updater'
+import mongoose from 'mongoose';
+import slugUpdater from 'mongoose-slug-updater';
 mongoose.plugin(slugUpdater);
 
 const blogSchema = new mongoose.Schema(
@@ -23,8 +23,8 @@ const blogSchema = new mongoose.Schema(
   {
     timestamps: true,
   }
-)
+);
 
-const BlogModel = mongoose.model('BlogModel', blogSchema, 'blog')
+const BlogModel = mongoose.model('BlogModel', blogSchema, 'blog');
 
-export default BlogModel
+export default BlogModel;

@@ -1,34 +1,35 @@
-import PetModel from "../models/pet.model";
-import { Request } from "express";
+import PetModel from '../models/pet.model';
+import { Request } from 'express';
 
 interface Pagination {
-    currentPage: number;
-    limitItems: number;
-    skip?: number;
-    totalPage?: number;
-};
-  
-export const Pagination = async (req: Request, find: Object): Promise<Pagination> => {
+  currentPage: number;
+  limitItems: number;
+  skip?: number;
+  totalPage?: number;
+}
 
-    const Pagination: Pagination = {
-        currentPage: 1,
-        limitItems: 8
-    };
+export const Pagination = async (
+  req: Request,
+  find: Object
+): Promise<Pagination> => {
+  const Pagination: Pagination = {
+    currentPage: 1,
+    limitItems: 8,
+  };
 
-    const page = req.query.page;
+  const page = req.query.page;
 
-    if(page && typeof page === 'string') {
-        Pagination.currentPage = parseInt(page);
-    };
+  if (page && typeof page === 'string') {
+    Pagination.currentPage = parseInt(page);
+  }
 
-    Pagination.skip = (Pagination.currentPage - 1) * Pagination.limitItems;
-    
-    const countPet = await PetModel.countDocuments(find);
+  Pagination.skip = (Pagination.currentPage - 1) * Pagination.limitItems;
 
-    const totalPage = Math.ceil(countPet / Pagination.limitItems);
+  const countPet = await PetModel.countDocuments(find);
 
-    Pagination.totalPage = totalPage;
+  const totalPage = Math.ceil(countPet / Pagination.limitItems);
 
-    return Pagination;
+  Pagination.totalPage = totalPage;
 
+  return Pagination;
 };

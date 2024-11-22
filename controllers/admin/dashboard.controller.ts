@@ -1,10 +1,7 @@
-import { Request, Response } from "express";
-
+import { Request, Response } from 'express';
 
 export const index = async (req: Request, res: Response) => {
-
-    res.render("admin/pages/dashboard/index", {
-        title: "Admin | Dashboard"
-    });
-
+  res.render('admin/pages/dashboard/index', {
+    title: 'Admin | Dashboard',
+  });
 };

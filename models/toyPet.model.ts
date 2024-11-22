@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
 const toyPetSchema = new mongoose.Schema(
   {
@@ -7,7 +7,7 @@ const toyPetSchema = new mongoose.Schema(
     price: Number,
     special_offer: String,
     avt: String,
-    images: [ {type: String} ],
+    images: [{ type: String }],
     deleted: {
       type: Boolean,
       default: false,
@@ -16,8 +16,8 @@ const toyPetSchema = new mongoose.Schema(
   {
     timestamps: true,
   }
-)
+);
 
-const ToyPetModel = mongoose.model('ToyPetModel', toyPetSchema, 'toy_pet')
+const ToyPetModel = mongoose.model('ToyPetModel', toyPetSchema, 'toy_pet');
 
-export default ToyPetModel
+export default ToyPetModel;

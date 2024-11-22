@@ -3,29 +3,29 @@
 document
   .getElementById('thumbnail')
   .addEventListener('change', function (event) {
-    const file = event.target.files[0]
+    const file = event.target.files[0];
     if (file) {
-      const reader = new FileReader()
+      const reader = new FileReader();
 
       reader.onload = function (e) {
-        const uploadContainer = document.querySelector('.thumbnail_label')
+        const uploadContainer = document.querySelector('.thumbnail_label');
 
-        uploadContainer.innerHTML = ''
+        uploadContainer.innerHTML = '';
 
-        const imgPreview = document.createElement('img')
+        const imgPreview = document.createElement('img');
         imgPreview.classList.add(
           'w-full',
           'h-full',
           'object-cover',
           'rounded-lg'
-        )
-        imgPreview.src = e.target.result
+        );
+        imgPreview.src = e.target.result;
 
-        uploadContainer.appendChild(imgPreview)
-      }
+        uploadContainer.appendChild(imgPreview);
+      };
 
-      reader.readAsDataURL(file)
+      reader.readAsDataURL(file);
     }
-  })
+  });
 
 // // End Upload Image at Sign up

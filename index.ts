@@ -28,7 +28,10 @@ app.set('views', `${__dirname}/views`);
 app.use(express.static(__dirname + '/public'));
 app.use(methodOverride('_method'));
 
-app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
+app.use(
+  '/tinymce',
+  express.static(path.join(__dirname, 'node_modules', 'tinymce'))
+);
 
 app.use(cookieParser());
 
@@ -39,5 +42,5 @@ Routers(app);
 RoutersAdmin(app);
 
 app.listen(port, () => {
-  console.log(`App listening on port ${port}`)
-})
+  console.log(`App listening on port ${port}`);
+});

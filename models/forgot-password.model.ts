@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
 const forgotPasswordSchema = new mongoose.Schema(
   {
@@ -13,12 +13,12 @@ const forgotPasswordSchema = new mongoose.Schema(
   {
     timestamps: true,
   }
-)
+);
 
 const ForgotPassword = mongoose.model(
   'ForgotPassword',
   forgotPasswordSchema,
   'forgot_password'
-)
+);
 
-export default ForgotPassword
+export default ForgotPassword;

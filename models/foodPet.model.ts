@@ -1,4 +1,4 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
 
 const foodPetSchema = new mongoose.Schema(
   {
@@ -9,7 +9,7 @@ const foodPetSchema = new mongoose.Schema(
     price: Number,
     special_offer: String,
     avt: String,
-    images: [ {type: String} ],
+    images: [{ type: String }],
     deleted: {
       type: Boolean,
       default: false,
@@ -18,8 +18,8 @@ const foodPetSchema = new mongoose.Schema(
   {
     timestamps: true,
   }
-)
+);
 
-const FoodPetModel = mongoose.model('FoodModel', foodPetSchema, 'food_pet')
+const FoodPetModel = mongoose.model('FoodModel', foodPetSchema, 'food_pet');
 
-export default FoodPetModel
+export default FoodPetModel;

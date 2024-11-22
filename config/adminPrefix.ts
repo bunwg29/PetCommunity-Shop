@@ -1,3 +1,3 @@
 export const systemConfig = {
-    prefixAdmin: "adminPetCom"
+  prefixAdmin: 'adminPetCom',
 };

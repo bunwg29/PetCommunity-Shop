@@ -1,32 +1,25 @@
 // Start handle set params on url when user switch pagination
 
-const buttonPaginations = document.querySelectorAll("[button-pagination]");
-const totalPageDiv = document.querySelector("[totalPage]");
-const totalPage = totalPageDiv.getAttribute("totalPage");
+const buttonPaginations = document.querySelectorAll('[button-pagination]');
+const totalPageDiv = document.querySelector('[totalPage]');
+const totalPage = totalPageDiv.getAttribute('totalPage');
 
 if (buttonPaginations.length > 0) {
-    
-    let url = new URL (window.location.href);
+  let url = new URL(window.location.href);
 
-    buttonPaginations.forEach(button => {
+  buttonPaginations.forEach((button) => {
+    button.addEventListener('click', () => {
+      const page = button.getAttribute('button-pagination');
 
-        button.addEventListener("click", () => {
-         
-            const page = button.getAttribute("button-pagination");
-                
-            if (page < 1 || page > totalPage) {
-                return;
-            };
+      if (page < 1 || page > totalPage) {
+        return;
+      }
 
-            url.searchParams.set("page", page);
+      url.searchParams.set('page', page);
 
-            window.location.href = url.href;
-            
-        });
+      window.location.href = url.href;
     });
-};
+  });
+}
 
 // End handle set params on url when user switch pagination
-
-
-  

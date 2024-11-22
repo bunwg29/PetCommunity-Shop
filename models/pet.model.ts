@@ -1,6 +1,6 @@
-import mongoose from 'mongoose'
-import slugUpdater from 'mongoose-slug-updater'
-mongoose.plugin(slugUpdater)
+import mongoose from 'mongoose';
+import slugUpdater from 'mongoose-slug-updater';
+mongoose.plugin(slugUpdater);
 
 const petSchema = new mongoose.Schema(
   {
@@ -9,7 +9,7 @@ const petSchema = new mongoose.Schema(
     age: Number,
     price: Number,
     avt: String,
-    images: [ {type: String} ],
+    images: [{ type: String }],
     size: String,
     color: String,
     vacinated: String,
@@ -31,8 +31,8 @@ const petSchema = new mongoose.Schema(
   {
     timestamps: true,
   }
-)
+);
 
-const PetModel = mongoose.model('PetModel', petSchema, 'pet')
+const PetModel = mongoose.model('PetModel', petSchema, 'pet');
 
-export default PetModel
+export default PetModel;

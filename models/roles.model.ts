@@ -1,18 +1,19 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
-const RoleSchema = new mongoose.Schema({
+const RoleSchema = new mongoose.Schema(
+  {
     title: String,
-    permission: [ {type: String} ],
+    permission: [{ type: String }],
     deleted: {
-        type: Boolean,
-        default: false
+      type: Boolean,
+      default: false,
     },
-    },  
-    {
-        timestamps: true
-    }
+  },
+  {
+    timestamps: true,
+  }
 );
 
-const RoleModel = mongoose.model("RoleModel", RoleSchema, "roles");
+const RoleModel = mongoose.model('RoleModel', RoleSchema, 'roles');
 
 export default RoleModel;
