@@ -1,12 +1,12 @@
 import { Response, Request } from 'express'
 import md5 from 'md5'
+import moment from 'moment'
 
 import AccountModel from '../../models/account.model'
 import ForgotPassword from '../../models/forgot-password.model'
 
 import * as generateHelper from '../../helpers/generateCode.helper'
 import * as sendMailHelper from '../../helpers/sendMail.helper'
-import * as formatDate from '../../helpers/formatDate.helper'
 
 // [GET] /user/signup
 export const signup = async (req: Request, res: Response) => {
@@ -16,7 +16,7 @@ export const signup = async (req: Request, res: Response) => {
     title: 'PetCommunity | SignUp',
     errors,
   })
-}
+};
 
 // [POST] /user/signup
 export const signupPost = async (req: Request, res: Response) => {
@@ -50,7 +50,7 @@ export const signin = async (req: Request, res: Response) => {
     title: 'PetCommunity | SignIn',
     errors,
   })
-}
+};
 
 // [POST] /user/signin
 export const signinPost = async (req: Request, res: Response) => {
@@ -88,13 +88,13 @@ export const signinPost = async (req: Request, res: Response) => {
     res.cookie('tokenUser', user.tokenUser)
     res.redirect('/')
   }
-}
+};
 
 // [GET] /user/logout
 export const logout = async (req: Request, res: Response) => {
   res.clearCookie('tokenUser')
   res.redirect('/')
-}
+};
 
 // [GET] /user/forgot-password
 export const forgotPassword = async (req: Request, res: Response) => {
@@ -104,7 +104,7 @@ export const forgotPassword = async (req: Request, res: Response) => {
     title: 'PetComunity | Forgot Password',
     errors,
   })
-}
+};
 
 // [POST] /user/forgot-password
 export const forgotPasswordPost = async (req: Request, res: Response) => {
@@ -144,7 +144,7 @@ export const forgotPasswordPost = async (req: Request, res: Response) => {
   sendMailHelper.sendEmail(email, subject, htmlSendMail)
 
   res.redirect(`/user/forgot-password/otp?email=${email}`)
-}
+};
 
 // [GET] /user/forgot-password/otp
 export const otpPassword = async (req: Request, res: Response) => {
@@ -156,7 +156,7 @@ export const otpPassword = async (req: Request, res: Response) => {
     email,
     errors,
   })
-}
+};
 
 // [POST] /user/forgot-password/otp
 export const otpPasswordPost = async (req: Request, res: Response) => {
@@ -187,14 +187,14 @@ export const otpPasswordPost = async (req: Request, res: Response) => {
   res.cookie('tokenUser', user.tokenUser)
 
   res.redirect('/user/password/reset')
-}
+};
 
 // [GET] /user/password/reset
 export const resetPassword = async (req: Request, res: Response) => {
   res.render('client/pages/user/reset-password', {
     title: 'PetCommunity | Reset Password',
   })
-}
+};
 
 // [PATCH] /user/password/reset
 export const resetPasswordPatch = async (req: Request, res: Response) => {
@@ -211,25 +211,25 @@ export const resetPasswordPatch = async (req: Request, res: Response) => {
     }
   )
 
-  res.redirect('/user/signin')
-}
+  res.redirect('/user/signin');
+};
 
 // [GET] /user/profile
 export const profile = async (req: Request, res: Response) => {
-  const date = res.locals.user.dateBirth
 
-  const formattedDate = formatDate.convertToDateForm(date)
+  const date = res.locals.user.dateBirth;
+
+  const formattedDate = moment(date).format("yyyy-MM-DD");
 
   res.render('client/pages/user/profile', {
     title: 'PetCommunity | Profile',
     formattedDate,
-  })
+  });
+
 }
 
 // [PATCH] /user/profile/edit
 export const profileEdit = async (req: Request, res: Response) => {
-
-  req.body.dateBirth = formatDate.convertToDate(req.body.dateBirth)
 
   await AccountModel.updateOne(
     {
@@ -241,4 +241,4 @@ export const profileEdit = async (req: Request, res: Response) => {
 
   res.redirect('/user/profile');
   
-}
+};
