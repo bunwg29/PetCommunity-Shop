@@ -8,7 +8,7 @@ export const index = async (req: Request, res: Response) => {
   };
 
   // Start filter pet products based on attributes
-  const { gender, minPrice, maxPrice, size } = req.query;
+  const { gender, minPrice, maxPrice, size, sortKey, sortValue } = req.query;
 
   if (typeof gender === 'string') {
     find.gene = { $in: gender.split(',') };
@@ -30,12 +30,33 @@ export const index = async (req: Request, res: Response) => {
   // End filter pet products based on attributes
 
   // Start pagination of pet products
-
   const pagination = await Pagination(req, PetModel, find);
-
   // End pagination of pet products
 
+  // Start sort pet
+
+  let sort = {};
+
+  if (sortKey && sortValue) {
+    const sortDirection = sortValue === 'desc' ? -1 : 1;
+
+    switch (sortKey) {
+      case 'updatedAt':
+      case 'createdAt':
+      case 'age':
+        sort = { [sortKey]: sortDirection };
+        break;
+      default:
+        sort = { updatedAt: -1 };
+    }
+  } else {
+    sort = { updatedAt: -1 };
+  }
+
+  // End sort pet
+
   const petProduct = await PetModel.find(find)
+    .sort(sort)
     .limit(pagination.limitItems)
     .skip(pagination.skip);
 
@@ -43,7 +64,7 @@ export const index = async (req: Request, res: Response) => {
     title: 'PetCommunity | Category',
     petProduct: petProduct,
     pagination,
-    selectedFilters: { gender, minPrice, maxPrice, size },
+    selectedFilters: { gender, minPrice, maxPrice, size, sortKey, sortValue },
     isCategory: true,
   });
 };
