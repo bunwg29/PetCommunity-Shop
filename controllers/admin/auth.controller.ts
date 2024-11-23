@@ -52,3 +52,10 @@ export const signinPost = async (req: Request, res: Response) => {
     res.redirect(`/${systemConfig.prefixAdmin}`);
   }
 };
+
+// [GET] /admin/logout
+export const logout = async (req: Request, res: Response) => {
+  res.clearCookie('tokenUser');
+  req.flash('success', 'Logout success');
+  res.redirect(`/${systemConfig.prefixAdmin}/signin`);
+};
