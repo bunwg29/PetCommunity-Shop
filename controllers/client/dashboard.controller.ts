@@ -8,13 +8,13 @@ export const index = async (req: Request, res: Response) => {
   const find = {
     deleted: false,
   };
-  const petInfo = await PetModel.find(find);
+  const petInfo = await PetModel.find(find).sort({ updatedAt: -1 }).limit(8);
 
-  const foodPetInfo = await FoodPetModel.find(find);
+  const foodPetInfo = await FoodPetModel.find(find).sort({ updatedAt: -1 }).limit(8);
 
-  const toyPetInfo = await ToyPetModel.find(find);
+  const toyPetInfo = await ToyPetModel.find(find).sort({ updatedAt: -1 }).limit(8);
 
-  const blogInfo = await BlogModel.find(find);
+  const blogInfo = await BlogModel.find(find).sort({ updatedAt: -1 }).limit(3);
 
   res.render('client/pages/dashboard/index', {
     title: 'PetCommunity',
