@@ -40,7 +40,7 @@ export const registerValidate = async (
   if (Object.keys(errors).length > 0) {
     res.locals.errors = errors;
 
-    return res.render('pages/user/signup', {
+    return res.render('client/pages/user/signup', {
       title: 'PetCommunity | SignUp',
       errors,
     });
@@ -79,7 +79,7 @@ export const validatePassword = async (
 
   if (Object.keys(errors).length > 0) {
     res.locals.errors = errors;
-    return res.render('pages/user/reset-password', {
+    return res.render('client/pages/user/reset-password', {
       title: 'PetCommunity | Reset password',
       errors,
     });

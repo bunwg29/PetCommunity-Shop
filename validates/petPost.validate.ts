@@ -55,7 +55,7 @@ export const validatePetPost = async (
     res,
     next,
     validatePet,
-    'pages/mypet/create',
+    'client/pages/mypet/create',
     'MyPet | Create'
   );
 };

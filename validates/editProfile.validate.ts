@@ -31,7 +31,7 @@ export const validateEditProfile = async (
 
   if (Object.keys(errors).length > 0) {
     res.locals.errors = errors;
-    return res.render('pages/user/profile', {
+    return res.render('client/pages/user/profile', {
       title: 'PetCommunity | Profile',
       errors: errors,
     });
