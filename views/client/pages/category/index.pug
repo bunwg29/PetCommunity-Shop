@@ -3,12 +3,21 @@ block main
     
     div(class="flex justify-between pt-[5%] pb-[1%]")
                 p(class="text-[24px] font-bold text-[#003459]") Filter 
-                select(class="py-[10px] px-[25px] border outline-none rounded-[20px] flex justify-center items-center text-[14px] text-[#667479]")
-                    option(value="" default) Sort by: Popular 
-                    option(value="") Sort by: Latest
-                    option(value="") Sort by: Oldest
-                    option(value="") Sort by: Age
+                select(class="py-[10px] px-[25px] border outline-none rounded-[20px] flex justify-center items-center text-[14px] text-[#667479]" sort-pet)
+                    option(
+                        value="updatedAt-desc" 
+                        selected=(selectedFilters.sortKey === 'updatedAt' && selectedFilters.sortValue === 'desc')
+                    ) Sort by: Latest
+                    option(
+                        value="createdAt-asc"
+                        selected=(selectedFilters.sortKey === 'createdAt' && selectedFilters.sortValue === 'asc')
+                    ) Sort by: Oldest 
+                    option(
+                        value="age-asc"
+                        selected=(selectedFilters.sortKey === 'age' && selectedFilters.sortValue === 'asc')
+                    ) Sort by: Age
     section(class="pb-[5%] flex gap-[5%]")
         include ./components/Filter.pug
         include ./components/Pet.pug
     script(src="/js/client/pages/category/filterPet.js")  
+    script(src="/js/client/pages/category/sortPet.js")  

@@ -1,9 +1,15 @@
 // Start handle set params on url when user switch pagination
-
+const nav = document.querySelector('.nav');
 const buttonPaginations = document.querySelectorAll('[button-pagination]');
 const totalPageDiv = document.querySelector('[totalPage]');
 const totalPage = totalPageDiv.getAttribute('totalPage');
-
+const lastBtnPagination = document.querySelector('[end-pagination]');
+if (totalPage <= 3) {
+  lastBtnPagination.classList.add('hidden');
+}
+if (totalPage == 0) {
+  nav.classList.add('hidden');
+}
 if (buttonPaginations.length > 0) {
   let url = new URL(window.location.href);
 
