@@ -50,12 +50,14 @@ export const blogPatch = async (req: Request, res: Response) => {
 
     try {
       await BlogModel.updateOne({ _id: id_blog }, newBlogData);
-
+      req.flash('success', 'Update success');
       res.redirect(`/${systemConfig.prefixAdmin}/blog`);
     } catch (error) {
-      res.send('update failed');
+      req.flash('error', 'Update failed');
+      res.redirect(`/${systemConfig.prefixAdmin}/`);
     }
   } else {
+    req.flash('error', 'This is not your role');
     res.redirect(`/${systemConfig.prefixAdmin}/`);
   }
 };
@@ -65,14 +67,20 @@ export const deleteBlog = async (req: Request, res: Response) => {
   if (res.locals.roles.permission.includes('crud-blog')) {
     const idBlog = req.params.id;
 
-    await BlogModel.deleteOne({
-      _id: idBlog,
-    });
-
-    res.json({
-      code: 200,
-    });
+    try {
+      await BlogModel.deleteOne({
+        _id: idBlog,
+      });
+      req.flash('success', 'Update success');
+      res.json({
+        code: 200,
+      });
+    } catch (error) {
+      req.flash('error', 'Update failed');
+      res.redirect(`/${systemConfig.prefixAdmin}/`);
+    }
   } else {
+    req.flash('error', 'This is not your role');
     res.redirect(`/${systemConfig.prefixAdmin}/`);
   }
 };

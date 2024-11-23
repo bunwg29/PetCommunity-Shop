@@ -67,7 +67,9 @@ export const detailPatch = async (req: Request, res: Response) => {
     );
 
     res.redirect(`/${systemConfig.prefixAdmin}/user`);
+    req.flash('success', 'Update success');
   } else {
+    req.flash('error', 'This is not your role');
     res.redirect(`/${systemConfig.prefixAdmin}/`);
   }
 };
@@ -84,7 +86,10 @@ export const deleteUser = async (req: Request, res: Response) => {
     res.json({
       code: 200,
     });
+
+    req.flash('success', 'Update success');
   } else {
+    req.flash('error', 'This is not your role');
     res.redirect(`/${systemConfig.prefixAdmin}/`);
   }
 };

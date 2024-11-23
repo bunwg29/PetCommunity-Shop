@@ -55,9 +55,10 @@ export const createPost = async (req: Request, res: Response) => {
 
       res.redirect(`/${systemConfig.prefixAdmin}/toypet`);
     } catch (error) {
-      res.send('sập sàn');
+      req.flash('error', 'Update failed');
     }
   } else {
+    req.flash('error', 'This is not your role');
     res.redirect(`/${systemConfig.prefixAdmin}/`);
   }
 };
@@ -85,10 +86,12 @@ export const toyPetDetailPatch = async (req: Request, res: Response) => {
       );
 
       res.redirect(`/${systemConfig.prefixAdmin}/toypet`);
+      req.flash('success', 'Update success');
     } catch (error) {
-      console.log(error);
+      req.flash('error', 'Update failed');
     }
   } else {
+    req.flash('error', 'This is not your role');
     res.redirect(`/${systemConfig.prefixAdmin}/`);
   }
 };
@@ -109,13 +112,15 @@ export const deleteImages = async (req: Request, res: Response) => {
 
       if (pet) {
         res.json({ code: 200 });
+        req.flash('success', 'Update success');
       } else {
-        res.status(404).json({ code: 404, message: 'Pet not found' });
+        req.flash('error', 'Update failed');
       }
     } catch (error) {
-      res.send('TOANG');
+      req.flash('error', 'Update failed');
     }
   } else {
+    req.flash('error', 'This is not your role');
     res.redirect(`/${systemConfig.prefixAdmin}/`);
   }
 };
@@ -123,14 +128,21 @@ export const deleteImages = async (req: Request, res: Response) => {
 // [DELETE] admin/toypet/delete/:id
 export const deletePet = async (req: Request, res: Response) => {
   if (res.locals.roles.permission.includes('crud-toy-pet')) {
-    await ToyPetModel.deleteOne({
+    const toy = await ToyPetModel.deleteOne({
       _id: req.params.id,
     });
 
     res.json({
       code: 200,
     });
+
+    if (toy) {
+      req.flash('success', 'Update success');
+    } else {
+      req.flash('error', 'Update failed');
+    }
   } else {
+    req.flash('error', 'This is not your role');
     res.redirect(`/${systemConfig.prefixAdmin}/`);
   }
 };

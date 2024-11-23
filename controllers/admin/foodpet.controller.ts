@@ -55,13 +55,17 @@ export const createPost = async (req: Request, res: Response) => {
         images: uploadedData.images,
       });
 
-      await newFoodPet.save();
-
+      const foodPet = await newFoodPet.save();
+      if (foodPet) {
+        req.flash('success', 'Create success');
+      }
       res.redirect(`/${systemConfig.prefixAdmin}/foodpet`);
     } catch (error) {
-      res.send('sập sàn');
+      req.flash('error', 'Update failed');
+      res.redirect(`/${systemConfig.prefixAdmin}/`);
     }
   } else {
+    req.flash('error', 'This is not your role');
     res.redirect(`/${systemConfig.prefixAdmin}/`);
   }
 };
@@ -90,10 +94,12 @@ export const foodPetDetailPatch = async (req: Request, res: Response) => {
       );
 
       res.redirect(`/${systemConfig.prefixAdmin}/foodpet`);
+      req.flash('success', 'Update success');
     } catch (error) {
-      console.log(error);
+      req.flash('error', 'Update failed');
     }
   } else {
+    req.flash('error', 'This is not your role');
     res.redirect(`/${systemConfig.prefixAdmin}/`);
   }
 };
@@ -114,13 +120,15 @@ export const deleteImages = async (req: Request, res: Response) => {
 
       if (pet) {
         res.json({ code: 200 });
+        req.flash('success', 'Update success');
       } else {
         res.status(404).json({ code: 404, message: 'Pet not found' });
       }
     } catch (error) {
-      res.send('TOANG');
+      req.flash('error', 'Update failed');
     }
   } else {
+    req.flash('error', 'This is not your role');
     res.redirect(`/${systemConfig.prefixAdmin}/`);
   }
 };
@@ -135,7 +143,10 @@ export const deletePet = async (req: Request, res: Response) => {
     res.json({
       code: 200,
     });
+
+    req.flash('success', 'Update success');
   } else {
+    req.flash('error', 'This is not your role');
     res.redirect(`/${systemConfig.prefixAdmin}/`);
   }
 };

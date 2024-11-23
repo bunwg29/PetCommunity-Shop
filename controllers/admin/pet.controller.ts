@@ -61,10 +61,12 @@ export const petPatch = async (req: Request, res: Response) => {
       );
 
       res.redirect(`/${systemConfig.prefixAdmin}/pet`);
+      req.flash('success', 'Update success');
     } catch (error) {
-      console.log(error);
+      req.flash('error', 'Update failed');
     }
   } else {
+    req.flash('error', 'This is not your role');
     res.redirect(`/${systemConfig.prefixAdmin}/`);
   }
 };
@@ -79,7 +81,10 @@ export const deletePet = async (req: Request, res: Response) => {
     res.json({
       code: 200,
     });
+
+    req.flash('success', 'Update success');
   } else {
+    req.flash('error', 'This is not your role');
     res.redirect(`/${systemConfig.prefixAdmin}/`);
   }
 };
@@ -100,13 +105,15 @@ export const deleteImages = async (req: Request, res: Response) => {
 
       if (pet) {
         res.json({ code: 200 });
+        req.flash('success', 'Update success');
       } else {
         res.status(404).json({ code: 404, message: 'Pet not found' });
       }
     } catch (error) {
-      res.send('TOANG');
+      req.flash('error', 'Update failed');
     }
   } else {
+    req.flash('error', 'This is not your role');
     res.redirect(`/${systemConfig.prefixAdmin}/`);
   }
 };

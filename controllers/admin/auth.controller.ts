@@ -48,6 +48,7 @@ export const signinPost = async (req: Request, res: Response) => {
 
   if (user && md5(req.body.password) === user.password) {
     res.cookie('tokenUser', user.tokenUser);
+    req.flash('success', 'Login Success');
     res.redirect(`/${systemConfig.prefixAdmin}`);
   }
 };

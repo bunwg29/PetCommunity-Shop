@@ -4,7 +4,7 @@ import multer from 'multer';
 const router: Router = Router();
 
 import * as controller from '../../controllers/admin/user.controller';
-import { validateEditProfile } from '../../validates/editProfile.validate';
+import { validateEditProfile } from '../../validates/admin/inputUser.validate';
 import * as uploadCloud from '../../middlewares/client/uploadCloud.middleware';
 
 const upload = multer();
@@ -19,6 +19,7 @@ router.get('/detail/:id', controller.detail);
 router.patch(
   '/detail/edit/:id',
   upload.single('thumbnail'),
+  validateEditProfile,
   uploadCloud.uploadSingle,
   controller.detailPatch
 );
