@@ -4,16 +4,26 @@ const orderSchema = new mongoose.Schema(
     {
         userInfo: {
             fullName: String,
+            email: String,
             phone: String,
             address: String,
         },
         products: [
             {
+                avt: String,
+                name: String,
+                size: Number,
+                unit: String,
                 productId: String,
                 price: Number,
                 quantity: Number
             }
-        ]
+        ],
+        totalPrice: Number,
+        status: {
+            type: String,
+            default: "Confirming"
+        }
     }, 
     {
         timestamps: true
