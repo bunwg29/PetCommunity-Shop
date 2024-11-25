@@ -1,11 +1,13 @@
 @forward 'reset';
 .banner-dog-friend {
   position: relative;
-  width: 100%; }
+  width: 100%;
+}
 
 .banner-dog-friend img {
   width: 100%;
-  height: auto; }
+  height: auto;
+}
 
 .banner-dog-friend .btn {
   position: absolute;
@@ -19,7 +21,8 @@
   padding: 10px 24px;
   border: none;
   cursor: pointer;
-  border-radius: 57px; }
+  border-radius: 57px;
+}
 
 .banner-dog-friend .btn-adop {
   position: absolute;
@@ -33,17 +36,24 @@
   padding: 10px 24px;
   border: none;
   cursor: pointer;
-  border-radius: 57px; }
+  border-radius: 57px;
+}
 
 .banner-dog-friend .btn:hover {
-  background-color: #ff7037; }
+  background-color: #ff7037;
+}
 
 .btn-adop:hover {
-  background-color: #ff7037; }
+  background-color: #ff7037;
+}
 
 @keyframes scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-100%); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
 }
 
 .animate-scroll {
@@ -62,4 +72,3 @@
     animation-play-state: paused;
   }
 }
-

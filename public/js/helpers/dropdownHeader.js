@@ -40,11 +40,11 @@ function toggleCartDropdown() {
 
 // Start category
 
-const categoryDiv = document.querySelector(".category");
-const dropdownCategory = document.getElementById("dropdown-category");
+const categoryDiv = document.querySelector('.category');
+const dropdownCategory = document.getElementById('dropdown-category');
 
 if (categoryDiv) {
-  categoryDiv.addEventListener("click", () => {
+  categoryDiv.addEventListener('click', () => {
     dropdownCategory.classList.toggle('hidden');
   });
 }
