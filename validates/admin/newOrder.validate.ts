@@ -33,7 +33,7 @@ export const validateInfo = async (
 
   if (Object.keys(errors).length > 0) {
     req.flash('warming', 'All input are required and true format');
-    res.redirect('back');
+    res.redirect('/toycart');
   } else {
     next();
   }
