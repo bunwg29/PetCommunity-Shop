@@ -38,6 +38,38 @@ export const index = async (req: Request, res: Response) => {
 
 };
 
+export const createCart = async (req: Request, res: Response) => {
+
+    const cartId = req.cookies.cartId;
+    const productId = req.params.productId;
+    const quantity = parseInt(req.params.quantity);
+    
+
+    const cart = await CartModel.findOne({_id: cartId});
+  
+    const existProductInCart = cart.products.find(item => item.product_id == productId);
+  
+    if(existProductInCart) {
+      const addProduct = await CartModel.updateOne( {_id: cartId,'products.product_id': productId}, {
+        $set: {
+          'products.$.quantity': existProductInCart.quantity + quantity
+        }
+      });
+
+      if (addProduct) {
+        req.flash("success", "You have added to your food pet cart");
+      }
+
+    } else {
+      const newProduct = await CartModel.updateOne( { _id: cartId }, { $push: { products: { product_id: productId, quantity: quantity }}});
+      if (newProduct) {
+        req.flash("success", "You have added to your food pet cart");
+      }
+    };
+
+    res.redirect("back");
+};
+
 export const reduceItem = async (req: Request, res: Response) => {
 
     const cartId = req.cookies.cartId;

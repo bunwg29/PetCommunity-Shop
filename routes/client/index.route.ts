@@ -5,6 +5,7 @@ import { userRoutes } from './user.route';
 import { blogRoutes } from './blog.route';
 import { petProductRoutes } from './petProduct.route';
 import { cartRoutes } from './cart.route';
+import { foodPetRoutes } from './foodpet.route';
 
 import { checkCartCookies } from '../../middlewares/client/cartToken.middleware';
 
@@ -17,6 +18,7 @@ const Routers = (app: Express): void => {
   app.use('/blog', blogRoutes);
   app.use('/mypet', petProductRoutes);
   app.use("/cart", cartRoutes);
+  app.use("/foodpet", foodPetRoutes);
 };
 
 export default Routers;
