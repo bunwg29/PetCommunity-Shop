@@ -3,7 +3,7 @@ include ../../../mixins/pagination.pug
 section
     div(class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4")
         each item in petProduct
-            a(href=`/category/pet/${item.slug}` class="p-[5%] rounded-[12px] bg-[#FFFFFF] flex flex-col shadow-lg items-center transition-transform duration-300 sm:hover:scale-105 sm:hover:shadow-xl")
+            a(href=`/pet/${item.slug}` class="p-[5%] rounded-[12px] bg-[#FFFFFF] flex flex-col shadow-lg items-center transition-transform duration-300 sm:hover:scale-105 sm:hover:shadow-xl")
                 img(src= item.avt, alt="avatar of pet" class="rounded-[10px] w-[90%] h-[90%] transition-transform duration-300 sm:hover:scale-110")
                 div(class="pt-[10%] w-[90%] opacity-100 transform translate-y-0 transition-all duration-500")
                     h4(class="text-[16px] font-bold pb-[10px]") #{item.id_code} - #{item.name}

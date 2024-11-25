@@ -60,7 +60,7 @@ export const index = async (req: Request, res: Response) => {
     .limit(pagination.limitItems)
     .skip(pagination.skip);
 
-  res.render('client/pages/category/index', {
+  res.render('client/pages/pet/index', {
     title: 'PetCommunity | Category',
     petProduct: petProduct,
     pagination,
@@ -85,7 +85,7 @@ export const petDetail = async (req: Request, res: Response) => {
 
   const petDetail = await PetModel.findOne(findPetDetail);
 
-  res.render('client/pages/category/petDetail', {
+  res.render('client/pages/pet/petDetail', {
     title: 'PetCommunity | Product',
     petDetail: petDetail,
     petProduct: petProduct,

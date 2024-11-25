@@ -28,3 +28,25 @@ document.addEventListener('click', (event) => {
 });
 
 // End dropdown info user
+
+// Start dropdown card
+
+function toggleCartDropdown() {
+  const dropdown = document.getElementById('cartDropdown');
+  dropdown.classList.toggle('hidden');
+}
+
+// End dropdown card
+
+// Start category
+
+const categoryDiv = document.querySelector(".category");
+const dropdownCategory = document.getElementById("dropdown-category");
+
+if (categoryDiv) {
+  categoryDiv.addEventListener("click", () => {
+    dropdownCategory.classList.toggle('hidden');
+  });
+}
+
+// End category
