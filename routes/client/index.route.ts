@@ -7,6 +7,9 @@ import { petProductRoutes } from './petProduct.route';
 import { cartRoutes } from './cart.route';
 import { foodPetRoutes } from './foodpet.route';
 import { orderRoutes } from './order.route';
+import { toyPetRoutes } from './toypet.route';
+import { cartToyRoutes } from './toycart.route';
+import { toyOrderRoutes } from './toyOrder.route';
 
 import { checkCartCookies } from '../../middlewares/client/cartToken.middleware';
 
@@ -19,8 +22,11 @@ const Routers = (app: Express): void => {
   app.use('/blog', blogRoutes);
   app.use('/mypet', petProductRoutes);
   app.use("/foodpet", foodPetRoutes);
+  app.use("/toypet", toyPetRoutes);
   app.use("/cart", cartRoutes);
+  app.use("/toycart", cartToyRoutes);
   app.use("/order", orderRoutes);
+  app.use("/toyorder", toyOrderRoutes);
 };
 
 export default Routers;
