@@ -6,19 +6,6 @@ section(class="py-[5%]")
         button(class="flex justify-center py-[10px] w-[12%] h-[1%] text-[14px] text-[#003459 rounded-[57px] border-solid border-2 border-[#003459] hover:bg-[#ff7037]") View more
             img(src="/images/arrow_button.svg", alt="arrowbutton")  
 
-<<<<<<< HEAD
-    div(class="grid grid-cols-4 gap-4")
-        each item in petInfo
-            figure(class="p-[5%] rounded-[12px] bg-[#FFFFFF] flex flex-col shadow-lg items-center")
-                img(src= item.avt, alt="avatar of pet" class="rounded-[10px] w-[90%] h-[90%]")
-                div(class="pt-[10%] w-[90%]")
-                    h4(class="text-[16px] font-bold pb-[10px]") #{item.id_code} - #{item.name}
-                    div(class="flex gap-[10px] text-[12px] pb-[5px]")
-                        p(class="text-[#667479]") Gene: 
-                            span(class="text-[#667479] font-bold") #{item.gene} 
-                        p(class="text-[#667479]") Age: 
-                            span(class="text-[#667479] font-bold") #{item.age} months 
-=======
     div(class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4")
         each item in petInfo
             figure(class="p-[5%] rounded-[12px] bg-[#FFFFFF] flex flex-col shadow-lg items-center transition-all duration-300 hover:scale-105 hover:shadow-xl")
@@ -30,5 +17,4 @@ section(class="py-[5%]")
                             span(class="text-[#667479] font-bold") #{item.gene}
                         p(class="text-[#667479]") Age:
                             span(class="text-[#667479] font-bold") #{item.age} months
->>>>>>> 10/client
                     h5(class="text-[#00171F] font-bold") #{item.price} $

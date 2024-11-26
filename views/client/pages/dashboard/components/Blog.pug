@@ -6,16 +6,6 @@ section(class="pb-[50px]")
         button(class="flex justify-center py-[10px] w-[12%] h-[1%] text-[14px] text-[#003459 rounded-[57px] border-solid border-2 border-[#003459] hover:bg-[#ff7037]") View more
             img(src="/images/arrow_button.svg", alt="arrowbutton")   
     
-<<<<<<< HEAD
-    div(class="flex justify-between")
-        each item in blogInfo
-            figure(class="w-[30%]")
-                img(src= item.thumbnail_photo, alt="avt of blog" class="w-[100%] h-[50%]")
-                figcaption(class="pt-[20px] flex  flex-col gap-[10px]")
-                    p(class="w-[30%] p-[5px] bg-[#00A7E7] rounded-[28px] text-[#FDFDFD] text-[10px] text-center") Pet Knowledge 
-                    h5(class="text-[16px] text-[#00171F] font-bold") #{item.title}
-                    p(class="text-[14px] font-thin text-wrap") #{item.description}
-=======
     div(class="flex flex-wrap justify-between gap-4")
         each item in blogInfo
             figure(class="w-full sm:w-[48%] md:w-[30%]")
@@ -24,4 +14,3 @@ section(class="pb-[50px]")
                     p(class="w-[30%] p-[5px] bg-[#00A7E7] rounded-[28px] text-[#FDFDFD] text-[10px] text-center") Pet Knowledge
                     h5(class="text-[16px] text-[#00171F] font-bold") #{item.title}
                     p(class="text-[14px] font-thin text-wrap") #{item.description}
->>>>>>> 10/client

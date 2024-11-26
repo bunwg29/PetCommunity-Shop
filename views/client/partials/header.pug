@@ -1,7 +1,6 @@
 include ../mixins/dropdownUser.pug
 include ../mixins/dropdownCard.pug
 include ../mixins/dropdownCategory.pug
-
 section(class="hero-banner px-[10%]")
 
   header(class="flex justify-between py-8")
@@ -22,6 +21,7 @@ section(class="hero-banner px-[10%]")
         button(class="text-stone-50 bg-[#003459] rounded-[57px] h-full") Sign in
       if (user)
         +dropdownUser(user)
+      
   article(class="grid grid-cols-2")
 
     header(class="pt-[10%]")
