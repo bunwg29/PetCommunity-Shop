@@ -11,6 +11,8 @@ import { petAdminRoutes } from './pet.route';
 import { petFoodRoutes } from './foodpet.route';
 import { toyPetRoutes } from './toypet.route';
 import { settingAdminRoutes } from './setting.route';
+import { orderFoodPetRoutes } from './orderFoodPet.route';
+import { toyOrderRoutes } from '../client/toyOrder.route';
 
 const RoutersAdmin = (app: Express): void => {
   const path = `${systemConfig.prefixAdmin}`;
@@ -30,6 +32,10 @@ const RoutersAdmin = (app: Express): void => {
   app.use(`/${path}/toypet`, auth.authAdmin, toyPetRoutes);
 
   app.use(`/${path}/setting`, auth.authAdmin, settingAdminRoutes);
+  
+  app.use(`/${path}/orderfoodpet`, auth.authAdmin, orderFoodPetRoutes);
+
+  app.use(`/${path}/ordertoypet`, auth.authAdmin, toyOrderRoutes);
 };
 
 export default RoutersAdmin;
