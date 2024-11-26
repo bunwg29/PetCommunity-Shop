@@ -1,10 +1,17 @@
 section(class="py-[5%]") 
     p(class="text-[24px] text-[#003459] font-bold") Pet Toys
     
+<<<<<<< HEAD
     div(class="grid grid-cols-4 gap-4")
         each item in toyPetInfo
             figure(class="p-[5%] rounded-[12px] bg-[#FFFFFF] flex flex-col shadow-lg items-center")
                 img(src= item.avt, alt="avatar of pet" class="rounded-[10px] w-[90%] h-[90%]")
+=======
+    div(class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4")
+        each item in toyPetInfo
+            figure(class="p-[5%] rounded-[12px] bg-[#FFFFFF] flex flex-col shadow-lg items-center transition-transform duration-300 hover:scale-105 hover:shadow-xl")
+                img(src= item.avt, alt="avatar of pet" class="rounded-[10px] w-[90%] h-[90%] transition-transform duration-300 hover:scale-110")
+>>>>>>> 10/client
                 div(class="pt-[10%] w-[90%]")
                     h4(class="text-[16px] font-bold pb-[10px]") #{item.name}
                     div(class="flex gap-[10px] text-[12px] pb-[5px]")
@@ -14,4 +21,8 @@ section(class="py-[5%]")
                     div(class="py-[5%] pl-[5%] flex gap-[5px] bg-[#FCEED5] justify-left items-center rounded-[8px]")
                         img(src="/images/special_offer_icon.svg", alt="special_offer_icon") 
                         p(class="text-[14px] text-center font-bold text-[#003459]") &#8226; #{item.special_offer}
+<<<<<<< HEAD
+=======
+
+>>>>>>> 10/client
                         

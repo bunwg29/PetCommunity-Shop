@@ -1,4 +1,9 @@
 include ../mixins/dropdownUser.pug
+<<<<<<< HEAD
+=======
+include ../mixins/dropdownCard.pug
+include ../mixins/dropdownCategory.pug
+>>>>>>> 10/client
 section(class="px-[10%]")
 
   header(class="flex justify-between py-8 ")
@@ -8,10 +13,21 @@ section(class="px-[10%]")
         i
           img(src='/images/favicon.svg' alt='Shop-Favicon' class="items-center")
       a(href='/') Home
+<<<<<<< HEAD
       a(href='/category') Category
       a(href='/blog') Blog
       a(href='/contact') Contact
       input(type='text' placeholder='Search something here!' class="h-11 w-[25%] p-4 rounded-[46px] outline-none")
+=======
+      div(class="relative group category")
+        div(class="cursor-pointer flex items-center gap-2") 
+          span Category
+             +dropdownCategory()
+      a(href='/blog') Blog
+      input(type='text' placeholder='Search something here!' class="h-11 w-[25%] p-4 rounded-[46px] outline-none")
+      +dropdownCard()
+      
+>>>>>>> 10/client
 
     a(href="user/signin" class="button-header px-[28px] text-stone-50 bg-[#003459] rounded-[57px] h-full") 
         button(class="text-stone-50 bg-[#003459] rounded-[57px] h-full") Sign in
