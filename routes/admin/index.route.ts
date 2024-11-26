@@ -13,6 +13,7 @@ import { toyPetRoutes } from './toypet.route';
 import { settingAdminRoutes } from './setting.route';
 import { orderFoodPetRoutes } from './orderFoodPet.route';
 import { orderToyPetRoutes } from './orderToyPet.route';
+import { toyOrderRoutes } from '../client/toyOrder.route';
 
 
 const RoutersAdmin = (app: Express): void => {
@@ -35,8 +36,10 @@ const RoutersAdmin = (app: Express): void => {
   app.use(`/${path}/setting`, auth.authAdmin, settingAdminRoutes);
   
   app.use(`/${path}/orderfoodpet`, auth.authAdmin, orderFoodPetRoutes);
-
+  
   app.use(`/${path}/ordertoypet`, auth.authAdmin, orderToyPetRoutes);
+
+  app.use(`/${path}/ordertoypet`, auth.authAdmin, toyOrderRoutes);
 
 };
 
