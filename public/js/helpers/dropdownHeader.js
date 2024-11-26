@@ -28,8 +28,6 @@ document.addEventListener('click', (event) => {
 });
 
 // End dropdown info user
-<<<<<<< HEAD
-=======
 
 // Start dropdown card
 
@@ -52,4 +50,3 @@ if (categoryDiv) {
 }
 
 // End category
->>>>>>> 10/client

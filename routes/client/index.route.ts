@@ -1,18 +1,5 @@
 import { Express } from 'express';
 import { dashboardRoutes } from './dashboard.route';
-<<<<<<< HEAD
-import { categoryRoutes } from './category.route';
-import { userRoutes } from './user.route';
-import { blogRoutes } from './blog.route';
-import { petProductRoutes } from './petProduct.route';
-
-const Routers = (app: Express): void => {
-  app.use('/', dashboardRoutes);
-  app.use('/category', categoryRoutes);
-  app.use('/user', userRoutes);
-  app.use('/blog', blogRoutes);
-  app.use('/mypet', petProductRoutes);
-=======
 import { petRoutes } from './pet.route';
 import { userRoutes } from './user.route';
 import { blogRoutes } from './blog.route';
@@ -40,7 +27,6 @@ const Routers = (app: Express): void => {
   app.use('/toycart', cartToyRoutes);
   app.use('/order', orderRoutes);
   app.use('/toyorder', toyOrderRoutes);
->>>>>>> 10/client
 };
 
 export default Routers;

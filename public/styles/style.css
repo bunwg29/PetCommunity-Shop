@@ -45,33 +45,30 @@
 
 .btn-adop:hover {
   background-color: #ff7037;
-}
-<<<<<<< HEAD
-=======
 
-@keyframes scroll {
-  0% {
-    transform: translateX(0);
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-100%);
+    }
   }
-  100% {
-    transform: translateX(-100%);
-  }
-}
 
-.animate-scroll {
-  animation: scroll 20s linear infinite;
-}
-
-.animate-scroll:hover {
-  animation-play-state: paused;
-}
-
-@media (min-width: 1024px) {
-  .lg-animate-scroll {
+  .animate-scroll {
     animation: scroll 20s linear infinite;
   }
-  .lg-animate-scroll:hover {
+
+  .animate-scroll:hover {
     animation-play-state: paused;
   }
+
+  @media (min-width: 1024px) {
+    .lg-animate-scroll {
+      animation: scroll 20s linear infinite;
+    }
+    .lg-animate-scroll:hover {
+      animation-play-state: paused;
+    }
+  }
 }
->>>>>>> 10/client
