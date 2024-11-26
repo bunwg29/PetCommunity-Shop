@@ -33,6 +33,6 @@ const cartSchema = new Schema<CartDocument>(
   }
 );
 
-const CartModel = mongoose.model('CartModel', cartSchema, 'cart');
+const FoodCartModel = mongoose.model('FoodCartModel', cartSchema, 'food_carts');
 
-export default CartModel;
+export default FoodCartModel;

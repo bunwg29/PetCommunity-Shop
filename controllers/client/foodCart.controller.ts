@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
-import CartModel from '../../models/cart.model';
+import FoodCartModel from '../../models/foodCart.model';
 import FoodPetModel from '../../models/foodPet.model';
 
 export const index = async (req: Request, res: Response) => {
   const cartId = req.cookies.cartId;
 
-  const cart = await CartModel.findOne({
+  const cart = await FoodCartModel.findOne({
     _id: cartId,
   });
 
@@ -29,7 +29,7 @@ export const index = async (req: Request, res: Response) => {
     }
   }
 
-  res.render('client/pages/cart/index', {
+  res.render('client/pages/foodCart/index', {
     title: 'My Cart',
     cart,
   });
@@ -40,14 +40,14 @@ export const createCart = async (req: Request, res: Response) => {
   const productId = req.params.productId;
   const quantity = parseInt(req.params.quantity);
 
-  const cart = await CartModel.findOne({ _id: cartId });
+  const cart = await FoodCartModel.findOne({ _id: cartId });
 
   const existProductInCart = cart.products.find(
     (item) => item.product_id == productId
   );
 
   if (existProductInCart) {
-    const addProduct = await CartModel.updateOne(
+    const addProduct = await FoodCartModel.updateOne(
       { _id: cartId, 'products.product_id': productId },
       {
         $set: {
@@ -60,7 +60,7 @@ export const createCart = async (req: Request, res: Response) => {
       req.flash('success', 'You have added to your food pet cart');
     }
   } else {
-    const newProduct = await CartModel.updateOne(
+    const newProduct = await FoodCartModel.updateOne(
       { _id: cartId },
       { $push: { products: { product_id: productId, quantity: quantity } } }
     );
@@ -78,7 +78,7 @@ export const reduceItem = async (req: Request, res: Response) => {
   const quantity = parseInt(req.params.quantity);
 
   try {
-    const cart = await CartModel.updateOne(
+    const cart = await FoodCartModel.updateOne(
       {
         _id: cartId,
         'products.product_id': productId,
@@ -105,7 +105,7 @@ export const addItem = async (req: Request, res: Response) => {
   const quantity = parseInt(req.params.quantity);
 
   try {
-    const cart = await CartModel.updateOne(
+    const cart = await FoodCartModel.updateOne(
       {
         _id: cartId,
         'products.product_id': productId,
@@ -131,7 +131,7 @@ export const deleteProduct = async (req: Request, res: Response) => {
   const productId = req.params.productId;
 
   try {
-    const cart = await CartModel.updateOne(
+    const cart = await FoodCartModel.updateOne(
       { _id: cartId },
       {
         $pull: { products: { product_id: productId } },

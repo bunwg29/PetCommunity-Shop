@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
-import CartModel from '../../models/cart.model';
+import FoodCartModel from '../../models/foodCart.model';
 import ToyCartModel from '../../models/toyCart.model';
 
 export const checkCartCookies = async (
@@ -11,18 +11,20 @@ export const checkCartCookies = async (
   const expires = 30 * 24 * 60 * 60 * 1000;
 
   if (!req.cookies.cartId) {
-    const cartModel = new CartModel();
+    const cartModel = new FoodCartModel();
     cartModel.save();
 
     res.cookie('cartId', cartModel._id, {
       expires: new Date(Date.now() + expires),
     });
   } else {
-    const cart = await CartModel.findOne({
+    const cart = await FoodCartModel.findOne({
       _id: req.cookies.cartId,
     });
 
-    res.locals.cart = cart.products.length || 0;
+    if (cart) {
+      res.locals.cart = cart.products.length || 0;
+    }
   }
 
   if (!req.cookies.cartToy) {
@@ -37,7 +39,9 @@ export const checkCartCookies = async (
       _id: req.cookies.cartToy,
     });
 
-    res.locals.cartToy = cart.products.length || 0;
+    if (cart) {
+      res.locals.cartToy = cart.products.length || 0;
+    }
   }
 
   next();

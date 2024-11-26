@@ -55,7 +55,7 @@ export const renderOrderSuccess = async (req: Request, res: Response) => {
     .add(3, 'days')
     .format('Do MMMM YYYY');
 
-  res.render('client/pages/toyorder/success', {
+  res.render('client/pages/toyOrder/success', {
     title: 'Order | Confirm',
     orderData: order,
     orderDate,

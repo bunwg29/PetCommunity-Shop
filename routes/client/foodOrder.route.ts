@@ -1,7 +1,7 @@
 import { Router } from 'express';
 const router: Router = Router();
 
-import * as controller from '../../controllers/client/order.controller';
+import * as controller from '../../controllers/client/foodOrder.controller';
 
 import * as validate from '../../validates/admin/newOrder.validate';
 

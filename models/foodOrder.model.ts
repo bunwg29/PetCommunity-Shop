@@ -30,6 +30,10 @@ const orderSchema = new mongoose.Schema(
   }
 );
 
-const OrderModel = mongoose.model('OrderModel', orderSchema, 'orders');
+const FoodOrderModel = mongoose.model(
+  'FoodOrderModel',
+  orderSchema,
+  'food_orders'
+);
 
-export default OrderModel;
+export default FoodOrderModel;

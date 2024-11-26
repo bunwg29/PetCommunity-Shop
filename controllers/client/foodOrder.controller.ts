@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import CartModel from '../../models/cart.model';
+import FoodCartModel from '../../models/foodCart.model';
 import FoodPetModel from '../../models/foodPet.model';
-import OrderModel from '../../models/order.model';
+import FoodOrderModel from '../../models/foodOrder.model';
 import moment from 'moment';
 
 // [POST] order/create/:userId
@@ -15,7 +15,7 @@ export const createOrder = async (req: Request, res: Response) => {
     totalPrice: totalPrice,
   };
 
-  const cart = await CartModel.findOne({ _id: cartId });
+  const cart = await FoodCartModel.findOne({ _id: cartId });
 
   if (cart) {
     try {
@@ -35,9 +35,9 @@ export const createOrder = async (req: Request, res: Response) => {
         });
       }
 
-      const order = new OrderModel(orderData);
+      const order = new FoodOrderModel(orderData);
       await order.save();
-      await CartModel.updateOne({ _id: cartId }, { products: [] });
+      await FoodCartModel.updateOne({ _id: cartId }, { products: [] });
       res.redirect(`/order/success?orderId=${order._id}`);
       req.flash('success', 'You have ordered successfully');
     } catch (error) {
@@ -52,14 +52,14 @@ export const createOrder = async (req: Request, res: Response) => {
 export const renderOrderSuccess = async (req: Request, res: Response) => {
   const { orderId } = req.query;
 
-  const order = await OrderModel.findOne({ _id: orderId });
+  const order = await FoodOrderModel.findOne({ _id: orderId });
 
   const orderDate = moment(order.createdAt).format('Do MMMM YYYY');
   const shipDate = moment(order.createdAt)
     .add(3, 'days')
     .format('Do MMMM YYYY');
 
-  res.render('client/pages/order/success', {
+  res.render('client/pages/foodOrder/success', {
     title: 'Order | Confirm',
     orderData: order,
     orderDate,

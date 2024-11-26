@@ -28,7 +28,7 @@ export const index = async (req: Request, res: Response) => {
     }
   }
 
-  res.render('client/pages/toycart/index', {
+  res.render('client/pages/toyCart/index', {
     title: 'My Cart',
     cart,
   });

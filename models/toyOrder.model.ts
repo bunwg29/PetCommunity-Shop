@@ -28,6 +28,10 @@ const orderSchema = new mongoose.Schema(
   }
 );
 
-const ToyOrderModel = mongoose.model('ToyOrderModel', orderSchema, 'toy_order');
+const ToyOrderModel = mongoose.model(
+  'ToyOrderModel',
+  orderSchema,
+  'toy_orders'
+);
 
 export default ToyOrderModel;

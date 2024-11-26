@@ -31,6 +31,6 @@ const cartSchema = new Schema<CartDocument>(
   }
 );
 
-const ToyCartModel = mongoose.model('ToyCartModel', cartSchema, 'toycart');
+const ToyCartModel = mongoose.model('ToyCartModel', cartSchema, 'toy_carts');
 
 export default ToyCartModel;

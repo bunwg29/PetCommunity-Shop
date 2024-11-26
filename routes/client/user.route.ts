@@ -39,6 +39,7 @@ router.get('/profile', auth.setUserInfo, controller.profile);
 router.patch(
   '/profile/edit',
   auth.setUserInfo,
+  auth.requireAuth,
   upload.single('thumbnail'),
   validateEditProfile,
   uploadCloud.uploadSingle,
