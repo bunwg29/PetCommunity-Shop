@@ -21,4 +21,5 @@ document.addEventListener('DOMContentLoaded', function () {
 
   setupToggleMenu('petFoodToggle', 'petFoodMenu', 'icon-chevron-default');
   setupToggleMenu('petToyToggle', 'petToyMenu', 'icon-chevron-default');
+  setupToggleMenu('orderToggle', 'orderViewMenu', 'icon-chevron-default');
 });
