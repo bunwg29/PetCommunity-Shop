@@ -15,5 +15,9 @@ html.h-full
     body.h-full.w-full
         +alert()
         main(class="flex h-full w-full")
+            .mobile-sidebar-toggle.absolute.top-4.left-0.z-50.block(class="md:hidden")
+                button#sidebarToggle.text-gray-600.hover.text-gray-900
+                    svg.w-6.h-6(xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor')
+                        path(stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 6h16M4 12h16M4 18h16')
             include ../partials/sider.pug
             block main
