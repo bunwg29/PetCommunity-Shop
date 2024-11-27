@@ -2,16 +2,21 @@ import { Request, Response } from 'express';
 
 import ToyPetModel from '../../models/toyPet.model';
 
+import { Pagination } from '../../helpers/pagination.helper';
+
 export const index = async (req: Request, res: Response) => {
   const find = {
     deleted: false,
   };
+
+  const pagination = await Pagination(req, ToyPetModel, find);
 
   const toyPet = await ToyPetModel.find(find);
 
   res.render('client/pages/toypet/index', {
     title: 'Category | Toypet',
     toyPet,
+    pagination,
   });
 };
 

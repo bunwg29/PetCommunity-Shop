@@ -18,6 +18,10 @@ mixin dropdownUser(user)
                     i(class="fa-solid fa-blog")
                 hr
                 li(class="p-[5%] flex justify-between items-center hover:bg-gray-200")
+                    a(href=`/blog/create`, class="text-[#003459] text-sm w-full") New Blog
+                    i(class="fa-solid fa-upload")
+                hr
+                li(class="p-[5%] flex justify-between items-center hover:bg-gray-200")
                     a(href=`/mypet/product/${user.id}`, class="text-[#003459] text-sm w-full") My Pet
                     i(class="fa-solid fa-dog")
                 hr
