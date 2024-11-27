@@ -1,21 +1,27 @@
 footer(class="bg-gradient-to-br from-linearFooter1 to-linearFooter2")
-    section(class="px-[10%] pt-20")
-        section(class="p-6 flex justify-between gap-[20px] bg-[#003459] rounded-[16px]")
-            p(class="text-stone-50 font-bold text-[20px] w-[35%]") Register Now So You Don't Miss Our Programs
-            div(class="w-[60%] p-[10px] flex justify-between items-center gap-[20px] bg-white rounded-[8px]")
-                input(type='text' placeholder='Enter your email' class="text-[12px] pl-5 outline-none border-solid border border-slate-600 w-[80%] h-[40px] rounded-[8px]")
-                button(class="p-[10px] text-xs text-stone-50 bg-[#003459] rounded-[8px]") Subcribe Now
+    section(class="px-4 md:px-10 pt-10 md:pt-20")
 
-        section(class="pt-[30px] pb-[40px]")
-            nav(class="flex gap-14 text-[#00171F] text-[14px]")
+        section(class="p-4 md:p-6 flex flex-col md:flex-row justify-between gap-4 md:gap-6 bg-[#003459] rounded-lg")
+            p(class="text-white font-bold text-lg md:text-xl md:w-1/3 text-center md:text-left")
+                | Register Now So You Don't Miss Our Programs
+            div(class="w-full md:w-2/3 flex flex-col sm:flex-row justify-between items-center gap-4 bg-white rounded-lg p-4")
+                input(
+                    type="text" 
+                    placeholder="Enter your email" 
+                    class="text-sm pl-3 border border-gray-300 outline-none w-full sm:w-3/4 h-10 rounded-lg"
+                )
+                button(class="w-full sm:w-auto px-4 py-2 text-xs text-white bg-[#003459] rounded-lg") Subcribe Now
+
+        section(class="pt-6 md:pt-8 pb-8 md:pb-10")
+            nav(class="flex flex-wrap justify-center md:justify-start gap-6 md:gap-10 text-[#00171F] text-sm md:text-base")
                 a(href='/') Home
-                a(href='/category') Category
                 a(href='/blog') Blog
                 a(href='/contact') Contact
-        hr(class="border-[#CCD1D2]")
-        section(class="py-8 flex justify-between")
-            p(class="text-[#667479] text-[14px]") © 2024 Monito. All rights reserved.
-            img(src="/images/favicon.svg", alt="logo of page")
-            div(class="flex gap-[20px] text-[#667479] text-[14px]")
-                p Terms of Service 
-                p Privacy Policy 
+        hr(class="border-gray-300 my-6")
+        
+        section(class="py-6 flex flex-col sm:flex-row justify-between items-center gap-4")
+            p(class="text-gray-500 text-xs md:text-sm text-center sm:text-left") © 2024 Monito. All rights reserved.
+            img(src="/images/favicon.svg" alt="logo of page" class="w-8 h-8")
+            div(class="flex flex-wrap justify-center gap-4 text-gray-500 text-xs md:text-sm")
+                a(href="#") Terms of Service
+                a(href="#") Privacy Policy
