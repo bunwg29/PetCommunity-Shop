@@ -16,7 +16,7 @@ block main
                         value="age-asc"
                         selected=(selectedFilters.sortKey === 'age' && selectedFilters.sortValue === 'asc')
                     ) Sort by: Age
-    section(class="pb-[5%] flex gap-[5%]")
+    section(class="pb-[5%] flex gap-[10%]")
         include ./components/Filter.pug
         include ./components/Pet.pug
     script(src="/js/client/pages/category/filterPet.js")  
