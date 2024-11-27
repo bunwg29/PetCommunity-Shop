@@ -32,29 +32,30 @@
                 svg.w-6.h-6.text-gray-800(xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewbox='0 0 24 24')
                     path(stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 10V6a3 3 0 0 1 3-3v0a3 3 0 0 1 3 3v4m3-2 .917 11.923A1 1 0 0 1 17.92 21H6.08a1 1 0 0 1-.997-1.077L6 8h12Z')
                 span(class="mx-4 font-medium") ToyPetCart
-        hr(class="my-6 border-gray-300")
-        .flex.items-center.px-4.-mx-2
-            img(class="object-cover mx-2 rounded-full h-9 w-9" src=user.thumbnail alt=user.name)
-            h4(class="mx-2 font-medium text-gray-800 hover:underline") #{user.name}
-        a(class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform rounded-md hover:bg-gray-200 hover:text-gray-900" href='/user/profile')
-            svg(class="w-5 h-5" viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg')
-                path(d='M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round')
-                path(d='M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round')
-            span(class="mx-4 font-medium") My Profile
-        a(class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform rounded-md hover:bg-gray-200 hover:text-gray-900" href=`/blog/myblog/${user.id}`)
-            svg.w-6.h-6.text-gray-800(xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewbox='0 0 24 24')
-                path(stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 19V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v13H7a2 2 0 0 0-2 2Zm0 0a2 2 0 0 0 2 2h12M9 3v14m7 0v4')
-            span(class="mx-4 font-medium") My Blog
-        a(class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform rounded-md hover:bg-gray-200 hover:text-gray-900" href=`/mypet/product/${user.id}`)
-            svg(class="w-5 h-5" viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg')
-                path(d='M15 5V7M15 11V13M15 17V19M5 5C3.89543 5 3 5.89543 3 7V10C4.10457 10 5 10.8954 5 12C5 13.1046 4.10457 14 3 14V17C3 18.1046 3.89543 19 5 19H19C20.1046 19 21 18.1046 21 17V14C19.8954 14 19 13.1046 19 12C19 10.8954 19.8954 10 21 10V7C21 5.89543 20.1046 5 19 5H5Z' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round')
-            span(class="mx-4 font-medium") My Pet
-        a(class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform rounded-md hover:bg-gray-200 hover:text-gray-900" href=`/mypet/create/${user.id}`)
-            svg.w-6.h-6.text-gray-800(xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewbox='0 0 24 24')
-                path(stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 17.345a4.76 4.76 0 0 0 2.558 1.618c2.274.589 4.512-.446 4.999-2.31.487-1.866-1.273-3.9-3.546-4.49-2.273-.59-4.034-2.623-3.547-4.488.486-1.865 2.724-2.899 4.998-2.31.982.236 1.87.793 2.538 1.592m-3.879 12.171V21m0-18v2.2')
-            span(class="mx-4 font-medium") Sell Pet
-        hr(class="my-6 border-gray-300")
-        a(class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform rounded-md hover:bg-gray-200 hover:text-gray-900" href='/user/logout')
-            svg.w-6.h-6.text-gray-800(xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewbox='0 0 24 24')
-                path(stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M20 12H8m12 0-4 4m4-4-4-4M9 4H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h2')
-            span(class="mx-4 font-medium") Logout
+        if (user)
+            hr(class="my-6 border-gray-300")
+            .flex.items-center.px-4.-mx-2
+                img(class="object-cover mx-2 rounded-full h-9 w-9" src=user.thumbnail alt=user.name)
+                h4(class="mx-2 font-medium text-gray-800 hover:underline") #{user.name}
+            a(class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform rounded-md hover:bg-gray-200 hover:text-gray-900" href='/user/profile')
+                svg(class="w-5 h-5" viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg')
+                    path(d='M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round')
+                    path(d='M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round')
+                span(class="mx-4 font-medium") My Profile
+            a(class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform rounded-md hover:bg-gray-200 hover:text-gray-900" href=`/blog/myblog/${user.id}`)
+                svg.w-6.h-6.text-gray-800(xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewbox='0 0 24 24')
+                    path(stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 19V4a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v13H7a2 2 0 0 0-2 2Zm0 0a2 2 0 0 0 2 2h12M9 3v14m7 0v4')
+                span(class="mx-4 font-medium") My Blog
+            a(class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform rounded-md hover:bg-gray-200 hover:text-gray-900" href=`/mypet/product/${user.id}`)
+                svg(class="w-5 h-5" viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg')
+                    path(d='M15 5V7M15 11V13M15 17V19M5 5C3.89543 5 3 5.89543 3 7V10C4.10457 10 5 10.8954 5 12C5 13.1046 4.10457 14 3 14V17C3 18.1046 3.89543 19 5 19H19C20.1046 19 21 18.1046 21 17V14C19.8954 14 19 13.1046 19 12C19 10.8954 19.8954 10 21 10V7C21 5.89543 20.1046 5 19 5H5Z' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round')
+                span(class="mx-4 font-medium") My Pet
+            a(class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform rounded-md hover:bg-gray-200 hover:text-gray-900" href=`/mypet/create/${user.id}`)
+                svg.w-6.h-6.text-gray-800(xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewbox='0 0 24 24')
+                    path(stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M8 17.345a4.76 4.76 0 0 0 2.558 1.618c2.274.589 4.512-.446 4.999-2.31.487-1.866-1.273-3.9-3.546-4.49-2.273-.59-4.034-2.623-3.547-4.488.486-1.865 2.724-2.899 4.998-2.31.982.236 1.87.793 2.538 1.592m-3.879 12.171V21m0-18v2.2')
+                span(class="mx-4 font-medium") Sell Pet
+            hr(class="my-6 border-gray-300")
+            a(class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-200 transform rounded-md hover:bg-gray-200 hover:text-gray-900" href='/user/logout')
+                svg.w-6.h-6.text-gray-800(xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewbox='0 0 24 24')
+                    path(stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M20 12H8m12 0-4 4m4-4-4-4M9 4H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h2')
+                span(class="mx-4 font-medium") Logout
