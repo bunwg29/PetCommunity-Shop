@@ -76,7 +76,7 @@ export const createPost = async (req: Request, res: Response) => {
 
     await newPet.save();
 
-    res.redirect('/category');
+    res.redirect('/pet');
   } catch (error) {
     res.send('sập sàn');
   }
@@ -104,7 +104,7 @@ export const editPatch = async (req: Request, res: Response) => {
       { new: true }
     );
 
-    res.redirect('/category');
+    res.redirect('/pet');
   } catch (error) {
     console.log(error);
   }

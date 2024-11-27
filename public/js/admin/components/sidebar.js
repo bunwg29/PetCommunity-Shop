@@ -22,3 +22,22 @@ document.addEventListener('DOMContentLoaded', function () {
   setupToggleMenu('petFoodToggle', 'petFoodMenu', 'icon-chevron-default');
   setupToggleMenu('petToyToggle', 'petToyMenu', 'icon-chevron-default');
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const sidebar = document.getElementById('sidebar');
+  const sidebarToggle = document.getElementById('sidebarToggle');
+
+  sidebarToggle.addEventListener('click', () => {
+    sidebar.classList.toggle('-translate-x-full');
+  });
+
+  // Close sidebar when clicking outside on mobile
+  document.addEventListener('click', (event) => {
+    if (
+      !sidebar.contains(event.target) &&
+      !sidebarToggle.contains(event.target)
+    ) {
+      sidebar.classList.add('-translate-x-full');
+    }
+  });
+});
