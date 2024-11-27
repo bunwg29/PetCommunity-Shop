@@ -1,0 +1,49 @@
+aside(class="w-[20%] flex flex-col gap-[20px]")
+    fieldset(class="flex flex-col gap-[10px] text-[#00171F]")
+        p(class="text-[16px] font-bold") Gender
+        .flex.items-center.mb-4
+            input#male(type='checkbox' name='gender' value='Male' checked=(selectedFilters.gender && selectedFilters.gender.includes('Male')) class=' w-4 h-4 bg-gray-100 rounded dark:bg-gray-700 dark:border-[#CCD1D2] border-[#CCD1D2] accent-[#003459]')
+            label.ms-2.text-sm.font-medium.text-gray-900(for='male' class='dark:text-[#00171F]') Male
+        .flex.items-center.mb-4
+            input#female(type='checkbox' name='gender' value='Female' checked=(selectedFilters.gender && selectedFilters.gender.includes('Female')) class=' w-4 h-4 bg-gray-100 rounded dark:bg-gray-700 dark:border-[#CCD1D2] border-[#CCD1D2] accent-[#003459]')
+            label.ms-2.text-sm.font-medium.text-gray-900(for='female' class='dark:text-[#00171F]') Female
+            
+    hr
+
+    fieldset(class="flex flex-col gap-[10px]")
+        p(class="text-[16px] text-[#00171F] font-bold") Price
+        div(class="flex gap-[10%]")
+            select(class="w-[50%] border-b outline-none" id = "min-price")
+                option(value="0" selected=(selectedFilters.minPrice === '0')) Min 
+                option(value="100" selected=(selectedFilters.minPrice == '100')) 100$
+                option(value="200" selected=(selectedFilters.minPrice == '200')) 200$
+                option(value="300" selected=(selectedFilters.minPrice == '300')) 300$
+                option(value="400" selected=(selectedFilters.minPrice == '400')) 400$
+                option(value="500" selected=(selectedFilters.minPrice == '500')) 500$
+                option(value="1000" selected=(selectedFilters.minPrice == '1000')) 1000$
+                option(value="1500" selected=(selectedFilters.minPrice == '1500')) 1500$
+            select(class="w-[50%] border-b outline-none" id = "max-price")
+                option(value="Infinity" selected=(selectedFilters.maxPrice == 'Infinity')) Max
+                option(value="100" selected=(selectedFilters.maxPrice == '100')) 100$
+                option(value="200" selected=(selectedFilters.maxPrice == '200')) 200$
+                option(value="300" selected=(selectedFilters.maxPrice == '300')) 300$
+                option(value="400" selected=(selectedFilters.maxPrice == '400')) 400$
+                option(value="500" selected=(selectedFilters.maxPrice == '500')) 500$
+                option(value="1000" selected=(selectedFilters.maxPrice == '1000')) 1000$
+                option(value="1500" selected=(selectedFilters.maxPrice == '1500')) 1500$
+                option(value="Infinity" selected=(selectedFilters.maxPrice == 'Infinity')) > 2000$
+    hr
+
+    fieldset(class="flex flex-col gap-[10px] text-[#00171F]")
+        p(class="text-[16px] font-bold") Breed
+        .flex.items-center.mb-4
+            input#small(type='checkbox' name='size' value='Small' checked=(selectedFilters.size && selectedFilters.size.includes('Small')) class=' w-4 h-4 bg-gray-100 rounded dark:bg-gray-700 dark:border-[#CCD1D2] border-[#CCD1D2] accent-[#003459]')
+            label.ms-2.text-sm.font-medium.text-gray-900(for='small' class='dark:text-[#00171F]') Small
+        .flex.items-center.mb-4
+            input#medium(type='checkbox' name='size' value='Medium' checked=(selectedFilters.size && selectedFilters.size.includes('Medium')) class=' w-4 h-4 bg-gray-100 rounded dark:bg-gray-700 dark:border-[#CCD1D2] border-[#CCD1D2] accent-[#003459]')
+            label.ms-2.text-sm.font-medium.text-gray-900(for='medium' class='dark:text-[#00171F]') Medium
+        .flex.items-center.mb-4
+            input#big(type='checkbox' name='size' value='Big' checked=(selectedFilters.size && selectedFilters.size.includes('Big')) class=' w-4 h-4 bg-gray-100 rounded dark:bg-gray-700 dark:border-[#CCD1D2] border-[#CCD1D2] accent-[#003459]')
+            label.ms-2.text-sm.font-medium.text-gray-900(for='big' class='dark:text-[#00171F]') Big
+
+    

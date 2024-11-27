@@ -1,0 +1,35 @@
+include ../mixins/dropdownUser.pug
+include ../mixins/dropdownCard.pug
+include ../mixins/dropdownCategory.pug
+section(class="px-[10%]")
+
+  header(class="flex justify-between py-8 ")
+    
+    nav(class="flex justify-between gap-x-16 items-center")
+      a(href='/')
+        i
+          img(src='/images/favicon.svg' alt='Shop-Favicon' class="items-center")
+      a(href='/') Home
+      div(class="relative group category")
+        div(class="cursor-pointer flex items-center gap-2") 
+          span Category
+             +dropdownCategory()
+      a(href='/blog') Blog
+      +dropdownCard()
+    a(href="user/signin" class="button-header px-[28px] text-stone-50 bg-[#003459] rounded-[57px] h-full") 
+        button(class="text-stone-50 bg-[#003459] rounded-[57px] h-full") Sign in
+    if (user)
+      +dropdownUser(user)
+  article(class="hero-category grid grid-cols-2")
+    aside(class="relative")
+      img(src='/images/thumbnail-category-dog.png' alt='Humans and Dog' class="absolute bottom-0 left-10")
+      div(class="block-in-hero w-5 h-5 rounded-xl bg-[#F7DBA7]")
+
+    div(class="py-[10%] px-[3%] text-right w-[80%]")
+      h1(class="text-[52px] font-black text-[#FDFDFD] py-[5px]") One More Friend
+      h3(class="text-[36px] font-extrabold text-[#FDFDFD] py-[5px]") Thousands more fun!
+      p(class="text-[12px] font-normal py-[20px] text-[#FDFDFD]")
+        | Having a pet means you have more joy, a new friend, a happy person who will always be with you to have fun. We have 200+ different pets that can meet your needs!
+      button(class="explore w-[150px] text-[12px] p-[16px] text-black bg-[#FDFDFD] rounded-[57px]") Explore Now
+
+    

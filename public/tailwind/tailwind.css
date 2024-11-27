@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* @font-face {
+  font-family: 'Montserrat';
+  src: url('../fonts/Montserrat-Medium.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+} */
+
+/* body {
+  font-family: 'Montserrat', sans-serif;
+} */
+
+.hero-banner {
+  background-image: url('/images/hero-banner.png');
+  border-radius: 0 0 20px 20px;
+  max-width: 100%;
+  height: auto;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.hero-category {
+  background-image: url('/images/hero-banner-category.png');
+  border-radius: 0 0 20px 20px;
+  max-width: 100%;
+  height: auto;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  background: url('/images/select-arrow.svg') no-repeat right 10px center;
+  background-size: 1em;
+  padding-right: 2em;
+}
+
+::-webkit-scrollbar {
+  width: 0;
+}

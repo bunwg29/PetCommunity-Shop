@@ -1,0 +1,44 @@
+mixin pagination(className)
+    nav(class=className class="nav")
+        ul.flex.items-center.-space-x-px.h-8.text-sm(
+            totalPage = pagination.totalPage
+        )
+            li
+                button.flex.items-center.justify-center.px-3.h-8.ms-0.leading-tight.text-gray-500.bg-white.border.border-e-0.border-gray-300.rounded-s-lg(class='hover:bg-gray-100 hover:text-gray-700   dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white' button-pagination = pagination.currentPage - 1)
+                    span.sr-only Previous
+                    svg(class='w-2.5 h-2.5 rtl:rotate-180' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewbox='0 0 6 10')
+                        path(stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 1 1 5l4 4')
+                - for (var i = 1; i <= pagination.totalPage; i++)
+                    if (i <= 3)
+                        li
+                            button.flex.items-center.justify-center.px-3.h-8.leading-tight.text-gray-500.border.border-gray-300(
+                            class=(
+                                'hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white' +
+                                (i === pagination.currentPage ? ' bg-[#003459] text-white' : ' bg-white text-gray-500')
+                            )
+                            button-pagination=i
+                            ) #{i}
+                    else if (i === 4)
+                        li
+                        button.flex.items-center.justify-center.px-3.h-8.leading-tight.text-gray-500.bg-white.border.border-gray-300(class='hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white rest-pagination' ) ...
+                if (pagination.currentPage > 3 && pagination.currentPage < pagination.totalPage)
+                    button.flex.items-center.justify-center.px-3.h-8.leading-tight.text-gray-500.border.border-gray-300(
+                    class=(
+                        'hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white bg-[#003459] text-white')
+                    ) #{pagination.currentPage}
+                li
+                    button.flex.items-center.justify-center.px-3.h-8.leading-tight.text-gray-500.border.border-gray-300(
+                    class=(
+                        'hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white' +
+                        (pagination.currentPage  === pagination.totalPage    ? ' bg-[#003459] text-white' : ' bg-white text-gray-500')
+                    )
+                    button-pagination = pagination.totalPage
+                    end-pagination
+                    ) #{pagination.totalPage}
+
+            li
+                button.flex.items-center.justify-center.px-3.h-8.leading-tight.text-gray-500.bg-white.border.border-gray-300.rounded-e-lg(class='hover:bg-gray-100 hover:text-gray-700   dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white' button-pagination = pagination.currentPage + 1)
+                    span.sr-only Next
+                    svg(class='w-2.5 h-2.5 rtl:rotate-180' aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewbox='0 0 6 10')
+                        path(stroke='currentColor' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m1 9 4-4-4-4')
+    script(src="/js/components/pagination.js") 
