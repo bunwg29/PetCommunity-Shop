@@ -10,7 +10,7 @@ html
         link(rel="stylesheet", href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css")
 
     body(class="bg-[#FDFDFD]")  
-
+        include ../partials/sider.pug
         if isDashboard
             include ../partials/header.pug
         else if isCategory
@@ -24,4 +24,5 @@ html
 
         include ../partials/footer.pug
         
-        script(src="/js/helpers/dropdownHeader.js") 
+        script(src="/js/helpers/dropdownHeader.js")
+        script(src="/js/components/sidebar.js") 
