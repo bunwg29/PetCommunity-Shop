@@ -12,7 +12,7 @@
     "tailwind": "npx tailwindcss build public/tailwind/tailwind.css -o public/styles/tailwind.css --watch",
     "format": "prettier --write .",
     "ts.check": "tsc --project tsconfig.json",
-    "build": "tsc && node renderDist.js",    
+    "build": "tsc && node renderDist.js",
     "add-build": "git add dist"
   },
   "pre-commit": [
@@ -37,9 +37,9 @@
     "mongoose": "^8.7.2",
     "mongoose-slug-updater": "^3.3.0",
     "multer": "^1.4.5-lts.1",
-    "node-sass": "^9.0.0",
     "nodemailer": "^6.9.16",
     "pug": "^3.0.3",
+    "sass": "^1.81.0",
     "streamifier": "^0.1.1",
     "tinymce": "^7.5.0"
   },
