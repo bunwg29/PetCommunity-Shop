@@ -15,11 +15,6 @@
     "build": "tsc && node renderDist.js",
     "add-build": "git add dist"
   },
-  "pre-commit": [
-    "ts.check",
-    "build",
-    "add-build"
-  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -43,6 +38,7 @@
     "streamifier": "^0.1.1",
     "tinymce": "^7.5.0"
   },
+  "type": "module",
   "devDependencies": {
     "@types/cookie-parser": "^1.4.7",
     "@types/express": "^5.0.0",
