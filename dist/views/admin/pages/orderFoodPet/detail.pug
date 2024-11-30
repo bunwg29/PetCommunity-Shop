@@ -1,0 +1,82 @@
+extends ../../layouts/default.pug
+block main
+    section.py-24.relative
+        .w-full.max-w-7xl.px-4.lg-6.mx-auto(class='md:px-5')
+            h2.font-manrope.font-bold.text-4xl.leading-10.text-black.text-center
+                | Order Information
+            p.mt-4.font-normal.text-lg.leading-8.text-gray-500.mb-11.text-center
+                | Check the order of customer
+                | and
+                | confirm information
+            .main-box.border.border-gray-200.rounded-xl.pt-6.max-w-xl(class='max-lg:mx-auto lg:max-w-full')
+                .flex.flex-col.justify-between.px-6.pb-6.border-b.border-gray-200(class='lg:flex-row lg:items-center')
+                    .data
+                        p.font-semibold.text-base.leading-7.text-black
+                            | Order Id: 
+                            span.text-indigo-600.font-medium.italic ##{orderDetail._id}
+                        p.font-semibold.text-base.leading-7.text-black
+                            | Order Payment : 
+                            span.text-gray-400.font-medium
+                            | #{orderDate}
+                        p.font-normal.text-normal.leading-7.text-black.mt-4
+                            | Name: 
+                            span.text-indigo-600.font-normal #{orderDetail.userInfo.name}
+                        p.font-normal.text-normal.leading-7.text-black
+                            | Email: 
+                            span.text-indigo-600.font-normal #{orderDetail.userInfo.email}
+                        p.font-normal.text-normal.leading-7.text-black
+                            | Phone number: 
+                            span.text-indigo-600.font-normal #{orderDetail.userInfo.phone}
+                        p.font-normal.text-normal.leading-7.text-black
+                            | Address: 
+                            span.text-indigo-600.font-normal #{orderDetail.userInfo.address}
+                    if (orderDetail.status === "Confirming")        
+                        a(href=`/${prefixAdmin}/orderfoodpet/confirm/${orderDetail.userInfo.email}/${orderDetail._id}`) 
+                            button.rounded-full.py-3.px-7.font-semibold.text-sm.leading-7.text-white.bg-indigo-600.shadow-sm.shadow-transparent.transition-all.duration-500(class='max-lg:mt-5 hover:bg-indigo-700 hover:shadow-indigo-400')
+                                | Confirm
+                .w-full.px-3(class='min-[400px]:px-6')
+                    each item in orderDetail.products
+                        .flex.flex-col.items-center.py-6.border-b.border-gray-200.gap-6.w-full(class='lg:flex-row')
+                            .img-box(class='max-lg:w-full')
+                                img.aspect-square.w-full.rounded-xl.object-cover(src=item.avt alt="product image" class='lg:max-w-[140px]')
+                            .flex.flex-row.items-center.w-full
+                                .grid.grid-cols-1.w-full(class='lg:grid-cols-2')
+                                    .flex.items-center
+                                        div
+                                            h2.font-semibold.text-xl.leading-8.text-black.mb-3
+                                                | #{item.name}
+                                            p.font-normal.text-lg.leading-8.text-gray-500.mb-3.italic
+                                                | Pet Food
+                                            .flex.items-center
+                                                p.font-medium.text-base.leading-7.text-black.pr-4.mr-4.border-r.border-gray-200
+                                                    | Size: 
+                                                    span.text-gray-500 #{item.size}#{item.unit}
+                                                p.font-medium.text-base.leading-7.text-black
+                                                    | Qty: 
+                                                    span.text-gray-500 #{item.quantity}
+                                    .grid.grid-cols-5
+                                        .col-span-5.flex.items-center(class='lg:col-span-1 max-lg:mt-3')
+                                            .flex.gap-3(class='lg:block')
+                                                p.font-medium.text-sm.leading-7.text-black Price
+                                                p.font-medium.text-sm.leading-7.text-indigo-600(class='lg:mt-4') $#{item.price}
+                                        .col-span-5.flex.items-center(class='lg:col-span-2 max-lg:mt-3')
+                                            .flex.gap-3(class='lg:block')
+                                                p.font-medium.text-sm.leading-7.text-black
+                                                    | Status
+                                                p.font-medium.text-sm.leading-6.whitespace-nowrap.px-3.rounded-full.bg-emerald-50.text-emerald-600(class='py-0.5 lg:mt-3')
+                                                    | #{orderDetail.status}
+                                        .col-span-5.flex.items-center(class='lg:col-span-2 max-lg:mt-3')
+                                            .flex.gap-3(class='lg:block')
+                                                p.font-medium.text-sm.whitespace-nowrap.leading-6.text-black
+                                                    | Expected Delivery Time
+                                                p.font-medium.text-base.whitespace-nowrap.leading-7.text-emerald-500(class='lg:mt-3')
+                                                    | #{shipDate}
+                .w-full.border-t.border-gray-200.px-6.flex.flex-col.items-center.justify-between(class='lg:flex-row')
+                    .flex.flex-col.items-center.border-gray-200(class='sm:flex-row max-lg:border-b')
+                        button.flex.outline-0.py-6.border-gray-200.whitespace-nowrap.gap-2.items-center.justify-center.font-semibold.group.text-lg.text-black.bg-white.transition-all.duration-500(class='sm:pr-6 sm:border-r hover:text-indigo-600')
+                            svg.stroke-black.transition-all.duration-500(class='group-hover:stroke-indigo-600' xmlns='http://www.w3.org/2000/svg' width='22' height='22' viewbox='0 0 22 22' fill='none')
+                                path(d='M5.5 5.5L16.5 16.5M16.5 5.5L5.5 16.5' stroke='' stroke-width='1.6' stroke-linecap='round')
+                        p.font-semibold.text-lg.text-black.py-6
+                            | Total Price: 
+                            span.text-indigo-600  $#{orderDetail.totalPrice}
+

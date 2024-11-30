@@ -1,0 +1,19 @@
+section(class="py-[5%]") 
+    p(class="text-[24px] text-[#003459] font-bold") Pet Toys
+    
+    div(class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4")
+        each item in toyPetInfo
+            figure(class="p-[5%] rounded-[12px] bg-[#FFFFFF] flex flex-col shadow-lg items-center sm:transition-transform sm:duration-300 sm:hover:scale-105 sm:hover:shadow-xl")
+                a(href=`/toypet/detail/${item.slug}/${item._id}` class="w-full h-full") 
+                    img(src= item.avt, alt=item.name class="rounded-[10px] w-full h-full sm:transition-transform sm:duration-300 sm:hover:scale-110")
+                div(class="pt-[10%] w-[90%]")
+                    h4(class="text-[16px] font-bold pb-[10px]") #{item.name}
+                    div(class="flex gap-[10px] text-[12px] pb-[5px]")
+                        p(class="text-[#667479]") Product: 
+                            span(class="text-[#667479] font-bold") #{item.type} 
+                    h5(class="text-[#00171F] font-bold") #{item.price} $
+                    div(class="py-[5%] pl-[5%] flex gap-[5px] bg-[#FCEED5] justify-left items-center rounded-[8px]")
+                        img(src="/images/special_offer_icon.svg", alt="special_offer_icon") 
+                        p(class="text-[14px] text-center font-bold text-[#003459]") &#8226; #{item.special_offer}
+
+                        
