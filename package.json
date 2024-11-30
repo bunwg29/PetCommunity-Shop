@@ -10,8 +10,16 @@
     "build:css": "npm run build:scss && npm run build:tailwind",
     "watch:css": "nodemon -w public/scss -e scss -x \"npm run build:css\" && nodemon -w public/tailwind -e css -x \"npm run build:css\"",
     "tailwind": "npx tailwindcss build public/tailwind/tailwind.css -o public/styles/tailwind.css --watch",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "ts-check": "tsc --project tsconfig.json",
+    "build": "tsc && node renderDist.js",    
+    "add-build": "git add dist"
   },
+  "pre-commit": [
+    "ts.check",
+    "build",
+    "add-build"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -48,8 +56,10 @@
     "@types/nodemailer": "^6.4.16",
     "@types/streamifier": "^0.1.2",
     "autoprefixer": "^10.4.20",
+    "fs-extra": "^11.2.0",
     "nodemon": "^3.1.7",
     "postcss": "^8.4.47",
+    "pre-commit": "^1.2.2",
     "prettier": "^3.3.3",
     "tailwindcss": "^3.4.14",
     "ts-node": "^10.9.2",

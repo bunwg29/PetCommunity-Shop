@@ -1,0 +1,76 @@
+extends ../../layouts/default.pug 
+block main
+    div(class="p-[2%] flex flex-col sm:flex-row justify-between border rounded-[20px]")
+        figure(class="w-full sm:w-1/2 text-center relative")
+            img(src=petDetail.avt, alt="image of pet" class="main-image w-full h-[300px] sm:h-[60%] mx-auto rounded-[20px]" image_position = 0)
+            div(class="arrow-left absolute top-[150px] sm:top-[30%] left-4 transform -translate-y-1/2 cursor-pointer bg-white p-2 rounded-full shadow-md opacity-40")
+                i(class="fas fa-chevron-left text-gray-600")
+            div(class="arrow-right absolute top-[150px] sm:top-[30%] right-4 transform -translate-y-1/2 cursor-pointer bg-white p-2 rounded-full shadow-md opacity-40")
+                i(class="fas fa-chevron-right text-gray-600")
+            div(class="mt-[3%] mb-[1%] h-[80px] sm:h-[15%] w-full gap-[10px] flex overflow-x-auto")
+                img(src=petDetail.avt, alt="image of pet" class="additional-image rounded-[6px]" image_position = "main_avt")
+                each imgObj, index in petDetail.images
+                    img(src=imgObj class="additional-image rounded-[6px]" image_position = index + 1)
+            figcaption(class="w-full mb-4 sm:mb-0")
+                div(class="p-[1%] inline-flex items-center justify-center gap-[5px] mt-2 bg-gradient-to-br from-linearFooter1 to-linearFooter2 rounded-[10px] text-[12px] sm:text-[14px] text-[#002A48] font-medium w-full")
+                    img(src="/images/guaranteePet.svg", alt="guaranteePet icon", class="w-auto")
+                    p(class="w-full hidden sm:block") 100% health guarantee for pets
+                    p(class="w-full sm:hidden") Health guarantee
+                    img(src="/images/guaranteeId.svg", alt="guaranteeId icon", class="w-auto")
+                    p(class="w-full hidden sm:block") 100% guarantee of pet identification
+                    p(class="w-full sm:hidden") ID guarantee
+
+        section(class="w-full sm:w-1/2 sm:pl-[5%]")
+            p(class="text-[#99A2A5] text-[12px] sm:text-[14px] w-full italic") SKU ##{petDetail.id_code}
+            h5(class="my-[2%] text-[20px] sm:text-[24px] font-bold text-[#002A48] w-full") #{petDetail.name}
+            h5(class="mb-[2%] text-[18px] sm:text-[20px] font-bold text-[#002A48] w-full") #{petDetail.price} $
+            div(class="my-[5%] flex flex-col sm:flex-row gap-[10px] sm:gap-[10%] text-[14px] sm:text-[16px] font-medium w-full")
+                button(class="px-[5%] py-[1.5%] bg-[#003459] text-[#FDFDFD] rounded-[57px]") Contact us 
+                button(class="px-[5%] py-[1.5%] text-[#002A48] bg-[#FDFDFD] border border-[#003459] rounded-[57px]") Chat with Monito 
+            table(class="w-full text-[12px] sm:text-[14px]")
+                tr
+                    td(class="p-[2%] flex gap-[2em] sm:gap-[5em] w-full border-b text-[#667479]") 
+                        p(class="w-full") SKU 
+                        p(class="w-full") : ##{petDetail.id_code}
+                tr 
+                    td(class="p-[2%] flex gap-[2em] sm:gap-[5em] w-full border-b text-[#667479]")
+                        p(class="w-full") Gender 
+                        p(class="w-full") : #{petDetail.gene}
+                tr 
+                    td(class="p-[2%] flex gap-[2em] sm:gap-[5em] w-full border-b text-[#667479]")
+                        p(class="w-full") Age
+                        p(class="w-full") : #{petDetail.age}
+                tr 
+                    td(class="p-[2%] flex gap-[2em] sm:gap-[5em] w-full border-b text-[#667479]")
+                        p(class="w-full") Size
+                        p(class="w-full") : #{petDetail.size}
+                tr 
+                    td(class="p-[2%] flex gap-[2em] sm:gap-[5em] w-full border-b text-[#667479]")
+                        p(class="w-full") Color
+                        p(class="w-full") : #{petDetail.color}
+                tr 
+                    td(class="p-[2%] flex gap-[2em] sm:gap-[5em] w-full border-b text-[#667479]")
+                        p(class="w-full") Vacinated
+                        p(class="w-full") : #{petDetail.vacinated}
+                tr 
+                    td(class="p-[2%] flex gap-[2em] sm:gap-[5em] w-full border-b text-[#667479]")
+                        p(class="w-full") Dewormed
+                        p(class="w-full") : #{petDetail.dewormed}
+                tr 
+                    td(class="p-[2%] flex gap-[2em] sm:gap-[5em] w-full border-b text-[#667479]")
+                        p(class="w-full") Cert
+                        p(class="w-full") : #{petDetail.cert}
+                tr 
+                    td(class="p-[2%] flex gap-[2em] sm:gap-[5em] w-full border-b text-[#667479]")
+                        p(class="w-full") Location
+                        p(class="w-full") : #{petDetail.location}
+                tr 
+                    td(class="p-[2%] flex gap-[2em] sm:gap-[5em] w-full border-b text-[#667479]")
+                        p(class="w-full") Published Date
+                        p(class="w-full") : #{petDetail.published_date}
+                tr 
+                    td(class="p-[2%] flex gap-[2em] sm:gap-[5em] w-full border-b text-[#667479]")
+                        p(class="w-full") Additional Information
+                        p(class="w-full") : #{petDetail.additional_info}
+
+    script(src="/js/helpers/imageProductDetail.js")
