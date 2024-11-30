@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon dist/index.js",
+    "start": "nodemon index.ts",
     "build:scss": "node-sass public/scss/index.scss public/styles/style.css",
     "build:tailwind": "tailwindcss -i public/tailwind/tailwind.css -o public/styles/tailwind.css",
     "build:css": "npm run build:scss && npm run build:tailwind",
