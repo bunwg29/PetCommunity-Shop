@@ -11,7 +11,7 @@
     "watch:css": "nodemon -w public/scss -e scss -x \"npm run build:css\" && nodemon -w public/tailwind -e css -x \"npm run build:css\"",
     "tailwind": "npx tailwindcss build public/tailwind/tailwind.css -o public/styles/tailwind.css --watch",
     "format": "prettier --write .",
-    "ts-check": "tsc --project tsconfig.json",
+    "ts.check": "tsc --project tsconfig.json",
     "build": "tsc && node renderDist.js",    
     "add-build": "git add dist"
   },
