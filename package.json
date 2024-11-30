@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.ts",
+    "start": "nodemon dist/index.js",
     "build:scss": "node-sass public/scss/index.scss public/styles/style.css",
     "build:tailwind": "tailwindcss -i public/tailwind/tailwind.css -o public/styles/tailwind.css",
     "build:css": "npm run build:scss && npm run build:tailwind",
@@ -38,7 +38,6 @@
     "streamifier": "^0.1.1",
     "tinymce": "^7.5.0"
   },
-  "type": "module",
   "devDependencies": {
     "@types/cookie-parser": "^1.4.7",
     "@types/express": "^5.0.0",
