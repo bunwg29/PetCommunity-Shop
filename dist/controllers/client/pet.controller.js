@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.petDetail = exports.index = void 0;
 const pet_model_1 = __importDefault(require("../../models/pet.model"));
 const pagination_helper_1 = require("../../helpers/pagination.helper");
+const account_model_1 = __importDefault(require("../../models/account.model"));
 const index = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const find = {
         deleted: false,
@@ -69,15 +70,12 @@ const petDetail = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         deleted: false,
         slug: slug,
     };
-    const find = {
-        deleted: false,
-    };
-    const petProduct = yield pet_model_1.default.find(find);
     const petDetail = yield pet_model_1.default.findOne(findPetDetail);
+    const linkFb = (yield account_model_1.default.findOne({ _id: petDetail.uploadBy }).select('linkFb'));
     res.render('client/pages/pet/petDetail', {
         title: 'PetCommunity | Product',
         petDetail: petDetail,
-        petProduct: petProduct,
+        linkFb: linkFb
     });
 });
 exports.petDetail = petDetail;

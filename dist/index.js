@@ -70,6 +70,11 @@ app.use((0, express_flash_1.default)());
 app.locals.prefixAdmin = adminPrefix_1.systemConfig.prefixAdmin;
 (0, index_route_1.default)(app);
 (0, index_route_2.default)(app);
+app.get("*", (req, res) => {
+    res.render("client/pages/error/404", {
+        pageTitle: "404 Not Found"
+    });
+});
 app.listen(port, () => {
     console.log(`App listening on port ${port}`);
 });
