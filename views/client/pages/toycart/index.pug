@@ -2,7 +2,7 @@ extends ../../layouts/default.pug
 block main
     .font-sans.max-w-5xl.mx-auto.bg-white.py-4(class='max-md:max-w-xl')
         h1.text-3xl.font-bold.text-gray-800.text-center Shopping Cart
-        if (cart.products.length > 0)
+        if (cart.products.length > 0 && user)
             .grid.gap-8.mt-16(class='md:grid-cols-3')
                 .space-y-4(class='md:col-span-2')
                     each product in cart.products

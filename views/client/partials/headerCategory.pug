@@ -9,7 +9,7 @@ section(class="px-[10%]")
       a(href='/' class="sm:hidden")
         i
           img(src='/images/favicon.svg' alt='Shop-Favicon' class="items-center")
-      div(class="sidebar-toggle w-16 h-16 cursor-pointer")
+      div(class="sidebar-toggle cursor-pointer")
         svg#sidebar-icon.w-6.h-6.text-gray-800(class="w-full h-full" xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' viewbox='0 0 24 24')
           path(stroke='currentColor' stroke-linecap='round' stroke-width='2' d='M5 7h14M5 12h14M5 17h14')
     nav(class="xs:hidden sm:flex w-full justify-between gap-x-16 items-center")
@@ -24,7 +24,8 @@ section(class="px-[10%]")
               +dropdownCategory()
         a(href='/blog' class="text-medium font-semibold text-[#003459] relative inline-block  after:content-[''] after:block after:h-[2px] after:w-0 after:bg-[#003459] after:transition-all after:duration-300 hover:after:w-full") Blog
       div.flex.h-full.items-center.gap-x-10
-        +dropdownCard()
+        if (user) 
+          +dropdownCard()
         a(href="user/signin" class="button-header px-[28px] text-stone-50 bg-[#003459] rounded-[10px] h-full") 
           button(class="text-stone-50 bg-[#003459] h-full") Sign in
         if (user)

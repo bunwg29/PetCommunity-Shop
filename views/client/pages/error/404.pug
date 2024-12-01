@@ -1,0 +1,20 @@
+doctype html 
+html 
+    head 
+        link(rel="icon", href="/images/favicon.svg")
+    
+        title #{title}
+        meta(charset='UTF-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1.0')
+        link(rel="stylesheet", href="/styles/tailwind.css")
+        link(rel="stylesheet", href="/styles/style.css")
+    body
+        .h-screen.w-screen.bg-gray-50.flex.items-center
+            .container.flex.flex-col.items-center.justify-between.px-5.text-gray-700(class='md:flex-row')
+                .w-full.mx-8(class='lg:w-1/2')
+                    .text-7xl.text-green-500.font-dark.font-extrabold.mb-8  404
+                    p.text-2xl.font-light.leading-normal.mb-8(class='md:text-3xl')
+                        | Sorry we couldn&apos;t find the page you&apos;re looking for
+                    a.px-5.inline.py-3.text-sm.font-medium.leading-5.shadow-2xl.text-white.transition-all.duration-400.border.border-transparent.rounded-lg.bg-green-600(href='/' class='focus:outline-none active:bg-red-600 hover:bg-red-700') Back to homepage
+                .w-full.mx-5.my-12(class='lg:flex lg:justify-end lg:w-1/2')
+                    img(src='/images/404.svg' alt='Page not found')
