@@ -12,20 +12,21 @@ if (avatarUser) {
 // Start dropdown info user
 
 const dropdownAvatar = document.querySelector('.dropdown-avatar');
-
-avatarUser.addEventListener('click', () => {
-  dropdownAvatar.classList.toggle('hidden');
-});
-
-document.addEventListener('click', (event) => {
-  if (
-    !dropdownAvatar.classList.contains('hidden') &&
-    !dropdownAvatar.contains(event.target) &&
-    event.target !== avatarUser
-  ) {
-    dropdownAvatar.classList.add('hidden');
-  }
-});
+if (avatarUser) {
+  avatarUser.addEventListener('click', () => {
+    dropdownAvatar.classList.toggle('hidden');
+  });
+  
+  document.addEventListener('click', (event) => {
+    if (
+      !dropdownAvatar.classList.contains('hidden') &&
+      !dropdownAvatar.contains(event.target) &&
+      event.target !== avatarUser
+    ) {
+      dropdownAvatar.classList.add('hidden');
+    }
+  });
+}
 
 // End dropdown info user
 
