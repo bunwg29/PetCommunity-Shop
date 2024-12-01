@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import PetModel from '../../models/pet.model';
 import { Pagination } from '../../helpers/pagination.helper';
+import AccountModel from '../../models/account.model';
 
 export const index = async (req: Request, res: Response) => {
   const find: { [key: string]: any } = {
@@ -70,6 +71,7 @@ export const index = async (req: Request, res: Response) => {
 };
 
 export const petDetail = async (req: Request, res: Response) => {
+
   const slug = req.params.slug;
 
   const findPetDetail: Object = {
@@ -77,17 +79,13 @@ export const petDetail = async (req: Request, res: Response) => {
     slug: slug,
   };
 
-  const find: Object = {
-    deleted: false,
-  };
-
-  const petProduct = await PetModel.find(find);
-
   const petDetail = await PetModel.findOne(findPetDetail);
+  const linkFb = (await AccountModel.findOne({ _id: petDetail.uploadBy }).select('linkFb'));
 
   res.render('client/pages/pet/petDetail', {
     title: 'PetCommunity | Product',
     petDetail: petDetail,
-    petProduct: petProduct,
+    linkFb: linkFb
   });
+
 };
