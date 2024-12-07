@@ -1,16 +1,20 @@
 import { Request, Response } from 'express';
 import BlogModel from '../../models/blog.model';
+import { Pagination } from '../../helpers/pagination.helper';
 
 export const index = async (req: Request, res: Response) => {
   const find = {
     deleted: false,
   };
 
-  const blogInfo = await BlogModel.find(find);
+  const pagination = await Pagination(req, BlogModel, find);
+
+  const blogInfo = await BlogModel.find(find).limit(pagination.limitItems).skip(pagination.skip);
 
   res.render('client/pages/blog/index', {
     title: 'PetCommunity | Blog',
     blogInfo,
+    pagination
   });
 };
 

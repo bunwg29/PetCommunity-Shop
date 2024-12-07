@@ -11,7 +11,7 @@ export const index = async (req: Request, res: Response) => {
 
   const pagination = await Pagination(req, ToyPetModel, find);
 
-  const toyPet = await ToyPetModel.find(find);
+  const toyPet = await ToyPetModel.find(find).limit(pagination.limitItems).skip(pagination.skip);
 
   res.render('client/pages/toypet/index', {
     title: 'Category | Toypet',

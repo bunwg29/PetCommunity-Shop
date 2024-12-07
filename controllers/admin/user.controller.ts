@@ -50,7 +50,7 @@ export const detail = async (req: Request, res: Response) => {
   res.render('admin/pages/user/edit', {
     title: 'Admin | UserInfo',
     userInfo,
-    role: role ? role : '',
+    role: role,
     id_role: id_role,
   });
 };
