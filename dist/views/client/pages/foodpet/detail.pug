@@ -3,7 +3,7 @@ extends ../../layouts/default.pug
 block main
     div(class="p-[2%] flex flex-col lg:flex-row justify-between border rounded-[20px] gap-6")
         figure(class="w-full lg:w-1/2 text-center relative")
-            img(src=foodPet.avt, alt="image of pet" class="main-image w-full h-[200px] sm:h-[300px] lg:h-[60%] mx-auto rounded-[20px]" image_position=0)
+            img(src=foodPet.avt, alt="image of pet" class="main-image w-full h-[200px] sm:h-[300px] lg:h-[50%] mx-auto rounded-[20px]" image_position=0)
             div(class="arrow-left absolute top-[30%] left-4 transform -translate-y-1/2 cursor-pointer bg-white p-2 rounded-full shadow-md opacity-40")
                 i(class="fas fa-chevron-left text-gray-600")
             div(class="arrow-right absolute top-[30%] right-4 transform -translate-y-1/2 cursor-pointer bg-white p-2 rounded-full shadow-md opacity-40")
@@ -46,6 +46,7 @@ block main
                     td(class="p-[2%] flex justify-between border-b")
                         p Special offer
                         p : #{foodPet.special_offer}
+    include ./components/MoreFoodPet.pug
 
     script(src="/js/helpers/imageProductDetail.js")
     script(src="/js/client/pages/foodpet/addCart.js")

@@ -47,7 +47,7 @@ const detail = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.render('admin/pages/user/edit', {
         title: 'Admin | UserInfo',
         userInfo,
-        role: role ? role : '',
+        role: role,
         id_role: id_role,
     });
 });

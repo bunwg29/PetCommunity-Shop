@@ -60,12 +60,12 @@ block main
                                     .w-full
                                         h3.mb-2(class="text-[#232323] font-medium italic") Roles
                                         select(name='role_id' class='w-full text-grey border-2 rounded-lg p-4 pl-2 pr-2')
-                                            option(value="" selected=role.permission.includes('')) User
-                                            option(value=id_role[0]._id selected=role.permission.includes('crud-product')) CRUD Product
-                                            option(value=id_role[1]._id selected=role.permission.includes('crud-blog')) CRUD Blog
-                                            option(value=id_role[2]._id selected=role.permission.includes('crud-food-pet')) CRUD FoodPet
-                                            option(value=id_role[3]._id selected=role.permission.includes('crud-toy-pet')) CRUD ToyPet
-                                            option(value=id_role[4]._id selected=role.permission.includes('crud-user')) CRUD User
+                                            option(value=id_role[5]._id selected=!role || role.permission.includes('user')) User
+                                            option(value=id_role[0]._id selected=role && role.permission.includes('crud-product')) CRUD Product
+                                            option(value=id_role[1]._id selected=role && role.permission.includes('crud-blog')) CRUD Blog
+                                            option(value=id_role[2]._id selected=role && role.permission.includes('crud-food-pet')) CRUD FoodPet
+                                            option(value=id_role[3]._id selected=role && role.permission.includes('crud-toy-pet')) CRUD ToyPet
+                                            option(value=id_role[4]._id selected=role && role.permission.includes('crud-user')) CRUD User
                         .w-full.rounded-lg.mt-4.text-white.text-lg.font-semibold(class="bg-[#003459]")
                             button.w-full.p-4(type='submit') Save
         script(src="/js/helpers/imagePreviewEdit.js") 

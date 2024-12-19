@@ -20,7 +20,7 @@ const index = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         deleted: false,
     };
     const pagination = yield (0, pagination_helper_1.Pagination)(req, toyPet_model_1.default, find);
-    const toyPet = yield toyPet_model_1.default.find(find);
+    const toyPet = yield toyPet_model_1.default.find(find).limit(pagination.limitItems).skip(pagination.skip);
     res.render('client/pages/toypet/index', {
         title: 'Category | Toypet',
         toyPet,
@@ -32,9 +32,13 @@ const detail = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const toyPet = yield toyPet_model_1.default.findOne({
         _id: req.params.id,
     });
+    const moreToyPet = yield toyPet_model_1.default.find({ deleted: false })
+        .sort({ updatedAt: -1 })
+        .limit(4);
     res.render('client/pages/toypet/detail', {
         title: 'Toypet | Detail',
         toyPet,
+        moreToyPet
     });
 });
 exports.detail = detail;

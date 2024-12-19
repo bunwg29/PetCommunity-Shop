@@ -70,11 +70,13 @@ const petDetail = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         deleted: false,
         slug: slug,
     };
+    const morePet = yield pet_model_1.default.find({ deleted: false }).sort({ updatedAt: -1 }).limit(4);
     const petDetail = yield pet_model_1.default.findOne(findPetDetail);
     const linkFb = (yield account_model_1.default.findOne({ _id: petDetail.uploadBy }).select('linkFb'));
     res.render('client/pages/pet/petDetail', {
         title: 'PetCommunity | Product',
         petDetail: petDetail,
+        morePet: morePet,
         linkFb: linkFb
     });
 });

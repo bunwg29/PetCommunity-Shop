@@ -34,9 +34,13 @@ const detail = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const foodPet = yield foodPet_model_1.default.findOne({
         _id: req.params.id,
     });
+    const moreFoodPet = yield foodPet_model_1.default.find({ deleted: false })
+        .sort({ updatedAt: -1 })
+        .limit(4);
     res.render('client/pages/foodpet/detail', {
         title: 'FoodPet | Detail',
         foodPet,
+        moreFoodPet: moreFoodPet
     });
 });
 exports.detail = detail;

@@ -14,14 +14,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.editPatch = exports.edit = exports.myBlog = exports.blogDetail = exports.createBlogPost = exports.createBlog = exports.index = void 0;
 const blog_model_1 = __importDefault(require("../../models/blog.model"));
+const pagination_helper_1 = require("../../helpers/pagination.helper");
 const index = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const find = {
         deleted: false,
     };
-    const blogInfo = yield blog_model_1.default.find(find);
+    const pagination = yield (0, pagination_helper_1.Pagination)(req, blog_model_1.default, find);
+    const blogInfo = yield blog_model_1.default.find(find).limit(pagination.limitItems).skip(pagination.skip);
     res.render('client/pages/blog/index', {
         title: 'PetCommunity | Blog',
         blogInfo,
+        pagination
     });
 });
 exports.index = index;

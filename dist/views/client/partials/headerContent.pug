@@ -25,7 +25,7 @@ section(class="px-[10%]")
       div.flex.h-full.items-center.gap-x-10
         if (user) 
           +dropdownCard()
-        a(href="user/signin" class="button-header px-[28px] text-stone-50 bg-[#003459] rounded-[10px] h-full") 
+        a(href="/user/signin" class="button-header px-[28px] text-stone-50 bg-[#003459] rounded-[10px] h-full") 
           button(class="text-stone-50 bg-[#003459] h-full") Sign in
         if (user)
           +dropdownUser(user)
