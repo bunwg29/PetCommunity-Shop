@@ -30,14 +30,4 @@ document.addEventListener('DOMContentLoaded', () => {
   sidebarToggle.addEventListener('click', () => {
     sidebar.classList.toggle('-translate-x-full');
   });
-
-  // Close sidebar when clicking outside on mobile
-  document.addEventListener('click', (event) => {
-    if (
-      !sidebar.contains(event.target) &&
-      !sidebarToggle.contains(event.target)
-    ) {
-      sidebar.classList.add('-translate-x-full');
-    }
-  });
 });

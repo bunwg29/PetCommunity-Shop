@@ -26,8 +26,13 @@ export const detail = async (req: Request, res: Response) => {
     _id: req.params.id,
   });
 
+  const moreFoodPet = await FoodPetModel.find({ deleted: false })
+    .sort({ updatedAt: -1 })
+    .limit(4);
+
   res.render('client/pages/foodpet/detail', {
     title: 'FoodPet | Detail',
     foodPet,
+    moreFoodPet: moreFoodPet
   });
 };

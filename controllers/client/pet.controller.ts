@@ -79,12 +79,15 @@ export const petDetail = async (req: Request, res: Response) => {
     slug: slug,
   };
 
+  const morePet = await PetModel.find({ deleted: false }).sort({ updatedAt: -1 }).limit(4);
+
   const petDetail = await PetModel.findOne(findPetDetail);
   const linkFb = (await AccountModel.findOne({ _id: petDetail.uploadBy }).select('linkFb'));
 
   res.render('client/pages/pet/petDetail', {
     title: 'PetCommunity | Product',
     petDetail: petDetail,
+    morePet: morePet,
     linkFb: linkFb
   });
 
