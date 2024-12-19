@@ -25,8 +25,13 @@ export const detail = async (req: Request, res: Response) => {
     _id: req.params.id,
   });
 
+  const moreToyPet = await ToyPetModel.find( {deleted: false} )
+  .sort({ updatedAt: -1 })
+  .limit(4);
+
   res.render('client/pages/toypet/detail', {
     title: 'Toypet | Detail',
     toyPet,
+    moreToyPet
   });
 };
