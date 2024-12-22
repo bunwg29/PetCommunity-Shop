@@ -61,6 +61,13 @@ const signup = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.signup = signup;
 const signupPost = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const checkEmail = yield account_model_1.default.findOne({ email: req.body.email }).select('email').lean();
+    console.log(checkEmail);
+    if (checkEmail) {
+        req.flash('warming', 'Email already exists!');
+        return res.redirect('/user/signup');
+    }
+    ;
     const userData = {
         name: req.body.name,
         email: req.body.email,

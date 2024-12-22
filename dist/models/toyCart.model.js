@@ -42,6 +42,7 @@ const cartSchema = new mongoose_1.Schema({
             productInfo: { type: Object, required: false },
         },
     ],
+    userId: { type: String, required: true },
 }, {
     timestamps: true,
 });

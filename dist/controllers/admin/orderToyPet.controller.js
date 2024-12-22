@@ -49,7 +49,7 @@ exports.detail = detail;
 const confirmOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const email = req.params.email;
     const orderId = req.params.id;
-    const subject = 'OTP code to get reset password';
+    const subject = 'CONFIRM ORDER';
     const htmlSendMail = `Your order #${orderId} has been confirmed by us. This package will be sent to you according to the plan`;
     (0, sendMail_helper_1.sendEmail)(email, subject, htmlSendMail);
     const order = yield toyOrder_model_1.default.updateOne({ _id: orderId }, { status: 'Confirmed' });

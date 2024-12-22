@@ -25,14 +25,9 @@ html
                 input(type="password" name="password" class="pl-[20px] w-full h-10 border rounded-[10px] outline-[#367AFF]" id="password" required)
                 if errors && errors.password
                     p(class="text-red-500 text-sm pl-[5px]") #{errors.password}
-                div(class="flex items-center gap-[10px]")
-                    input(type="checkbox", name="" id="remember") 
-                    div(class="w-full flex justify-between items-center") 
-                        label(for="remember" class="text-[#232323") Keep me logged in
-                        a(href="/user/forgot-password" class="text-[#367AFF]") I forgot password? 
+                div(class="flex justify-end items-center gap-[10px]")
+                    a(href="/user/forgot-password" class="text-[#367AFF]") I forgot password? 
                 button(type="submit" class="text-[14px] font-medium text-[#FFFFFF] w-full h-12 border rounded-[10px] bg-[#367AFF] mb-[2%]") Sign in 
-                hr(clas="border border-[#6E6E6E]")
-                button(type="button" class="text-[14px] font-bold text-[#232323] w-full h-12 border rounded-[10px] bg-[#ffffff] mt-[2%]") Sign in with Google
                 div(class="flex justify-center gap-[5px] mt-[5%]")
                     p(class="text-[#6C6C6C]") Need an account? 
                     a(href="/user/signup" class="text-[#367AFF] underline underline-offset-2 font-bold") Create one

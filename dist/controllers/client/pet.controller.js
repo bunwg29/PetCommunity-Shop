@@ -77,7 +77,7 @@ const petDetail = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         title: 'PetCommunity | Product',
         petDetail: petDetail,
         morePet: morePet,
-        linkFb: linkFb
+        linkFb: linkFb ? linkFb : 'facebook.com'
     });
 });
 exports.petDetail = petDetail;

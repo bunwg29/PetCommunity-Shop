@@ -11,9 +11,9 @@ const foodOrder_route_1 = require("./foodOrder.route");
 const toypet_route_1 = require("./toypet.route");
 const toycart_route_1 = require("./toycart.route");
 const toyOrder_route_1 = require("./toyOrder.route");
-const cartToken_middleware_1 = require("../../middlewares/client/cartToken.middleware");
+const cartCookies_middleware_1 = require("../../middlewares/client/cartCookies.middleware");
 const Routers = (app) => {
-    app.use(cartToken_middleware_1.checkCartCookies);
+    app.use(cartCookies_middleware_1.cookiesCart);
     app.use('/', dashboard_route_1.dashboardRoutes);
     app.use('/pet', pet_route_1.petRoutes);
     app.use('/user', user_route_1.userRoutes);
