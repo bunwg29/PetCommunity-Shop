@@ -16,6 +16,7 @@ interface CartProduct {
 interface CartDocument extends Document {
   products: CartProduct[];
   totalPrice?: number;
+  userId: string;
 }
 
 const cartSchema = new Schema<CartDocument>(
@@ -27,6 +28,7 @@ const cartSchema = new Schema<CartDocument>(
         productInfo: { type: Object, required: false },
       },
     ],
+    userId: { type: String, required: true },
   },
   {
     timestamps: true,

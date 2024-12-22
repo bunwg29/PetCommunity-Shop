@@ -3,10 +3,10 @@ import FoodCartModel from '../../models/foodCart.model';
 import FoodPetModel from '../../models/foodPet.model';
 
 export const index = async (req: Request, res: Response) => {
-  const cartId = req.cookies.cartId;
+  const foodCart = req.cookies.foodCart;
 
   const cart = await FoodCartModel.findOne({
-    _id: cartId,
+    _id: foodCart,
   });
 
   cart.totalPrice = 0;
@@ -36,11 +36,11 @@ export const index = async (req: Request, res: Response) => {
 };
 
 export const createCart = async (req: Request, res: Response) => {
-  const cartId = req.cookies.cartId;
+  const foodCart = req.cookies.foodCart;
   const productId = req.params.productId;
   const quantity = parseInt(req.params.quantity);
 
-  const cart = await FoodCartModel.findOne({ _id: cartId });
+  const cart = await FoodCartModel.findOne({ _id: foodCart });
 
   const existProductInCart = cart.products.find(
     (item) => item.product_id == productId
@@ -48,7 +48,7 @@ export const createCart = async (req: Request, res: Response) => {
 
   if (existProductInCart) {
     const addProduct = await FoodCartModel.updateOne(
-      { _id: cartId, 'products.product_id': productId },
+      { _id: foodCart, 'products.product_id': productId },
       {
         $set: {
           'products.$.quantity': existProductInCart.quantity + quantity,
@@ -61,7 +61,7 @@ export const createCart = async (req: Request, res: Response) => {
     }
   } else {
     const newProduct = await FoodCartModel.updateOne(
-      { _id: cartId },
+      { _id: foodCart },
       { $push: { products: { product_id: productId, quantity: quantity } } }
     );
     if (newProduct) {
@@ -73,14 +73,14 @@ export const createCart = async (req: Request, res: Response) => {
 };
 
 export const reduceItem = async (req: Request, res: Response) => {
-  const cartId = req.cookies.cartId;
+  const foodCart = req.cookies.foodCart;
   const productId = req.params.productId;
   const quantity = parseInt(req.params.quantity);
 
   try {
     const cart = await FoodCartModel.updateOne(
       {
-        _id: cartId,
+        _id: foodCart,
         'products.product_id': productId,
       },
       {
@@ -100,14 +100,14 @@ export const reduceItem = async (req: Request, res: Response) => {
 };
 
 export const addItem = async (req: Request, res: Response) => {
-  const cartId = req.cookies.cartId;
+  const foodCart = req.cookies.foodCart;
   const productId = req.params.productId;
   const quantity = parseInt(req.params.quantity);
 
   try {
     const cart = await FoodCartModel.updateOne(
       {
-        _id: cartId,
+        _id: foodCart,
         'products.product_id': productId,
       },
       {
@@ -127,12 +127,12 @@ export const addItem = async (req: Request, res: Response) => {
 };
 
 export const deleteProduct = async (req: Request, res: Response) => {
-  const cartId = req.cookies.cartId;
+  const foodCart = req.cookies.foodCart;
   const productId = req.params.productId;
 
   try {
     const cart = await FoodCartModel.updateOne(
-      { _id: cartId },
+      { _id: foodCart },
       {
         $pull: { products: { product_id: productId } },
       }

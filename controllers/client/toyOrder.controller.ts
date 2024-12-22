@@ -6,7 +6,7 @@ import ToyCartModel from '../../models/toyCart.model';
 
 // [POST] order/create/:userId
 export const createOrder = async (req: Request, res: Response) => {
-  const cartToy = req.cookies.cartToy;
+  const toyCart = req.cookies.toyCart;
   const { totalPrice, ...userInfo } = req.body;
 
   const orderData = {
@@ -15,7 +15,7 @@ export const createOrder = async (req: Request, res: Response) => {
     totalPrice: totalPrice,
   };
 
-  const cart = await ToyCartModel.findOne({ _id: cartToy });
+  const cart = await ToyCartModel.findOne({ _id: toyCart });
 
   if (cart) {
     try {
@@ -33,7 +33,7 @@ export const createOrder = async (req: Request, res: Response) => {
 
       const order = new ToyOrderModel(orderData);
       await order.save();
-      await ToyCartModel.updateOne({ _id: cartToy }, { products: [] });
+      await ToyCartModel.updateOne({ _id: toyCart }, { products: [] });
       res.redirect(`/toyorder/success?orderId=${order._id}`);
       req.flash('success', 'You have ordered successfully');
     } catch (error) {
