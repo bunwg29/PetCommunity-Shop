@@ -1,3 +1,4 @@
+include ../../mixins/alert.pug
 doctype html
 html
     head
@@ -11,7 +12,7 @@ html
 
     body(class="bg-[#FFFFFF] px-[5%] py-[2%]")  
         main(class="border rounded-[32px] gap-[20px] px-[5%] py-[2%] flex xs:flex-col  sm:flex-row justify-center")
-
+            +alert()
             if errors && errors.general
                 p(class="text-red-500 text-sm pl-[5px]") #{errors.general}
 
@@ -47,7 +48,7 @@ html
                 if errors && errors.confirmpassword
                     p(class="text-red-500 text-sm pl-[5px]") #{errors.confirmpassword}
                 label(for="facebook_address") Facebook Address
-                input(type="text" name="facebook_address" class="pl-[20px] w-full h-10 border rounded-[10px] outline-[#367AFF]" id="facebook_address")
+                input(type="text" name="facebook_address" class="pl-[20px] w-full h-10 border rounded-[10px] outline-[#367AFF]" id="facebook_address" required)
                 .flex.items-center.justify-center.w-full
                     label(for="thumbnail" class="thumbnail_label flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500")
                         .flex.flex-col.items-center.justify-center.pt-5.pb-6
@@ -57,7 +58,7 @@ html
                             span(class="font-semibold") Click to upload
                             |  your avatar
                         p(class="text-xs text-gray-500 dark:text-gray-400") SVG, PNG, JPG or GIF (MAX. 800x400px)
-                    input#thumbnail(type="file" name="thumbnail" accept="image/*" class="hidden")
+                    input#thumbnail(type="file" name="thumbnail" accept="image/*" class="hidden" required)
 
 
                 button(type="submit" class="text-[14px] font-medium text-[#FFFFFF] w-full h-12 border rounded-[10px] bg-[#367AFF] my-[2%]") Sign up

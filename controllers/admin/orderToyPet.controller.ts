@@ -47,7 +47,7 @@ export const confirmOrder = async (req: Request, res: Response) => {
   const email = req.params.email;
   const orderId = req.params.id;
 
-  const subject = 'OTP code to get reset password';
+  const subject = 'CONFIRM ORDER';
   const htmlSendMail = `Your order #${orderId} has been confirmed by us. This package will be sent to you according to the plan`;
   sendEmail(email, subject, htmlSendMail);
 
