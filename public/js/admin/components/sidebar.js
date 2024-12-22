@@ -2,7 +2,15 @@ document.addEventListener('DOMContentLoaded', function () {
   function setupToggleMenu(toggleId, menuId, chevronClass) {
     const toggleElement = document.getElementById(toggleId);
     const menuElement = document.getElementById(menuId);
-    const chevronIcon = toggleElement.querySelector(`.${chevronClass}`);
+    let chevronIcon = null;
+
+    if (toggleElement) {
+      chevronIcon = toggleElement.querySelector(`.${chevronClass}`);
+    }
+
+    if (!toggleElement || !menuElement || !chevronIcon) {
+      return; 
+    }
 
     toggleElement.addEventListener('click', () => {
       menuElement.classList.toggle('hidden');
@@ -21,7 +29,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
   setupToggleMenu('petFoodToggle', 'petFoodMenu', 'icon-chevron-default');
   setupToggleMenu('petToyToggle', 'petToyMenu', 'icon-chevron-default');
+  setupToggleMenu('orderToggle', 'orderViewMenu', 'icon-chevron-default');
 });
+
 
 document.addEventListener('DOMContentLoaded', () => {
   const sidebar = document.getElementById('sidebar');
