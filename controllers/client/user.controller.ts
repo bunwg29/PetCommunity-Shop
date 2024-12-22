@@ -20,6 +20,15 @@ export const signup = async (req: Request, res: Response) => {
 
 // [POST] /user/signup
 export const signupPost = async (req: Request, res: Response) => {
+
+  const checkEmail = await AccountModel.findOne({email: req.body.email}).select('email').lean();
+  console.log(checkEmail);
+  
+  if (checkEmail) {
+    req.flash('warming', 'Email already exists!');
+    return res.redirect('/user/signup');
+  };
+
   const userData = {
     name: req.body.name,
     email: req.body.email,

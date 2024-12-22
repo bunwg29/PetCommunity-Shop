@@ -674,14 +674,6 @@ video {
   top: 80%;
 }
 
-.top-\[10px\] {
-  top: 10px;
-}
-
-.top-\[100px\] {
-  top: 100px;
-}
-
 .z-10 {
   z-index: 10;
 }
@@ -975,6 +967,10 @@ video {
   height: 0.75rem;
 }
 
+.h-3\/4 {
+  height: 75%;
+}
+
 .h-32 {
   height: 8rem;
 }
@@ -1079,43 +1075,6 @@ video {
 
 .h-screen {
   height: 100vh;
-}
-
-.h-1\/2 {
-  height: 50%;
-}
-
-.h-\[5\] {
-  height: 5;
-}
-
-.h-\[500px\] {
-  height: 500px;
-}
-
-.h-\[30\%\] {
-  height: 30%;
-}
-
-.h-\[10\%\] {
-  height: 10%;
-}
-
-.h-4\/6 {
-  height: 66.666667%;
-}
-
-.h-min {
-  height: -moz-min-content;
-  height: min-content;
-}
-
-.h-3\/4 {
-  height: 75%;
-}
-
-.h-1\/3 {
-  height: 33.333333%;
 }
 
 .max-h-0 {
@@ -1928,31 +1887,6 @@ video {
 .bg-yellow-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(254 252 232 / var(--tw-bg-opacity, 1));
-}
-
-.bg-\[\#59000f\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(89 0 15 / var(--tw-bg-opacity, 1));
-}
-
-.bg-\[\#ec2345\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(236 35 69 / var(--tw-bg-opacity, 1));
-}
-
-.bg-\[\#59001b\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(89 0 27 / var(--tw-bg-opacity, 1));
-}
-
-.bg-\[\#ff6b15\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 107 21 / var(--tw-bg-opacity, 1));
-}
-
-.bg-\[\#ff6811\] {
-  --tw-bg-opacity: 1;
-  background-color: rgb(255 104 17 / var(--tw-bg-opacity, 1));
 }
 
 .bg-gradient-to-br {
@@ -3399,10 +3333,6 @@ select {
     position: relative;
   }
 
-  .sm\:top-\[30\%\] {
-    top: 30%;
-  }
-
   .sm\:top-\[15\%\] {
     top: 15%;
   }
@@ -3458,32 +3388,24 @@ select {
     height: 2.5rem;
   }
 
+  .sm\:h-\[100px\] {
+    height: 100px;
+  }
+
   .sm\:h-\[15\%\] {
     height: 15%;
-  }
-
-  .sm\:h-\[300px\] {
-    height: 300px;
-  }
-
-  .sm\:h-\[50\%\] {
-    height: 50%;
-  }
-
-  .sm\:h-\[80px\] {
-    height: 80px;
   }
 
   .sm\:h-\[30\%\] {
     height: 30%;
   }
 
-  .sm\:h-\[150px\] {
-    height: 150px;
+  .sm\:h-\[300px\] {
+    height: 300px;
   }
 
-  .sm\:h-\[100px\] {
-    height: 100px;
+  .sm\:h-\[80px\] {
+    height: 80px;
   }
 
   .sm\:w-1\/2 {
@@ -3813,10 +3735,6 @@ select {
 
   .lg\:h-\[15\%\] {
     height: 15%;
-  }
-
-  .lg\:h-\[60\%\] {
-    height: 60%;
   }
 
   .lg\:h-\[50\%\] {

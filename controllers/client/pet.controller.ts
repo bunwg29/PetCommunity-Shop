@@ -88,7 +88,7 @@ export const petDetail = async (req: Request, res: Response) => {
     title: 'PetCommunity | Product',
     petDetail: petDetail,
     morePet: morePet,
-    linkFb: linkFb
+    linkFb: linkFb ? linkFb : 'facebook.com'
   });
 
 };

@@ -29,14 +29,14 @@ const moment_1 = __importDefault(require("moment"));
 const toyPet_model_1 = __importDefault(require("../../models/toyPet.model"));
 const toyCart_model_1 = __importDefault(require("../../models/toyCart.model"));
 const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const cartToy = req.cookies.cartToy;
+    const toyCart = req.cookies.toyCart;
     const _a = req.body, { totalPrice } = _a, userInfo = __rest(_a, ["totalPrice"]);
     const orderData = {
         userInfo: userInfo,
         products: [],
         totalPrice: totalPrice,
     };
-    const cart = yield toyCart_model_1.default.findOne({ _id: cartToy });
+    const cart = yield toyCart_model_1.default.findOne({ _id: toyCart });
     if (cart) {
         try {
             for (const item of cart.products) {
@@ -51,7 +51,7 @@ const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
             }
             const order = new toyOrder_model_1.default(orderData);
             yield order.save();
-            yield toyCart_model_1.default.updateOne({ _id: cartToy }, { products: [] });
+            yield toyCart_model_1.default.updateOne({ _id: toyCart }, { products: [] });
             res.redirect(`/toyorder/success?orderId=${order._id}`);
             req.flash('success', 'You have ordered successfully');
         }

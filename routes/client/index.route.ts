@@ -10,12 +10,10 @@ import { orderRoutes } from './foodOrder.route';
 import { toyPetRoutes } from './toypet.route';
 import { cartToyRoutes } from './toycart.route';
 import { toyOrderRoutes } from './toyOrder.route';
-
-import { checkCartCookies } from '../../middlewares/client/cartToken.middleware';
+import { cookiesCart } from '../../middlewares/client/cartCookies.middleware';
 
 const Routers = (app: Express): void => {
-  app.use(checkCartCookies);
-
+  app.use(cookiesCart);
   app.use('/', dashboardRoutes);
   app.use('/pet', petRoutes);
   app.use('/user', userRoutes);

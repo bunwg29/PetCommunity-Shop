@@ -6,7 +6,7 @@ import moment from 'moment';
 
 // [POST] order/create/:userId
 export const createOrder = async (req: Request, res: Response) => {
-  const cartId = req.cookies.cartId;
+  const foodCart = req.cookies.foodCart;
   const { totalPrice, ...userInfo } = req.body;
 
   const orderData = {
@@ -15,7 +15,7 @@ export const createOrder = async (req: Request, res: Response) => {
     totalPrice: totalPrice,
   };
 
-  const cart = await FoodCartModel.findOne({ _id: cartId });
+  const cart = await FoodCartModel.findOne({ _id: foodCart });
 
   if (cart) {
     try {
@@ -37,7 +37,7 @@ export const createOrder = async (req: Request, res: Response) => {
 
       const order = new FoodOrderModel(orderData);
       await order.save();
-      await FoodCartModel.updateOne({ _id: cartId }, { products: [] });
+      await FoodCartModel.updateOne({ _id: foodCart }, { products: [] });
       res.redirect(`/order/success?orderId=${order._id}`);
       req.flash('success', 'You have ordered successfully');
     } catch (error) {
